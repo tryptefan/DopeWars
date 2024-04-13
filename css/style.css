@@ -114,7 +114,6 @@ h5 {
   position: relative;
 }
 .dark {
-  transition: 0.2s opacity;
   background-color: rgba(0, 0, 0, 0.35);
   left: 0;
   height: 100%;
@@ -122,8 +121,11 @@ h5 {
   pointer-events: none;
   position: absolute;
   top: 0;
+  transition: 0.2s opacity;
   width: 100%;
 }
+.showMessage .dark,
+.showTravel .dark,
 .showDeal .dark {
   background-color: rgba(0, 0, 0, 0.35);
   left: 0;
