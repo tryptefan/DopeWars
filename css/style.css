@@ -63,7 +63,7 @@
 }
 .meta {
   font-size: 12px;
-  line-height: 74%;
+  line-height: 194%;
   font-weight: 800;
   text-transform: uppercase;
 }
@@ -86,7 +86,7 @@ body {
   padding: 12px 55px 8px 55px;
   text-align: center;
 }
-.buttonsecondary {
+.buttonSecondary {
   border: 3px solid var(--brand);
   border-radius: 31px;
   color: var(--brand);
@@ -94,6 +94,35 @@ body {
   flex-grow: 1;
   padding: 10px 55px;
   text-align: center;
+}
+.toggle {
+  background-color: var(--grey20);
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  position: relative;
+}
+.toggle .buttonPrimary {
+  background-color: transparent;
+  color: var(--text);
+  position: relative;
+  z-index: 1;
+}
+.toggle::after {
+  background-color: var(--grey10);
+  border-radius: 31px;
+  content: "";
+  display: block;
+  left: 8px;
+  position: absolute;
+  width: calc(50% - 4px);
+  height: calc(100% - 16px);
+  transition: 0.2s all;
+  z-index: 0;
+}
+.toggle.toggled::after {
+  left: calc(50% - 4px);
 }
 a {
   text-decoration: none;
@@ -138,13 +167,24 @@ h5 {
 }
 .overlay {
   border-radius: 44px 44px 0 0;
+  box-sizing: border-box;
   bottom: -665px;
   left: 0;
   height: 665px;
+  padding: 44px 24px;
   position: absolute;
   transition: 0.2s bottom;
   width: 100%;
   background-color: var(--grey30);
+}
+.overlay .topBar {
+  align-items: flex-start;
+}
+.overlay .topBar .drugInfo {
+  text-align: right;
+}
+.overlay .topBar .drugInfo .purchase {
+  margin-top: 12px;
 }
 .showDeal .deal {
   bottom: 0;
@@ -180,8 +220,8 @@ h5 {
   align-items: flex-end;
   margin-bottom: 13px;
 }
-.moneyStatus .meta {
-  line-height: 205%;
+.moneyStatus .bank {
+  margin-top: 12px;
 }
 .drugTable {
   background-color: var(--grey20);

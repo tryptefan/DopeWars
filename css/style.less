@@ -52,7 +52,7 @@
 .listing { font-size: 17px; font-weight: 400; line-height: 147%; }
 .listingBold { font-size: 17px; font-weight: 800; line-height: 147%; }
 .small { font-size: 14px; font-weight: 400; line-height: 147%; }
-.meta { font-size: 12px; line-height: 74%; font-weight: 800; text-transform: uppercase; }
+.meta { font-size: 12px; line-height: 194%; font-weight: 800; text-transform: uppercase; }
 
 
 body { 
@@ -74,7 +74,7 @@ body {
     padding: 12px 55px 8px 55px;
     text-align: center;
 }
-.buttonsecondary { 
+.buttonSecondary { 
     border: 3px solid var(--brand);
     border-radius: 31px; 
     color: var(--brand);
@@ -82,6 +82,41 @@ body {
     flex-grow: 1;
     padding: 10px 55px;
     text-align: center;
+}
+
+.toggle {
+    background-color: var(--grey20);
+    border-radius: 40px; 
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    position: relative;
+
+    .buttonPrimary { 
+        background-color: transparent;
+        color: var(--text);
+        position: relative;
+        z-index: 1;
+     }
+
+     &::after {
+        background-color: var(--grey10);
+        border-radius: 31px; 
+        content: "";
+        display: block;
+        left: 8px;
+        position: absolute;
+        width: ~"calc(50% - 4px)";
+        height: ~"calc(100% - 16px)";
+        transition: .2s all;
+        z-index: 0;
+     }
+}
+
+.toggle.toggled {
+    &::after {
+        left: ~"calc(50% - 4px)";
+    }
 }
 
 a { text-decoration: none; }
@@ -126,13 +161,23 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
 .overlay {
     border-radius: 44px 44px 0 0;
+    box-sizing: border-box;
     bottom: -665px;
     left: 0;
     height: 665px;
+    padding: 44px 24px;
     position: absolute;
     transition: .2s bottom;
     width: 100%;
     background-color: var(--grey30);
+
+    .topBar { 
+        align-items: flex-start;
+        .drugInfo { 
+            text-align: right; 
+            .purchase { margin-top: 12px; }
+        }
+    }
 }
 .showDeal .deal { bottom: 0; }
 
@@ -167,7 +212,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
     align-items: flex-end;
     margin-bottom: 13px;
 
-    .meta { line-height: 205%; }
+    .bank { margin-top: 12px; }
 
 } // moneyStatus
 

@@ -7,7 +7,7 @@
     <title>Location</title>
     <link rel="stylesheet" href="css/style.css" </head>
 
-<body class="app">
+<body class="app showDeal">
 
     <div class="container">
 
@@ -29,8 +29,10 @@
             <div class="myMoney">
                 <div class="meta">Cash</div>
                 <div class="numbers">$2,000</div>
-                <div class="meta">Bank</div>
-                <div class="numbers">$0</div>
+                <div class="bank">
+                    <div class="meta">Bank</div>
+                    <div class="numbers">$0</div>
+                </div>
             </div>
             <div class="debt">
                 <div class="meta">Debt</div>
@@ -87,37 +89,44 @@
 
         <div class="actions">
             <a href="#"
-                class="buttonsecondary button">Special</a><!-- this is only visible if there's a bank or loanshark. the link text would reflect that "Bank", "Loan Shark"-->
+                class="buttonSecondary button">Special</a><!-- this is only visible if there's a bank or loanshark. the link text would reflect that "Bank", "Loan Shark"-->
             <a href="#" class="buttonPrimary button">Travel</a>
         </div>
 
 
 
         <div class="dark"></div>
-        <!-- Overlays -->
+        <!-- Overlays+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
         <div class="overlay deal">
-            deal some drugs
-            <p>
-            <div style="display:inline-block" id="buy_button">buy</div>
-            <div style="display:inline-block" id="sell_button">sell</div>
-            <p>
-            <p>
-            <div style="display:inline-block">Cost:</div>
-            <div style="display:inline-block" id="cost"> </div>
-            </p>
-            <p>
+            <div class="topBar">
+                <h1 class="title">Drug Name</h1>
+                <div class="drugInfo">
+                    <div class="meta">Price</div>
+                    <div class="numbers" id="cost"></div>
+
+                    <div class="purchase">
+                        <div class="meta">Purchase Price</div>
+                        <div class="numbers">$000</div>
+                    </div>
+                </div>
+            </div><!-- topBar -->
+
+            <div class="toggle">
+                <div class="buttonPrimary button" id="buy_button">Buy</div>
+                <div class="buttonPrimary button" id="sell_button">Sell</div>
+            </div>
+
             <div style="display:inline-block">Cash:</div>
             <div style="display:inline-block" id="cash"> </div>
-            </p>
-            <p>
+
             <div style="display:inline-block">Capacity:</div>
             <div style="display:inline-block" id="capacity"> </div>
-            </p>
-            <p>
+
             <div style="display:inline-block" id="dec_button">(-)</div>
             <div style="display:inline-block" id="amount"> </div>
             <div style="display:inline-block" id="inc_button">(+)</div>
-            </p>
+
         </div>
 
     </div><!-- container -->
