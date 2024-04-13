@@ -100,6 +100,7 @@ body {
   border-radius: 40px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
   padding: 8px;
   position: relative;
 }
@@ -179,12 +180,20 @@ h5 {
 }
 .overlay .topBar {
   align-items: flex-start;
+  margin-bottom: 256px;
 }
 .overlay .topBar .drugInfo {
   text-align: right;
 }
 .overlay .topBar .drugInfo .purchase {
   margin-top: 12px;
+}
+.overlay .resources {
+  display: flex;
+  justify-content: space-between;
+}
+.overlay .resources .capacityDisplay {
+  text-align: right;
 }
 .showDeal .deal {
   bottom: 0;

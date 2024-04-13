@@ -89,6 +89,7 @@ body {
     border-radius: 40px; 
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
     padding: 8px;
     position: relative;
 
@@ -173,13 +174,22 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
     .topBar { 
         align-items: flex-start;
+        margin-bottom: 256px;
+        
         .drugInfo { 
             text-align: right; 
             .purchase { margin-top: 12px; }
         }
+    } // topBar
+
+    .resources {
+        display: flex;
+        justify-content: space-between;
+
+        .capacityDisplay { text-align: right; }
     }
 }
-.showDeal .deal { bottom: 0; }
+.showDeal .deal { bottom: 0; } // duplicate this
 
 
 // PAGE +++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -117,15 +117,27 @@
                 <div class="buttonPrimary button" id="sell_button">Sell</div>
             </div>
 
-            <div style="display:inline-block">Cash:</div>
-            <div style="display:inline-block" id="cash"> </div>
+            <div class="resources">
+                <div class="cashDisplay">
+                    <div class="meta">Cash</div>
+                    <div class="numbers" id="cash"> </div>
+                </div>
 
-            <div style="display:inline-block">Capacity:</div>
-            <div style="display:inline-block" id="capacity"> </div>
+                <div class="capacityDisplay">
+                    <div class="meta">Capacity</div>
+                    <div class="numbers" id="capacity"> </div>
+                </div>
+            </div><!-- resources -->
 
             <div style="display:inline-block" id="dec_button">(-)</div>
             <div style="display:inline-block" id="amount"> </div>
             <div style="display:inline-block" id="inc_button">(+)</div>
+
+            <div class="actions">
+                <a href="#"
+                    class="buttonSecondary button">Cancel</a><!-- this is only visible if there's a bank or loanshark. the link text would reflect that "Bank", "Loan Shark"-->
+                <a href="#" class="buttonPrimary button" id="primaryAction">Buy</a>
+            </div>
 
         </div>
 

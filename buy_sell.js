@@ -6,6 +6,7 @@ const buy_button = document.getElementById("buy_button");
 const sell_button = document.getElementById("sell_button");
 const inc_button = document.getElementById("inc_button");
 const dec_button = document.getElementById("dec_button");
+const primary_action = document.getElementById("primaryAction");
 
 const fmt_money = Intl.NumberFormat("en-US", {
      style: "currency",
@@ -31,10 +32,12 @@ function refresh_values() {
           //buy_button.innerHTML = "(BUY)";
           //sell_button.innerHTML = "(sell)";
           sell_button.parentNode.classList.remove("toggled");
+          primary_action.innerHTML = "Buy";
      } else {
           //buy_button.innerHTML = "(buy)";
           //sell_button.innerHTML = "(SELL)";
           sell_button.parentNode.classList.add("toggled");
+          primary_action.innerHTML = "Sell";
      }
 
      cost.innerHTML = fmt_money.format(v_cost);
