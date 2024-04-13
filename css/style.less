@@ -65,6 +65,8 @@ body {
     padding: 0;
 }
 
+body * { user-select: none; }
+
 .buttonPrimary { 
     background: var(--brand); 
     border-radius: 31px; 
@@ -89,7 +91,7 @@ body {
     border-radius: 40px; 
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 13px;
     padding: 8px;
     position: relative;
 
@@ -118,6 +120,12 @@ body {
     &::after {
         left: ~"calc(50% - 4px)";
     }
+}
+
+// SLIDER +++++++++++++++++++++++++++++++++++++++++
+
+.slider {
+    margin-bottom: 24px;
 }
 
 a { text-decoration: none; }
@@ -161,6 +169,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
 }
 
 .overlay {
+    background: var(--grey30); // add bg image here
     border-radius: 44px 44px 0 0;
     box-sizing: border-box;
     bottom: -665px;
@@ -170,12 +179,11 @@ h1, h2, h3, h4, h5 { margin: 0; }
     position: absolute;
     transition: .2s bottom;
     width: 100%;
-    background-color: var(--grey30);
 
     .topBar { 
         align-items: flex-start;
-        margin-bottom: 256px;
-        
+        margin-bottom: 236px;
+
         .drugInfo { 
             text-align: right; 
             .purchase { margin-top: 12px; }
@@ -185,6 +193,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
     .resources {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 24px;;
 
         .capacityDisplay { text-align: right; }
     }
