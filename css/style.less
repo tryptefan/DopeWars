@@ -1,0 +1,173 @@
+// bold        1000
+// semibold    800
+// medium      600
+// regular     400
+
+@font-face {
+    font-family: 'inter';
+    src: url('../fonts/Inter-Regular.ttf') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'inter';
+    src: url('..//fonts//Inter-Medium.ttf') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'inter';
+    src: url('../fonts/Inter-SemiBold.ttf') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'inter';
+    src: url('../fonts/Inter-Bold.ttf') format('woff2');
+    font-weight: 1000;
+    font-style: normal;
+}
+
+// COLORS
+
+@brand:#245EB5;
+@text: #656565;
+@grey: #888381;
+@grey10: #D8D1C3;
+@grey20: #E8E1D1;
+@grey30: #F3EDDE;
+
+:root {
+    --brand: #245EB5;
+    --text: #656565;
+    --grey: #888381;
+    --grey10: #D8D1C3;
+    --grey20: #E8E1D1;
+    --grey30: #F3EDDE;
+}
+
+.title { font-size: 24px; font-weight: 1000; line-height: 114%; text-transform: uppercase; }
+.button { font-size: 20px; font-weight: 600; line-height: 150%; }
+.numbers { font-size: 24px; font-weight: 1000; line-height: 96%; }
+.listing { font-size: 17px; font-weight: 400; line-height: 147%; }
+.listingBold { font-size: 17px; font-weight: 800; line-height: 147%; }
+.small { font-size: 14px; font-weight: 400; line-height: 147%; }
+.meta { font-size: 12px; line-height: 74%; font-weight: 800; text-transform: uppercase; }
+
+
+body { 
+    background-color: #2E2E2E; 
+    color: var(--text); 
+    font-family: inter; 
+    font-size: 18px;;
+    font-weight: 400; line-height: 1.35em; 
+    margin: 0;
+    padding: 0;
+}
+
+.buttonPrimary { 
+    background: var(--brand); 
+    border-radius: 31px; 
+    color: var(--grey30);
+    display: block;
+    flex-grow: 1;
+    padding: 12px 55px 8px 55px;
+    text-align: center;
+}
+.buttonsecondary { 
+    border: 3px solid var(--brand);
+    border-radius: 31px; 
+    color: var(--brand);
+    display: block;
+    flex-grow: 1;
+    padding: 10px 55px;
+    text-align: center;
+}
+
+a { text-decoration: none; }
+
+h1, h2, h3, h4, h5 { margin: 0; }
+
+.container { 
+    background-color: var(--grey30);
+    max-width: 400px; 
+    margin: 0 auto;
+    padding: 67px 24px 29px 24px;
+}
+
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-bottom: 300px;
+
+    .day { 
+        .meta { 
+            color: var(--grey); 
+            display: inline-block; 
+        } // meta
+        .daysLeft {  
+            display: inline-block;
+
+            .dayCurrent { font-size: 33px; font-weight: 600; }
+            .daySlash { font-size: 24px; font-weight: 600; }
+            .dayLast { font-size: 17px; font-weight: 600; }
+        }
+    } // days
+} // topBar
+
+.moneyStatus {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 13px;
+
+    .meta { line-height: 205%; }
+
+    .myMoney {
+    } //myMoney
+    .debt {
+
+    }//debt
+} // moneyStatus
+
+
+// drugs
+.drugTable {
+    background-color: var(--grey20);
+    border-radius: 20px;
+    margin: 0 0 16px 0;
+
+    .drug{ 
+        background: url("../img/iconArrow.svg") no-repeat right 11px center;
+        border-bottom: 1px solid var(--grey10);
+        display: flex;
+        gap: 8px;
+        align-items: baseline;
+        padding: 13px 43px 10px 19px;
+
+        .amount { color: var(--text); width: 27px; }
+        .drugName { color: var(--brand); width: 116px; }
+        .graph { width: 47px; }
+        .price { color: var(--text); flex-grow: 1; text-align: right; }
+    }
+    .drug.disabled { 
+        background-image: url("../img/iconArrowDisabled.svg"); 
+        * { color: var(--grey); }
+    }
+    .drug:last-child { border-bottom: 0; }
+} // drugTable
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    
+    a {
+        flex: 0 1 calc(50% - 10px); /* 50% width minus half of the gap */
+    }
+    
+    a + a {
+        margin-left: 20px; /* Add a margin to the second child */
+    }
+}
