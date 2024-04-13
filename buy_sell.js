@@ -42,7 +42,7 @@ function refresh_values() {
 
      cost.innerHTML = fmt_money.format(v_cost);
      cash.innerHTML = fmt_money.format(v_cash + v_cash_delta);
-     capacity.innerHTML = v_holding + v_holding_delta + " / " + v_capacity;
+     capacity.innerHTML = v_holding + v_holding_delta + "/" + v_capacity;
      amount.innerHTML = v_amount;
 }
 
