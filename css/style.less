@@ -92,8 +92,22 @@ h1, h2, h3, h4, h5 { margin: 0; }
     background-color: var(--grey30);
     max-width: 400px; 
     margin: 0 auto;
+    overflow: hidden;
     padding: 67px 24px 29px 24px;
+    position: relative;
 }
+
+.overlay {
+    border-radius: 44px 44px 0 0;
+    bottom: -665px;
+    left: 0;
+    height: 665px;
+    position: absolute;
+    transition: .2s bottom;
+    width: 100%;
+    background-color: green;
+}
+.overlay.show { bottom: 0; }
 
 .topBar {
     display: flex;
@@ -125,11 +139,6 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
     .meta { line-height: 205%; }
 
-    .myMoney {
-    } //myMoney
-    .debt {
-
-    }//debt
 } // moneyStatus
 
 
@@ -145,7 +154,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
         display: flex;
         gap: 8px;
         align-items: baseline;
-        padding: 13px 43px 10px 19px;
+        padding: 11px 43px 8px 19px;
 
         .amount { color: var(--text); width: 27px; }
         .drugName { color: var(--brand); width: 116px; }
@@ -156,7 +165,10 @@ h1, h2, h3, h4, h5 { margin: 0; }
         background-image: url("../img/iconArrowDisabled.svg"); 
         * { color: var(--grey); }
     }
-    .drug:last-child { border-bottom: 0; }
+    .drug:last-child { 
+        border-bottom: 0;
+        padding-bottom: 10px;
+     }
 } // drugTable
 
 .actions {

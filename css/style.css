@@ -109,7 +109,22 @@ h5 {
   background-color: var(--grey30);
   max-width: 400px;
   margin: 0 auto;
+  overflow: hidden;
   padding: 67px 24px 29px 24px;
+  position: relative;
+}
+.overlay {
+  border-radius: 44px 44px 0 0;
+  bottom: -665px;
+  left: 0;
+  height: 665px;
+  position: absolute;
+  transition: 0.2s bottom;
+  width: 100%;
+  background-color: green;
+}
+.overlay.show {
+  bottom: 0;
 }
 .topBar {
   display: flex;
@@ -156,7 +171,7 @@ h5 {
   display: flex;
   gap: 8px;
   align-items: baseline;
-  padding: 13px 43px 10px 19px;
+  padding: 11px 43px 8px 19px;
 }
 .drugTable .drug .amount {
   color: var(--text);
@@ -182,6 +197,7 @@ h5 {
 }
 .drugTable .drug:last-child {
   border-bottom: 0;
+  padding-bottom: 10px;
 }
 .actions {
   display: flex;
