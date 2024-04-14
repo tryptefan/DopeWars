@@ -7,7 +7,7 @@
     <title>Location</title>
     <link rel="stylesheet" href="css/style.css" </head>
 
-<body class="app showDeal">
+<body class="app">
 
     <div class="container">
 
@@ -42,43 +42,43 @@
 
         <!-- Drug table -->
         <div class="drugTable">
-            <div class="drug">
+            <div class="drug" data-name="acid">
                 <div class="amount small">0</div>
                 <div class="drugName listingBold">Acid</div>
                 <div class="graph">|||</div>
                 <div class="price listing">$400</div>
             </div>
-            <div class="drug">
+            <div class="drug" data-name="acid">
                 <div class="amount small">0</div>
                 <div class="drugName listingBold">Acid</div>
                 <div class="graph">|||</div>
                 <div class="price listing">$400</div>
             </div>
-            <div class="drug">
+            <div class="drug" data-name="acid">
                 <div class="amount small">0</div>
                 <div class="drugName listingBold">Acid</div>
                 <div class="graph">|||</div>
                 <div class="price listing">$400</div>
             </div>
-            <div class="drug">
+            <div class="drug" data-name="acid">
                 <div class="amount small">0</div>
                 <div class="drugName listingBold">Acid</div>
                 <div class="graph">|||</div>
                 <div class="price listing">$400</div>
             </div>
-            <div class="drug disabled">
+            <div class="drug disabled" data-name="acid">
                 <div class="amount small">0</div>
                 <div class="drugName listingBold listingBold">Acid</div>
                 <div class="graph">|||</div>
                 <div class="price listing">$400</div>
             </div>
-            <div class="drug disabled">
+            <div class="drug disabled" data-name="acid">
                 <div class="amount small">0</div>
                 <div class="drugName listingBold listingBold">Acid</div>
                 <div class="graph">|||</div>
                 <div class="price listing">$400</div>
             </div>
-            <div class="drug">
+            <div class="drug" data-name="acid">
                 <div class="amount small">0</div>
                 <div class="drugName listingBold">Acid</div>
                 <div class="graph">|||</div>
@@ -101,14 +101,14 @@
         <!-- DEAL-->
         <div class="overlay deal">
             <div class="topBar">
-                <h1 class="title">Drug Name</h1>
+                <h1 class="title" id="bs_name">Drug Name</h1>
                 <div class="drugInfo">
                     <div class="meta">Price</div>
-                    <div class="numbers" id="cost"></div>
+                    <div class="numbers" id="bs_price"></div>
 
                     <div class="purchase">
                         <div class="meta">Purchase Price</div>
-                        <div class="numbers">$000</div>
+                        <div class="numbers" id="my_price">$000</div>
                     </div>
                 </div>
             </div><!-- topBar -->
@@ -121,18 +121,18 @@
             <div class="resources">
                 <div class="cashDisplay">
                     <div class="meta">Cash</div>
-                    <div class="numbers" id="cash"> </div>
+                    <div class="numbers" id="bs_cash"> </div>
                 </div>
 
                 <div class="capacityDisplay">
                     <div class="meta">Capacity</div>
-                    <div class="numbers" id="capacity"> </div>
+                    <div class="numbers" id="bs_capacity"> </div>
                 </div>
             </div><!-- resources -->
 
             <div class="slider">
                 <div style="display:inline-block" id="dec_button">(-)</div>
-                <div style="display:inline-block" id="amount"> </div>
+                <div style="display:inline-block" id="bs_amount"> </div>
                 <div style="display:inline-block" id="inc_button">(+)</div>
             </div>
 
@@ -141,8 +141,7 @@
             </div>
 
             <div class="actions">
-                <a href="#"
-                    class="buttonSecondary button">Cancel</a><!-- this is only visible if there's a bank or loanshark. the link text would reflect that "Bank", "Loan Shark"-->
+                <a href="#" class="buttonSecondary button" id="secondaryAction">Cancel</a>
                 <a href="#" class="buttonPrimary button" id="primaryAction">Buy</a>
             </div>
 
@@ -188,8 +187,16 @@
 
     </div><!-- container -->
 
-
 </body>
+
+<!-- TODO (sam) We definitely want a better way to store data -->
+<div hidden> 
+    <div id="wallet" data-cash="2000" data-debt="2000" data-bank="0">
+        <div id="my_acid" data-holding="0" data-price="0"></div>
+    </div>
+
+    <div id="la_acid" data-name="Acid" data-price="30"></div>
+</div>
 
 <script src="buy_sell.js"></script>
 
