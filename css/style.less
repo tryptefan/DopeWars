@@ -1,6 +1,7 @@
-// bold        1000
-// semibold    800
-// medium      600
+// black       800
+// bold        700
+// semibold    600
+// medium      500
 // regular     400
 
 @font-face {
@@ -12,19 +13,25 @@
 @font-face {
     font-family: 'inter';
     src: url('..//fonts//Inter-Medium.ttf') format('woff2');
-    font-weight: 600;
+    font-weight: 500;
     font-style: normal;
 }
 @font-face {
     font-family: 'inter';
     src: url('../fonts/Inter-SemiBold.ttf') format('woff2');
-    font-weight: 800;
+    font-weight: 600;
     font-style: normal;
 }
 @font-face {
     font-family: 'inter';
     src: url('../fonts/Inter-Bold.ttf') format('woff2');
-    font-weight: 1000;
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'inter';
+    src: url('../fonts/Inter-Black.ttf') format('woff2');
+    font-weight: 800;
     font-style: normal;
 }
 
@@ -46,13 +53,13 @@
     --grey30: #F3EDDE;
 }
 
-.title { font-size: 24px; font-weight: 1000; line-height: 114%; text-transform: uppercase; }
-.button { font-size: 20px; font-weight: 600; line-height: 150%; }
-.numbers { font-size: 24px; font-weight: 1000; line-height: 96%; }
+.title { font-size: 24px; font-weight: 700; line-height: 114%; text-transform: uppercase; }
+.button { font-size: 20px; font-weight: 500; line-height: 150%; }
+.numbers { font-size: 24px; font-weight: 700; line-height: 96%; }
 .listing { font-size: 17px; font-weight: 400; line-height: 147%; }
-.listingBold { font-size: 17px; font-weight: 800; line-height: 147%; }
+.listingBold { font-size: 17px; font-weight: 600; line-height: 147%; }
 .small { font-size: 14px; font-weight: 400; line-height: 147%; }
-.meta { font-size: 12px; line-height: 194%; font-weight: 800; text-transform: uppercase; }
+.meta { font-size: 12px; line-height: 194%; font-weight: 600; text-transform: uppercase; }
 
 
 body { 
@@ -73,7 +80,7 @@ body * { user-select: none; }
     border: 3px solid var(--brand); // hax
     color: var(--grey30);
     display: block;
-    padding: 12px 55px 8px 55px;
+    padding: 10px 40px;
     text-align: center;
 }
 .buttonSecondary { 
@@ -81,7 +88,7 @@ body * { user-select: none; }
     border-radius: 31px; 
     color: var(--brand);
     display: block;
-    padding: 10px 55px;
+    padding: 10px 40px;
     text-align: center;
 }
 
@@ -247,7 +254,35 @@ h1, h2, h3, h4, h5 { margin: 0; }
 } // duplicate this
 
 
-// PAGE +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// PAGES +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Intro +++++++++++++++++++++++++
+
+.intro { text-align: center; }
+.splash {
+    display: inline-block;
+    font-size: 59.66px;
+    font-weight: 800;
+    margin: 30px auto;
+    text-align: center;
+    text-transform: uppercase;
+
+    .wars { font-size: 51.76px; line-height: 68px; }
+    div { 
+        background-color: var(--brand); 
+        color: var(--grey30);
+        font-size: 27px;
+        font-weight: 700;
+        padding: 4px 0 3px 0;
+        letter-spacing: 27px;
+        margin-top: -8px;
+    }
+    span { letter-spacing: 3px; }
+}
+
+
+
 
 .topBar {
     display: flex;
@@ -264,9 +299,9 @@ h1, h2, h3, h4, h5 { margin: 0; }
         .daysLeft {  
             display: inline-block;
 
-            .dayCurrent { font-size: 33px; font-weight: 600; }
-            .daySlash { font-size: 24px; font-weight: 600; }
-            .dayLast { font-size: 17px; font-weight: 600; }
+            .dayCurrent { font-size: 33px; font-weight: 500; }
+            .daySlash { font-size: 24px; font-weight: 500; }
+            .dayLast { font-size: 17px; font-weight: 500; }
         }
     } // days
 } // topBar
@@ -325,6 +360,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
     a {
         flex: 1 1 0px;
         min-width: 0;
+        white-space: nowrap;
     }
     
 }

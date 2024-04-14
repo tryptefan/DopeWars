@@ -7,19 +7,25 @@
 @font-face {
   font-family: 'inter';
   src: url('..//fonts//Inter-Medium.ttf') format('woff2');
-  font-weight: 600;
+  font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: 'inter';
   src: url('../fonts/Inter-SemiBold.ttf') format('woff2');
-  font-weight: 800;
+  font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: 'inter';
   src: url('../fonts/Inter-Bold.ttf') format('woff2');
-  font-weight: 1000;
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'inter';
+  src: url('../fonts/Inter-Black.ttf') format('woff2');
+  font-weight: 800;
   font-style: normal;
 }
 :root {
@@ -32,18 +38,18 @@
 }
 .title {
   font-size: 24px;
-  font-weight: 1000;
+  font-weight: 700;
   line-height: 114%;
   text-transform: uppercase;
 }
 .button {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 150%;
 }
 .numbers {
   font-size: 24px;
-  font-weight: 1000;
+  font-weight: 700;
   line-height: 96%;
 }
 .listing {
@@ -53,7 +59,7 @@
 }
 .listingBold {
   font-size: 17px;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 147%;
 }
 .small {
@@ -64,7 +70,7 @@
 .meta {
   font-size: 12px;
   line-height: 194%;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
 }
 body {
@@ -86,7 +92,7 @@ body * {
   border: 3px solid var(--brand);
   color: var(--grey30);
   display: block;
-  padding: 12px 55px 8px 55px;
+  padding: 10px 40px;
   text-align: center;
 }
 .buttonSecondary {
@@ -94,7 +100,7 @@ body * {
   border-radius: 31px;
   color: var(--brand);
   display: block;
-  padding: 10px 55px;
+  padding: 10px 40px;
   text-align: center;
 }
 .toggle {
@@ -244,6 +250,33 @@ h5 {
 .showTravel .travel .topBar {
   margin-bottom: 157px;
 }
+.intro {
+  text-align: center;
+}
+.splash {
+  display: inline-block;
+  font-size: 59.66px;
+  font-weight: 800;
+  margin: 30px auto;
+  text-align: center;
+  text-transform: uppercase;
+}
+.splash .wars {
+  font-size: 51.76px;
+  line-height: 68px;
+}
+.splash div {
+  background-color: var(--brand);
+  color: var(--grey30);
+  font-size: 27px;
+  font-weight: 700;
+  padding: 4px 0 3px 0;
+  letter-spacing: 27px;
+  margin-top: -8px;
+}
+.splash span {
+  letter-spacing: 3px;
+}
 .topBar {
   display: flex;
   justify-content: space-between;
@@ -259,15 +292,15 @@ h5 {
 }
 .topBar .day .daysLeft .dayCurrent {
   font-size: 33px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .topBar .day .daysLeft .daySlash {
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .topBar .day .daysLeft .dayLast {
   font-size: 17px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .moneyStatus {
   display: flex;
@@ -357,5 +390,6 @@ h5 {
 .actions a {
   flex: 1 1 0px;
   min-width: 0;
+  white-space: nowrap;
 }
 /*# sourceMappingURL=./style.css.map */
