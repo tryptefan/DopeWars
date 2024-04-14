@@ -21,6 +21,7 @@ const fmt_money = Intl.NumberFormat("en-US", {
 });
 
 var buying = true;
+var city = "la";
 var v_drug_id = "";
 var v_name = "";
 var v_cost = 50;
@@ -34,6 +35,7 @@ var v_amount = 0;
 var bs_drug_data = null;
 
 var drugs = document.getElementsByClassName("drug");
+refresh_drugs()
 for (var i = 0; i < drugs.length; i++) {
      drugs[i].onclick = open_drug;
 }
@@ -55,8 +57,7 @@ function open_drug() {
 
      console.log(drug.dataset.name);
 
-     var location = "la";
-     var drug_data = document.getElementById("la" + "_" + drug.dataset.name);
+     var drug_data = document.getElementById(city + "_" + drug.dataset.name);
      if (drug_data == null) {
           return;
      }
@@ -103,6 +104,29 @@ function positionCounter() {
      sliderCounter.style.left = percentage + "%";
 }
 
+function refresh_drugs() {
+     for (var i = 0; i < drugs.length; i++) {
+          var drug = drugs[i]
+          var drug_data = document.getElementById(city + "_" + drug.dataset.name)
+          var my_drug_data = document.getElementById("my_" + drug.dataset.name)
+          if (drug_data != null && my_drug_data != null) {
+               var children = drug.children
+               for (var j = 0; j < children.length; j++) {
+                    var child = children[j]
+                    if (child.classList.contains("amount")) {
+                         child.innerHTML = my_drug_data.dataset.holding;
+                    } else if (child.classList.contains("drugName")) {
+                         child.innerHTML = drug_data.dataset.name;
+                    } else if (child.classList.contains("graph")) {
+                         // TODO figure out histogram
+                    } else if (child.classList.contains("price")) {
+                         child.innerHTML = drug_data.dataset.price;
+                    }
+               }
+          }
+     }
+}
+
 function refresh_values() {
      if (buying) {
           sell_button.parentNode.classList.remove("toggled");
@@ -140,6 +164,8 @@ confirm_transaction_button.onclick = function () {
      }
      bs_drug_data.dataset.holding = total_holding;
      bs_drug_data.dataset.price = avg;
+
+     refresh_drugs()
 };
 
 function cancel_transaction() {
