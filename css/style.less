@@ -70,9 +70,9 @@ body * { user-select: none; }
 .buttonPrimary { 
     background: var(--brand); 
     border-radius: 31px; 
+    border: 3px solid var(--brand); // hax
     color: var(--grey30);
     display: block;
-    flex-grow: 1;
     padding: 12px 55px 8px 55px;
     text-align: center;
 }
@@ -81,7 +81,6 @@ body * { user-select: none; }
     border-radius: 31px; 
     color: var(--brand);
     display: block;
-    flex-grow: 1;
     padding: 10px 55px;
     text-align: center;
 }
@@ -319,12 +318,11 @@ h1, h2, h3, h4, h5 { margin: 0; }
 .actions {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     
     a {
-        flex: 0 1 calc(50% - 10px); /* 50% width minus half of the gap */
+        flex: 1 1 0px;
+        min-width: 0;
     }
     
-    a + a {
-        margin-left: 20px; /* Add a margin to the second child */
-    }
 }

@@ -83,9 +83,9 @@ body * {
 .buttonPrimary {
   background: var(--brand);
   border-radius: 31px;
+  border: 3px solid var(--brand);
   color: var(--grey30);
   display: block;
-  flex-grow: 1;
   padding: 12px 55px 8px 55px;
   text-align: center;
 }
@@ -94,7 +94,6 @@ body * {
   border-radius: 31px;
   color: var(--brand);
   display: block;
-  flex-grow: 1;
   padding: 10px 55px;
   text-align: center;
 }
@@ -351,13 +350,10 @@ h5 {
 .actions {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
 }
 .actions a {
-  flex: 0 1 calc(50% - 10px);
-  /* 50% width minus half of the gap */
-}
-.actions a + a {
-  margin-left: 20px;
-  /* Add a margin to the second child */
+  flex: 1 1 0px;
+  min-width: 0;
 }
 /*# sourceMappingURL=./style.css.map */
