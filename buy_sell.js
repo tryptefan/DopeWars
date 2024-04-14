@@ -99,12 +99,16 @@ function positionCounter() {
      // Calculate the percentage
      var percentage = (currentValue / maxValue) * 100;
      percentage *= 0.94;
+     if (maxValue < 1) {
+          percentage = 0
+     }
 
      // Set the left position of the next element
      sliderCounter.style.left = percentage + "%";
 }
 
 function refresh_drugs() {
+     var wallet = document.getElementById("wallet")
      for (var i = 0; i < drugs.length; i++) {
           var drug = drugs[i]
           var drug_data = document.getElementById(city + "_" + drug.dataset.name)
@@ -201,14 +205,10 @@ bs_slider.oninput = function () {
      var total_holding = v_holding + v_holding_delta;
      var total_cash = v_cash + v_cash_delta;
      var direction = transaction_direction();
-     var can_inc = false;
 
      while (v_amount < Number(bs_slider.value)) {
-          if (
-               buying &&
-               v_cash + v_cash_delta > v_cost &&
-               v_holding + v_holding_delta < v_capacity
-          ) {
+          var can_inc = false;
+          if (buying && v_cash + v_cash_delta >= v_cost && v_holding + v_holding_delta <= v_capacity) {
                can_inc = true;
           } else if (!buying && v_holding + v_holding_delta > 0) {
                can_inc = true;
