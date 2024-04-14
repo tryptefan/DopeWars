@@ -5,18 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Location</title>
-    <link rel="stylesheet" href="css/style.css" </head>
+    <link rel="stylesheet" href="css/style.css"></link>
+</head>
 
 <body class="app">
 
     <div class="container">
 
         <div class="topBar">
-            <h1 class="title">Location</h1>
+            <h1 class="title" id="locationTitle">Location</h1>
             <div class="day">
                 <div class="meta">Day</div>
                 <div class="daysLeft">
-                    <span class="dayCurrent">1</span>
+                    <span class="dayCurrent" id="cityDay">1</span>
                     <span class="daySlash">/</span>
                     <span class="dayLast">30</span>
                 </div>
@@ -28,15 +29,15 @@
         <div class="moneyStatus">
             <div class="myMoney">
                 <div class="meta">Cash</div>
-                <div class="numbers">$2,000</div>
+                <div class="numbers" id="cityCash"> </div>
                 <div class="bank">
                     <div class="meta">Bank</div>
-                    <div class="numbers">$0</div>
+                    <div class="numbers" id="cityBank"> </div>
                 </div>
             </div>
             <div class="debt">
                 <div class="meta">Debt</div>
-                <div class="numbers">$2,000</div>
+                <div class="numbers" id="cityDebt"> </div>
             </div>
         </div><!-- moneyStatus -->
 
@@ -89,8 +90,8 @@
 
         <div class="actions">
             <a href="#"
-                class="buttonSecondary button">Special</a><!-- this is only visible if there's a bank or loanshark. the link text would reflect that "Bank", "Loan Shark"-->
-            <a href="#" class="buttonPrimary button">Travel</a>
+               class="buttonSecondary button">Special</a><!-- this is only visible if there's a bank or loanshark. the link text would reflect that "Bank", "Loan Shark"-->
+           <a href="#" class="buttonPrimary button">Travel</a>
         </div>
 
 
@@ -132,17 +133,17 @@
 
             <!--<div class="slider">
                 <div style="display:inline-block" id="bs_amount"> </div>
-            </div>-->
+                </div>-->
 
-            <div class="slidecontainer">
-                <input type="range" min="0" max="100" value="0" class="slider" id="bs_slider">
-                <output class="numbers" id="sliderCounter"></output>
-            </div>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="bs_slider">
+                    <output class="numbers" id="sliderCounter"></output>
+                </div>
 
-            <div class="actions">
-                <a href="#" class="buttonSecondary button" id="secondaryAction">Cancel</a>
-                <a href="#" class="buttonPrimary button" id="primaryAction">Buy</a>
-            </div>
+                <div class="actions">
+                    <a href="#" class="buttonSecondary button" id="secondaryAction">Cancel</a>
+                    <a href="#" class="buttonPrimary button" id="primaryAction">Buy</a>
+                </div>
 
         </div><!-- DEAL -->
 
@@ -201,13 +202,25 @@
         <div id="my_weed" data-holding="0" data-price="0"></div>
     </div>
 
-    <div id="la_acid" data-name="Acid" data-price="30" data-dose="Hit"></div>
-    <div id="la_meth" data-name="Crystal Meth" data-price="15" data-dose="Dose"></div>
-    <div id="la_cocaine" data-name="Cocaine" data-price="184" data-dose="8 Ball"></div>
-    <div id="la_heroin" data-name="Heroin" data-price="20" data-dose="Bag"></div>
-    <div id="la_pcp" data-name="PCP" data-price="10" data-dose="Capsule"></div>
-    <div id="la_valium" data-name="Valium" data-price="5" data-dose="Pill"></div>
-    <div id="la_weed" data-name="Weed" data-price="25" data-dose=".25 Oz."></div>
+    <div id="special_bank"></div>
+
+    <div id="ur_acid" data-name="Acid" data-dose="Hit"></div>
+    <div id="ur_meth" data-name="Crystal Meth" data-dose="Dose"></div>
+    <div id="ur_cocaine" data-name="Cocaine" data-dose="8 Ball"></div>
+    <div id="ur_heroin" data-name="Heroin" data-dose="Bag"></div>
+    <div id="ur_pcp" data-name="PCP" data-dose="Capsule"></div>
+    <div id="ur_valium" data-name="Valium" data-dose="Pill"></div>
+    <div id="ur_weed" data-name="Weed" data-dose=".25 Oz."></div>
+
+    <div id="city_la" data-name="Los Angeles" data-special="bank">
+        <div id="la_acid" data-price="30"></div>
+        <div id="la_meth" data-price="15"></div>
+        <div id="la_cocaine" data-price="184"></div>
+        <div id="la_heroin" data-price="20"></div>
+        <div id="la_pcp" data-price="10"></div>
+        <div id="la_valium" data-price="5"></div>
+        <div id="la_weed" data-price="25"></div>
+    </div>
 </div>
 
 <script src="buy_sell.js"></script>

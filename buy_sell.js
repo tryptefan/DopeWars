@@ -1,7 +1,12 @@
 const body = document.body;
+const location_title = document.getElementById("locationTitle")
 const cancel_button = document.getElementById("secondaryAction");
 let darkness = document.getElementById("darkness");
-const cash = document.getElementById("bs_cash");
+const city_day = document.getElementById("cityDay");
+const city_cash = document.getElementById("cityCash");
+const city_bank = document.getElementById("cityBank");
+const city_debt = document.getElementById("cityDebt");
+const bs_cash = document.getElementById("bs_cash");
 const capacity = document.getElementById("bs_capacity");
 //const amount = document.getElementById("bs_amount");
 const bs_name = document.getElementById("bs_name");
@@ -21,7 +26,6 @@ const fmt_money = Intl.NumberFormat("en-US", {
 });
 
 var buying = true;
-var city = "la";
 var v_drug_id = "";
 var v_name = "";
 var v_cost = 50;
@@ -32,13 +36,27 @@ var v_capacity = 100;
 var v_cash_delta = 0;
 var v_holding_delta = 0;
 var v_amount = 0;
-var bs_drug_data = null;
+var v_day = 1;
 
+var v_city = "";
+enter_city("la");
+function enter_city(city_id) {
+     var city_data = document.getElementById("city_" + city_id);
+     if (city_data != null && location_title != null) {
+          v_city = city_id;
+          location_title.innerHTML = city_data.dataset.name;
+     }
+}
+
+var bs_drug_data = null;
 var drugs = document.getElementsByClassName("drug");
-refresh_drugs()
+refresh_drugs();
 for (var i = 0; i < drugs.length; i++) {
      drugs[i].onclick = open_drug;
 }
+
+refresh_wallet();
+refresh_day();
 
 function open_drug() {
      var event = window.event;
@@ -57,13 +75,21 @@ function open_drug() {
 
      console.log(drug.dataset.name);
 
-     var drug_data = document.getElementById(city + "_" + drug.dataset.name);
+     v_drug_id = drug.dataset.name;
+
+     var drug_data = document.getElementById("ur_" + v_drug_id);
      if (drug_data == null) {
           return;
      }
      console.log(drug_data);
 
-     bs_drug_data = document.getElementById("my" + "_" + drug.dataset.name);
+     var city_drug_data = document.getElementById(v_city + "_" + v_drug_id);
+     if (city_drug_data == null) {
+          return;
+     }
+     console.log(city_drug_data);
+
+     bs_drug_data = document.getElementById("my" + "_" + v_drug_id);
      if (bs_drug_data == null) {
           return;
      }
@@ -71,9 +97,8 @@ function open_drug() {
 
      var wallet = document.getElementById("wallet");
 
-     v_drug_id = drug.dataset.name;
      v_name = drug_data.dataset.name;
-     v_cost = drug_data.dataset.price;
+     v_cost = city_drug_data.dataset.price;
      v_cash = Number(wallet.dataset.cash);
      v_holding = Number(bs_drug_data.dataset.holding);
      v_average = Number(bs_drug_data.dataset.price);
@@ -111,7 +136,8 @@ function refresh_drugs() {
      var wallet = document.getElementById("wallet")
      for (var i = 0; i < drugs.length; i++) {
           var drug = drugs[i]
-          var drug_data = document.getElementById(city + "_" + drug.dataset.name)
+          var drug_data = document.getElementById("ur_" + drug.dataset.name)
+          var city_drug_data = document.getElementById(v_city + "_" + drug.dataset.name)
           var my_drug_data = document.getElementById("my_" + drug.dataset.name)
           if (drug_data != null && my_drug_data != null) {
                var children = drug.children
@@ -124,7 +150,7 @@ function refresh_drugs() {
                     } else if (child.classList.contains("graph")) {
                          // TODO figure out histogram
                     } else if (child.classList.contains("price")) {
-                         child.innerHTML = drug_data.dataset.price;
+                         child.innerHTML = city_drug_data.dataset.price;
                     }
                }
 
@@ -152,14 +178,23 @@ function refresh_values() {
      bs_name.innerHTML = v_name;
      bs_price.innerHTML = fmt_money.format(v_cost);
      my_price.innerHTML = fmt_money.format(v_average);
-     cash.innerHTML = fmt_money.format(cash_total);
+     bs_cash.innerHTML = fmt_money.format(cash_total);
      capacity.innerHTML = holding_total + "/" + v_capacity;
      sliderCounter.innerHTML = v_amount;
      positionCounter();
 }
 
+function refresh_wallet() {
+     cityCash.innerHTML = fmt_money.format(wallet.dataset.cash);
+     cityBank.innerHTML = fmt_money.format(wallet.dataset.bank);
+     cityDebt.innerHTML = fmt_money.format(wallet.dataset.debt);
+}
+
+function refresh_day() {
+     city_day.innerHTML = v_day;
+}
+
 confirm_transaction_button.onclick = function () {
-     body.classList.remove("showDeal");
      var wallet = document.getElementById("wallet");
      wallet.dataset.cash = Number(wallet.dataset.cash) + Number(v_cash_delta);
 
@@ -175,7 +210,9 @@ confirm_transaction_button.onclick = function () {
      bs_drug_data.dataset.holding = total_holding;
      bs_drug_data.dataset.price = avg;
 
+     refresh_wallet()
      refresh_drugs()
+     body.classList.remove("showDeal");
 };
 
 function cancel_transaction() {
