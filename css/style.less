@@ -169,7 +169,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
 }
 
 .overlay {
-    background: var(--grey30); // add bg image here
+    background: var(--grey30); 
     border-radius: 44px 44px 0 0;
     box-sizing: border-box;
     bottom: -665px;
@@ -199,6 +199,11 @@ h1, h2, h3, h4, h5 { margin: 0; }
     }
 }
 .showDeal .deal { bottom: 0; } // duplicate this
+.showTravel .travel { 
+    bottom: 0; 
+    
+    .topBar { margin-bottom: 157px; }
+} // duplicate this
 
 
 // PAGE +++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -236,13 +241,13 @@ h1, h2, h3, h4, h5 { margin: 0; }
 } // moneyStatus
 
 
-// drugs
-.drugTable {
+// drugs / locations
+.drugTable, .locationTable {
     background-color: var(--grey20);
     border-radius: 20px;
     margin: 0 0 16px 0;
 
-    .drug{ 
+    .drug, .location { 
         background: url("../img/iconArrow.svg") no-repeat right 11px center;
         border-bottom: 1px solid var(--grey10);
         display: flex;
@@ -252,6 +257,12 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
         .amount { color: var(--text); width: 27px; }
         .drugName { color: var(--brand); width: 116px; }
+        .city { 
+            color: var(--brand); 
+            width: auto; 
+
+            .special { color: var(--grey) }
+        }
         .graph { width: 47px; }
         .price { color: var(--text); flex-grow: 1; text-align: right; }
     }

@@ -205,6 +205,12 @@ h5 {
 .showDeal .deal {
   bottom: 0;
 }
+.showTravel .travel {
+  bottom: 0;
+}
+.showTravel .travel .topBar {
+  margin-bottom: 157px;
+}
 .topBar {
   display: flex;
   justify-content: space-between;
@@ -239,12 +245,16 @@ h5 {
 .moneyStatus .bank {
   margin-top: 12px;
 }
-.drugTable {
+.drugTable,
+.locationTable {
   background-color: var(--grey20);
   border-radius: 20px;
   margin: 0 0 16px 0;
 }
-.drugTable .drug {
+.drugTable .drug,
+.locationTable .drug,
+.drugTable .location,
+.locationTable .location {
   background: url("../img/iconArrow.svg") no-repeat right 11px center;
   border-bottom: 1px solid var(--grey10);
   display: flex;
@@ -252,29 +262,57 @@ h5 {
   align-items: baseline;
   padding: 11px 43px 8px 19px;
 }
-.drugTable .drug .amount {
+.drugTable .drug .amount,
+.locationTable .drug .amount,
+.drugTable .location .amount,
+.locationTable .location .amount {
   color: var(--text);
   width: 27px;
 }
-.drugTable .drug .drugName {
+.drugTable .drug .drugName,
+.locationTable .drug .drugName,
+.drugTable .location .drugName,
+.locationTable .location .drugName {
   color: var(--brand);
   width: 116px;
 }
-.drugTable .drug .graph {
+.drugTable .drug .city,
+.locationTable .drug .city,
+.drugTable .location .city,
+.locationTable .location .city {
+  color: var(--brand);
+  width: auto;
+}
+.drugTable .drug .city .special,
+.locationTable .drug .city .special,
+.drugTable .location .city .special,
+.locationTable .location .city .special {
+  color: var(--grey);
+}
+.drugTable .drug .graph,
+.locationTable .drug .graph,
+.drugTable .location .graph,
+.locationTable .location .graph {
   width: 47px;
 }
-.drugTable .drug .price {
+.drugTable .drug .price,
+.locationTable .drug .price,
+.drugTable .location .price,
+.locationTable .location .price {
   color: var(--text);
   flex-grow: 1;
   text-align: right;
 }
-.drugTable .drug.disabled {
+.drugTable .drug.disabled,
+.locationTable .drug.disabled {
   background-image: url("../img/iconArrowDisabled.svg");
 }
-.drugTable .drug.disabled * {
+.drugTable .drug.disabled *,
+.locationTable .drug.disabled * {
   color: var(--grey);
 }
-.drugTable .drug:last-child {
+.drugTable .drug:last-child,
+.locationTable .drug:last-child {
   border-bottom: 0;
   padding-bottom: 10px;
 }
