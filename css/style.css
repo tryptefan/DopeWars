@@ -257,7 +257,7 @@ h5 {
   display: inline-block;
   font-size: 59.66px;
   font-weight: 800;
-  margin: 30px auto;
+  margin: 30px auto 600px auto;
   text-align: center;
   text-transform: uppercase;
 }
@@ -378,7 +378,9 @@ h5 {
   color: var(--grey);
 }
 .drugTable .drug:last-child,
-.locationTable .drug:last-child {
+.locationTable .drug:last-child,
+.drugTable .location:last-child,
+.locationTable .location:last-child {
   border-bottom: 0;
   padding-bottom: 10px;
 }
