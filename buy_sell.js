@@ -9,8 +9,7 @@ const bs_price = document.getElementById("bs_price");
 const my_price = document.getElementById("my_price");
 const buy_button = document.getElementById("buy_button");
 const sell_button = document.getElementById("sell_button");
-const inc_button = document.getElementById("inc_button");
-const dec_button = document.getElementById("dec_button");
+const bs_slider = document.getElementById("bs_slider");
 const confirm_transaction_button = document.getElementById("primaryAction");
 const cancel_transaction_button = document.getElementById("secondaryAction");
 
@@ -80,8 +79,9 @@ function open_drug() {
      v_holding_delta = 0;
      v_amount = 0;
      buying = true;
-
      body.classList.add("showDeal");
+     bs_slider.max = v_capacity - v_holding;
+     bs_slider.value = 0
      refresh_values();
 }
 
@@ -141,6 +141,8 @@ buy_button.onclick = function () {
      v_amount = 0;
      v_cash_delta = 0;
      v_holding_delta = 0;
+     bs_slider.max = v_capacity - v_holding;
+     bs_slider.value = 0;
      refresh_values();
 };
 
@@ -149,36 +151,41 @@ sell_button.onclick = function () {
      v_amount = 0;
      v_cash_delta = 0;
      v_holding_delta = 0;
+     bs_slider.max = v_holding;
+     bs_slider.value = 0;
      refresh_values();
 };
 
-inc_button.onclick = function () {
-     var total_holding = v_holding + v_holding_delta;
-     var total_cash = v_cash + v_cash_delta;
-     var can_inc = false;
-     var direction = transaction_direction();
-     if (buying && v_cash + v_cash_delta > v_cost && v_holding + v_holding_delta < v_capacity) {
-          can_inc = true;
-     } else if (!buying && v_holding + v_holding_delta > 0) {
-          can_inc = true;
-     }
+bs_slider.oninput = function() {
+    var total_holding = v_holding + v_holding_delta;
+    var total_cash = v_cash + v_cash_delta;
+    var direction = transaction_direction();
+    var can_inc = false;
 
-     if (can_inc) {
-          v_amount += 1;
-          v_holding_delta += 1 * direction;
-          v_cash_delta -= v_cost * direction;
-     }
-     refresh_values();
-};
+    while (v_amount < Number(bs_slider.value)) {
+        if (buying && v_cash + v_cash_delta > v_cost && v_holding + v_holding_delta < v_capacity) {
+            can_inc = true;
+        } else if (!buying && v_holding + v_holding_delta > 0) {
+            can_inc = true;
+        }
 
-dec_button.onclick = function () {
-     var direction = transaction_direction();
-     if (v_amount > 0) {
-          v_amount -= 1;
-          v_holding_delta -= 1 * direction;
-          v_cash_delta += v_cost * direction;
-     }
-     refresh_values();
+        if (can_inc) {
+            v_amount += 1;
+            v_holding_delta += 1 * direction;
+            v_cash_delta -= v_cost * direction;
+        } else {
+            break;
+        }
+    }
+
+    while (v_amount > Number(bs_slider.value)) {
+        v_amount -= 1;
+        v_holding_delta -= 1 * direction;
+        v_cash_delta += v_cost * direction;
+    }
+
+    bs_slider.value = v_amount
+    refresh_values();
 };
 
 refresh_values();
