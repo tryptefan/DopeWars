@@ -3,7 +3,7 @@ const cancel_button = document.getElementById("secondaryAction");
 let darkness = document.getElementById("darkness");
 const cash = document.getElementById("bs_cash");
 const capacity = document.getElementById("bs_capacity");
-const amount = document.getElementById("bs_amount");
+//const amount = document.getElementById("bs_amount");
 const bs_name = document.getElementById("bs_name");
 const bs_price = document.getElementById("bs_price");
 const my_price = document.getElementById("my_price");
@@ -12,6 +12,7 @@ const sell_button = document.getElementById("sell_button");
 const bs_slider = document.getElementById("bs_slider");
 const confirm_transaction_button = document.getElementById("primaryAction");
 const cancel_transaction_button = document.getElementById("secondaryAction");
+const sliderCounter = document.getElementById("sliderCounter");
 
 const fmt_money = Intl.NumberFormat("en-US", {
      style: "currency",
@@ -81,12 +82,25 @@ function open_drug() {
      buying = true;
      body.classList.add("showDeal");
      bs_slider.max = v_capacity - v_holding;
-     bs_slider.value = 0
+     bs_slider.value = 0;
      refresh_values();
 }
 
 function transaction_direction() {
      return buying ? 1 : -1;
+}
+
+function positionCounter() {
+     // Get the current value and max value of the slider
+     var currentValue = parseFloat(bs_slider.value);
+     var maxValue = parseFloat(bs_slider.max);
+
+     // Calculate the percentage
+     var percentage = (currentValue / maxValue) * 100;
+     percentage *= 0.94;
+
+     // Set the left position of the next element
+     sliderCounter.style.left = percentage + "%";
 }
 
 function refresh_values() {
@@ -106,7 +120,8 @@ function refresh_values() {
      my_price.innerHTML = fmt_money.format(v_average);
      cash.innerHTML = fmt_money.format(cash_total);
      capacity.innerHTML = holding_total + "/" + v_capacity;
-     amount.innerHTML = v_amount;
+     sliderCounter.innerHTML = v_amount;
+     positionCounter();
 }
 
 confirm_transaction_button.onclick = function () {
@@ -156,36 +171,40 @@ sell_button.onclick = function () {
      refresh_values();
 };
 
-bs_slider.oninput = function() {
-    var total_holding = v_holding + v_holding_delta;
-    var total_cash = v_cash + v_cash_delta;
-    var direction = transaction_direction();
-    var can_inc = false;
+bs_slider.oninput = function () {
+     var total_holding = v_holding + v_holding_delta;
+     var total_cash = v_cash + v_cash_delta;
+     var direction = transaction_direction();
+     var can_inc = false;
 
-    while (v_amount < Number(bs_slider.value)) {
-        if (buying && v_cash + v_cash_delta > v_cost && v_holding + v_holding_delta < v_capacity) {
-            can_inc = true;
-        } else if (!buying && v_holding + v_holding_delta > 0) {
-            can_inc = true;
-        }
+     while (v_amount < Number(bs_slider.value)) {
+          if (
+               buying &&
+               v_cash + v_cash_delta > v_cost &&
+               v_holding + v_holding_delta < v_capacity
+          ) {
+               can_inc = true;
+          } else if (!buying && v_holding + v_holding_delta > 0) {
+               can_inc = true;
+          }
 
-        if (can_inc) {
-            v_amount += 1;
-            v_holding_delta += 1 * direction;
-            v_cash_delta -= v_cost * direction;
-        } else {
-            break;
-        }
-    }
+          if (can_inc) {
+               v_amount += 1;
+               v_holding_delta += 1 * direction;
+               v_cash_delta -= v_cost * direction;
+          } else {
+               break;
+          }
+     }
 
-    while (v_amount > Number(bs_slider.value)) {
-        v_amount -= 1;
-        v_holding_delta -= 1 * direction;
-        v_cash_delta += v_cost * direction;
-    }
+     while (v_amount > Number(bs_slider.value)) {
+          v_amount -= 1;
+          v_holding_delta -= 1 * direction;
+          v_cash_delta += v_cost * direction;
+     }
 
-    bs_slider.value = v_amount
-    refresh_values();
+     bs_slider.value = v_amount;
+     refresh_values();
 };
 
 refresh_values();

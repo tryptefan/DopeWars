@@ -129,6 +129,8 @@ body * {
   left: calc(50% - 4px);
 }
 .slidecontainer {
+  margin-bottom: 12px;
+  position: relative;
   width: 100%;
 }
 .slider {
@@ -154,6 +156,14 @@ body * {
   height: 25px;
   border-radius: 50%;
   cursor: pointer;
+}
+#sliderCounter {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  margin-left: -11px;
+  padding-top: 7px;
 }
 a {
   text-decoration: none;
@@ -208,7 +218,7 @@ h5 {
 }
 .overlay .topBar {
   align-items: flex-start;
-  margin-bottom: 236px;
+  margin-bottom: 226px;
 }
 .overlay .topBar .drugInfo {
   text-align: right;
@@ -219,7 +229,7 @@ h5 {
 .overlay .resources {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 .overlay .resources .capacityDisplay {
   text-align: right;

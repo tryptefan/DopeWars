@@ -125,6 +125,8 @@ body * { user-select: none; }
 // SLIDER +++++++++++++++++++++++++++++++++++++++++
 
 .slidecontainer {
+    margin-bottom: 12px;
+    position: relative;
     width: 100%;
   }
   
@@ -157,13 +159,14 @@ body * { user-select: none; }
     cursor: pointer;
   }
 
-
-
-
-
-
-
-
+  #sliderCounter {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    margin-left: -11px;
+    padding-top: 7px;
+  }
 
 
 a { text-decoration: none; }
@@ -219,7 +222,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
     .topBar { 
         align-items: flex-start;
-        margin-bottom: 236px;
+        margin-bottom: 226px;
 
         .drugInfo { 
             text-align: right; 
@@ -230,7 +233,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
     .resources {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 24px;;
+        margin-bottom: 18px;
 
         .capacityDisplay { text-align: right; }
     }
