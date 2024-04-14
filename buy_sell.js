@@ -126,11 +126,13 @@ confirm_transaction_button.onclick = function() {
     bs_drug_data.dataset.price = avg
 }
 
-cancel_transaction_button.onclick = function() {
+function cancel_transaction() {
     body.classList.remove("showDeal");
     v_cash_delta = 0;
     v_holding_delta = 0;
 }
+
+cancel_transaction_button.onclick = cancel_transaction
 
 buy_button.onclick = function () {
     buying = true;
