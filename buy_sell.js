@@ -127,6 +127,12 @@ function refresh_drugs() {
                          child.innerHTML = drug_data.dataset.price;
                     }
                }
+
+               if (Number(drug_data.dataset.price) > Number(wallet.dataset.cash) && Number(my_drug_data.dataset.holding) < 1) {
+                    drug.classList.add("disabled")
+               } else {
+                    drug.classList.remove("disabled")
+               }
           }
      }
 }
