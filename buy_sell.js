@@ -25,7 +25,7 @@ const sliderCounter = document.getElementById("sliderCounter");
 const fmt_money = Intl.NumberFormat("en-US", {
      style: "currency",
      currency: "USD",
-     minimumFractionDigits: "2",
+     minimumFractionDigits: "0",
 });
 
 var buying = true;
@@ -39,7 +39,7 @@ var v_capacity = 100;
 var v_cash_delta = 0;
 var v_holding_delta = 0;
 var v_amount = 0;
-var v_day = 1;
+var v_day = 0;
 
 var v_city = "";
 enter_city("bos");
@@ -50,10 +50,17 @@ function enter_city(city_id) {
           location_title.innerHTML = city_data.dataset.name;
           specialButton.hidden = city_data.dataset.special == null;
      }
+
+     v_day += 1;
+     if (v_day > 30) {
+          v_day = 30
+          // TODO end game
+     }
+
+     refresh_values()
 }
 
 function click_city() {
-     console.log("click city")
      var event = window.event;
      if (event == null) {
           return;
@@ -68,8 +75,11 @@ function click_city() {
           return;
      }
 
-     console.log(city.dataset.to);
-     enter_city(city.dataset.to);
+     if (city.dataset.to != v_city) {
+          enter_city(city.dataset.to);
+          refresh_drugs()
+     }
+
      body.classList.remove("showTravel")
 }
 
@@ -102,8 +112,7 @@ function open_drug() {
      if (drug == null) {
           return;
      }
-
-     console.log(drug.dataset.name);
+     //console.log(drug.dataset.name);
 
      v_drug_id = drug.dataset.name;
 
@@ -111,24 +120,24 @@ function open_drug() {
      if (drug_data == null) {
           return;
      }
-     console.log(drug_data);
+     //console.log(drug_data);
 
      var city_drug_data = document.getElementById("hist_" + v_drug_id);
      if (city_drug_data == null) {
           return;
      }
-     console.log(city_drug_data);
+     //console.log(city_drug_data);
 
      bs_drug_data = document.getElementById("my" + "_" + v_drug_id);
      if (bs_drug_data == null) {
           return;
      }
-     console.log(bs_drug_data);
+     //console.log(bs_drug_data);
 
      var wallet = document.getElementById("wallet");
 
      v_name = drug_data.dataset.name;
-     v_cost = city_drug_data.dataset.price;
+     v_cost = Number(city_drug_data.dataset.dayprice)
      v_cash = Number(wallet.dataset.cash);
      v_holding = Number(bs_drug_data.dataset.holding);
      v_average = Number(bs_drug_data.dataset.price);
@@ -180,11 +189,21 @@ function refresh_drugs() {
                     } else if (child.classList.contains("graph")) {
                          // TODO figure out histogram
                     } else if (child.classList.contains("price")) {
-                         child.innerHTML = city_drug_data.dataset.price;
+                         var base_price = city_drug_data.dataset.price;
+                         var day_price = base_price
+                         if (v_day > 1) {
+                              var min_price = base_price / 2;
+                              var max_price = base_price * 2;
+                              var day_price = (Math.random() * (max_price - min_price)) + min_price;
+                              day_price = Math.floor(day_price);
+                         }
+
+                         child.innerHTML = fmt_money.format(day_price);
+                         city_drug_data.dataset.dayprice = day_price;
                     }
                }
 
-               if (Number(drug_data.dataset.price) > Number(wallet.dataset.cash) && Number(my_drug_data.dataset.holding) < 1) {
+               if (Number(drug_data.dataset.dayprice) > Number(wallet.dataset.cash) && Number(my_drug_data.dataset.holding) < 1) {
                     drug.classList.add("disabled")
                } else {
                     drug.classList.remove("disabled")
@@ -211,6 +230,7 @@ function refresh_values() {
      bs_cash.innerHTML = fmt_money.format(cash_total);
      capacity.innerHTML = holding_total + "/" + v_capacity;
      sliderCounter.innerHTML = v_amount;
+     city_day.innerHTML = v_day;
      positionCounter();
 }
 
