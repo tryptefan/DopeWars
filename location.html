@@ -90,16 +90,14 @@
 
         <div class="actions">
             <a href="#"
-               class="buttonSecondary button">Special</a><!-- this is only visible if there's a bank or loanshark. the link text would reflect that "Bank", "Loan Shark"-->
-           <a href="#" class="buttonPrimary button">Travel</a>
+               class="buttonSecondary button" id="specialButton">Special</a><!-- this is only visible if there's a bank or loanshark. the link text would reflect that "Bank", "Loan Shark"-->
+           <a href="#" class="buttonPrimary button" id="travelButton">Travel</a>
         </div>
 
 
 
         <div class="dark" id="darkness"></div>
-        <!-- Overlays +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-        <!-- DEAL-->
+        <!-- Overlays +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --> <!-- DEAL-->
         <div class="overlay deal">
             <div class="topBar">
                 <h1 class="title" id="bs_name">Drug Name</h1>
@@ -155,33 +153,33 @@
             </div><!-- topBar -->
 
             <div class="locationTable">
-                <div class="location">
-                    <div class="city">Boston <span class="special meta">Loan Shark</span></div>
+                <div class="location" data-to="bos">
+                    <div class="city" >Boston <span class="special meta">Loan Shark</span></div>
                 </div>
-                <div class="location">
+                <div class="location" data-to="dal">
                     <div class="city">Dallas</div>
                 </div>
-                <div class="location">
+                <div class="location" data-to="los">
                     <div class="city">Los Angeles <span class=" meta">Bank</span></div>
                 </div>
-                <div class="location">
+                <div class="location" data-to="man">
                     <div class="city">Manhattan </div>
                 </div>
-                <div class="location">
+                <div class="location" data-to="mia">
                     <div class="city">Miami </div>
                 </div>
-                <div class="location">
+                <div class="location" data-to="phi">
                     <div class="city">Philadelphia </div>
                 </div>
                 <div class="location">
-                    <div class="city">Toronto </div>
+                    <div class="city" data-to="tor">Toronto </div>
                 </div>
             </div><!-- locations-->
-            <div class="cashOut">Cash out...</div>
+            <div class="cashOut" id="cashOutButton">Cash out...</div>
 
 
             <div class="">
-                <a href="#" class="buttonSecondary button">Cancel</a>
+                <a href="#" class="buttonSecondary button" id="travCancelButton">Cancel</a>
             </div>
 
         </div><!-- travel overlay -->
@@ -211,16 +209,21 @@
     <div id="ur_pcp" data-name="PCP" data-dose="Capsule"></div>
     <div id="ur_valium" data-name="Valium" data-dose="Pill"></div>
     <div id="ur_weed" data-name="Weed" data-dose=".25 Oz."></div>
+    <div id="hist_acid" data-price="30"></div>
+    <div id="hist_meth" data-price="15"></div>
+    <div id="hist_cocaine" data-price="184"></div>
+    <div id="hist_heroin" data-price="20"></div>
+    <div id="hist_pcp" data-price="10"></div>
+    <div id="hist_valium" data-price="5"></div>
+    <div id="hist_weed" data-price="25"></div>
 
-    <div id="city_la" data-name="Los Angeles" data-special="bank">
-        <div id="la_acid" data-price="30"></div>
-        <div id="la_meth" data-price="15"></div>
-        <div id="la_cocaine" data-price="184"></div>
-        <div id="la_heroin" data-price="20"></div>
-        <div id="la_pcp" data-price="10"></div>
-        <div id="la_valium" data-price="5"></div>
-        <div id="la_weed" data-price="25"></div>
-    </div>
+    <div id="city_bos" data-name="Boston" data-special="shark"></div>
+    <div id="city_dal" data-name="Dallas"></div>
+    <div id="city_los" data-name="Los Angeles" data-special="bank"></div>
+    <div id="city_man" data-name="Manhattan"></div>
+    <div id="city_mia" data-name="Miami"></div>
+    <div id="city_phi" data-name="Philadelphia"></div>
+    <div id="city_tor" data-name="Toronto"></div>
 </div>
 
 <script src="buy_sell.js"></script>

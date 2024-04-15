@@ -1,6 +1,5 @@
 const body = document.body;
 const location_title = document.getElementById("locationTitle")
-const cancel_button = document.getElementById("secondaryAction");
 let darkness = document.getElementById("darkness");
 const city_day = document.getElementById("cityDay");
 const city_cash = document.getElementById("cityCash");
@@ -17,6 +16,10 @@ const sell_button = document.getElementById("sell_button");
 const bs_slider = document.getElementById("bs_slider");
 const confirm_transaction_button = document.getElementById("primaryAction");
 const cancel_transaction_button = document.getElementById("secondaryAction");
+const special_button = document.getElementById("specialButton");
+const travel_button = document.getElementById("travelButton");
+const trav_cancel_button = document.getElementById("travCancelButton");
+const cashOutButton = document.getElementById("cashOutButton")
 const sliderCounter = document.getElementById("sliderCounter");
 
 const fmt_money = Intl.NumberFormat("en-US", {
@@ -39,13 +42,40 @@ var v_amount = 0;
 var v_day = 1;
 
 var v_city = "";
-enter_city("la");
+enter_city("bos");
 function enter_city(city_id) {
      var city_data = document.getElementById("city_" + city_id);
      if (city_data != null && location_title != null) {
           v_city = city_id;
           location_title.innerHTML = city_data.dataset.name;
+          specialButton.hidden = city_data.dataset.special == null;
      }
+}
+
+function click_city() {
+     console.log("click city")
+     var event = window.event;
+     if (event == null) {
+          return;
+     }
+
+     var city = event.target;
+     while (city != null && !city.classList.contains("location")) {
+          city = city.parentElement;
+     }
+
+     if (city == null) {
+          return;
+     }
+
+     console.log(city.dataset.to);
+     enter_city(city.dataset.to);
+     body.classList.remove("showTravel")
+}
+
+var cities = document.getElementsByClassName("location");
+for (var i = 0; i < cities.length; i++) {
+     cities[i].onclick = click_city;
 }
 
 var bs_drug_data = null;
@@ -83,7 +113,7 @@ function open_drug() {
      }
      console.log(drug_data);
 
-     var city_drug_data = document.getElementById(v_city + "_" + v_drug_id);
+     var city_drug_data = document.getElementById("hist_" + v_drug_id);
      if (city_drug_data == null) {
           return;
      }
@@ -137,7 +167,7 @@ function refresh_drugs() {
      for (var i = 0; i < drugs.length; i++) {
           var drug = drugs[i]
           var drug_data = document.getElementById("ur_" + drug.dataset.name)
-          var city_drug_data = document.getElementById(v_city + "_" + drug.dataset.name)
+          var city_drug_data = document.getElementById("hist_" + drug.dataset.name)
           var my_drug_data = document.getElementById("my_" + drug.dataset.name)
           if (drug_data != null && my_drug_data != null) {
                var children = drug.children
@@ -275,5 +305,13 @@ bs_slider.oninput = function () {
      bs_slider.value = v_amount;
      refresh_values();
 };
+
+travel_button.onclick = function() {
+     body.classList.add("showTravel");
+}
+
+trav_cancel_button.onclick = function() {
+     body.classList.remove("showTravel");
+}
 
 refresh_values();
