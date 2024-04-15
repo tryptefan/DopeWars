@@ -100,41 +100,41 @@
         <!-- Overlays +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --> <!-- DEAL-->
         <div class="overlay deal" id="dealOverlay">
             <div class="topBar">
-                <h1 class="title" id="bs_name">Drug Name</h1>
+                <h1 class="title" id="bsName">Drug Name</h1>
                 <div class="drugInfo">
                     <div class="meta">Price</div>
-                    <div class="numbers" id="bs_price"></div>
+                    <div class="numbers" id="bsPrice"></div>
 
                     <div class="purchase">
                         <div class="meta">Purchase Price</div>
-                        <div class="numbers" id="my_price">$000</div>
+                        <div class="numbers" id="myPrice">$000</div>
                     </div>
                 </div>
             </div><!-- topBar -->
 
             <div class="toggle">
-                <div class="buttonPrimary button" id="buy_button">Buy</div>
-                <div class="buttonPrimary button" id="sell_button">Sell</div>
+                <div class="buttonPrimary button" id="buyButton">Buy</div>
+                <div class="buttonPrimary button" id="sellButton">Sell</div>
             </div>
 
             <div class="resources">
                 <div class="cashDisplay">
                     <div class="meta">Cash</div>
-                    <div class="numbers" id="bs_cash"> </div>
+                    <div class="numbers" id="bsCash"> </div>
                 </div>
 
                 <div class="capacityDisplay">
                     <div class="meta">Capacity</div>
-                    <div class="numbers" id="bs_capacity"> </div>
+                    <div class="numbers" id="bsCapacity"> </div>
                 </div>
             </div><!-- resources -->
 
             <!--<div class="slider">
-                <div style="display:inline-block" id="bs_amount"> </div>
+                <div style="display:inline-block" id="bsAmount"> </div>
                 </div>-->
 
                 <div class="slidecontainer">
-                    <input type="range" min="0" max="100" value="0" class="slider" id="bs_slider">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="bsSlider">
                     <output class="numbers" id="sliderCounter"></output>
                 </div>
 
@@ -191,39 +191,39 @@
 <!-- TODO (sam) We definitely want a better way to store data -->
 <div hidden>
     <div id="wallet" data-cash="2000" data-debt="2000" data-bank="0">
-        <div id="my_acid" data-holding="0" data-price="0"></div>
-        <div id="my_meth" data-holding="0" data-price="0"></div>
-        <div id="my_cocaine" data-holding="0" data-price="0"></div>
-        <div id="my_heroin" data-holding="0" data-price="0"></div>
-        <div id="my_pcp" data-holding="0" data-price="0"></div>
-        <div id="my_valium" data-holding="0" data-price="0"></div>
-        <div id="my_weed" data-holding="0" data-price="0"></div>
+        <div id="my-acid" data-holding="0" data-price="0"></div>
+        <div id="my-meth" data-holding="0" data-price="0"></div>
+        <div id="my-cocaine" data-holding="0" data-price="0"></div>
+        <div id="my-heroin" data-holding="0" data-price="0"></div>
+        <div id="my-pcp" data-holding="0" data-price="0"></div>
+        <div id="my-valium" data-holding="0" data-price="0"></div>
+        <div id="my-weed" data-holding="0" data-price="0"></div>
     </div>
 
-    <div id="special_bank"></div>
+    <div id="specialBank"></div>
 
-    <div id="ur_acid" data-name="Acid" data-dose="Hit"></div>
-    <div id="ur_meth" data-name="Crystal Meth" data-dose="Dose"></div>
-    <div id="ur_cocaine" data-name="Cocaine" data-dose="8 Ball"></div>
-    <div id="ur_heroin" data-name="Heroin" data-dose="Bag"></div>
-    <div id="ur_pcp" data-name="PCP" data-dose="Capsule"></div>
-    <div id="ur_valium" data-name="Valium" data-dose="Pill"></div>
-    <div id="ur_weed" data-name="Weed" data-dose=".25 Oz."></div>
-    <div id="hist_acid" data-price="30" data-dayPrice="0"></div>
-    <div id="hist_meth" data-price="15" data-dayPrice="0"></div>
-    <div id="hist_cocaine" data-price="184" data-dayPrice="0"></div>
-    <div id="hist_heroin" data-price="20" data-dayPrice="0"></div>
-    <div id="hist_pcp" data-price="10" data-dayPrice="0"></div>
-    <div id="hist_valium" data-price="5" data-dayPrice="0"></div>
-    <div id="hist_weed" data-price="25" data-dayPrice="0"></div>
+    <div id="ur-acid" data-name="Acid" data-dose="Hit"></div>
+    <div id="ur-meth" data-name="Crystal Meth" data-dose="Dose"></div>
+    <div id="ur-cocaine" data-name="Cocaine" data-dose="8 Ball"></div>
+    <div id="ur-heroin" data-name="Heroin" data-dose="Bag"></div>
+    <div id="ur-pcp" data-name="PCP" data-dose="Capsule"></div>
+    <div id="ur-valium" data-name="Valium" data-dose="Pill"></div>
+    <div id="ur-weed" data-name="Weed" data-dose=".25 Oz."></div>
+    <div id="hist-acid" data-price="30" data-dayPrice="0"></div>
+    <div id="hist-meth" data-price="15" data-dayPrice="0"></div>
+    <div id="hist-cocaine" data-price="184" data-dayPrice="0"></div>
+    <div id="hist-heroin" data-price="20" data-dayPrice="0"></div>
+    <div id="hist-pcp" data-price="10" data-dayPrice="0"></div>
+    <div id="hist-valium" data-price="5" data-dayPrice="0"></div>
+    <div id="hist-weed" data-price="25" data-dayPrice="0"></div>
 
-    <div id="city_bos" data-name="Boston" data-special="shark"></div>
-    <div id="city_dal" data-name="Dallas"></div>
-    <div id="city_los" data-name="Los Angeles" data-special="bank"></div>
-    <div id="city_man" data-name="Manhattan"></div>
-    <div id="city_mia" data-name="Miami"></div>
-    <div id="city_phi" data-name="Philadelphia"></div>
-    <div id="city_tor" data-name="Toronto"></div>
+    <div id="city-bos" data-name="Boston" data-special="shark"></div>
+    <div id="city-dal" data-name="Dallas"></div>
+    <div id="city-los" data-name="Los Angeles" data-special="bank"></div>
+    <div id="city-man" data-name="Manhattan"></div>
+    <div id="city-mia" data-name="Miami"></div>
+    <div id="city-phi" data-name="Philadelphia"></div>
+    <div id="city-tor" data-name="Toronto"></div>
 </div>
 
 <script src="buy_sell.js"></script>
