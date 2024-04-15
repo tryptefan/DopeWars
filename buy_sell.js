@@ -1,4 +1,5 @@
 const body = document.body;
+const deal_overlay = document.getElementById("dealOverlay");
 const location_title = document.getElementById("locationTitle")
 let darkness = document.getElementById("darkness");
 const city_day = document.getElementById("cityDay");
@@ -44,6 +45,10 @@ var v_day = 0;
 var v_city = "";
 enter_city("bos");
 function enter_city(city_id) {
+     if (v_city.length > 0) {
+          body.classList.remove(v_city);
+     }
+
      var city_data = document.getElementById("city_" + city_id);
      if (city_data != null && location_title != null) {
           v_city = city_id;
@@ -52,12 +57,13 @@ function enter_city(city_id) {
      }
 
      v_day += 1;
+
+     refresh_values();
+     body.classList.add(v_city);
+
      if (v_day > 30) {
-          v_day = 30
           // TODO end game
      }
-
-     refresh_values()
 }
 
 function click_city() {
@@ -114,7 +120,13 @@ function open_drug() {
      }
      //console.log(drug.dataset.name);
 
+     if (v_drug_id.length > 0) {
+          deal_overlay.classList.remove(v_drug_id);
+     }
+
      v_drug_id = drug.dataset.name;
+     deal_overlay.classList.add(v_drug_id);
+     console.log(deal_overlay);
 
      var drug_data = document.getElementById("ur_" + v_drug_id);
      if (drug_data == null) {
