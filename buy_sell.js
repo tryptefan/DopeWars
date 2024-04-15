@@ -6,15 +6,15 @@ const cityDay = document.getElementById("cityDay");
 const cityCash = document.getElementById("cityCash");
 const cityBank = document.getElementById("cityBank");
 const cityDebt = document.getElementById("cityDebt");
-const bsCash = document.getElementById("bsCash");
-const capacity = document.getElementById("bsCapacity");
-//const amount = document.getElementById("bsAmount");
-const bsName = document.getElementById("bsName");
-const bsPrice = document.getElementById("bsPrice");
+const dealCash = document.getElementById("dealCash");
+const capacity = document.getElementById("dealCapacity");
+//const amount = document.getElementById("dealAmount");
+const dealName = document.getElementById("dealName");
+const dealPrice = document.getElementById("dealPrice");
 const myPrice = document.getElementById("myPrice");
 const buyButton = document.getElementById("buyButton");
 const sellButton = document.getElementById("sellButton");
-const bsSlider = document.getElementById("bsSlider");
+const dealSlider = document.getElementById("dealSlider");
 const confirmTransactionButton = document.getElementById("primaryAction");
 const cancelTransactionButton = document.getElementById("secondaryAction");
 const specialButton = document.getElementById("specialButton");
@@ -94,7 +94,7 @@ for (var i = 0; i < cities.length; i++) {
      cities[i].onclick = clickCity;
 }
 
-var bsDrugData = null;
+var dealDrugData = null;
 var drugs = document.getElementsByClassName("drug");
 refreshDrugs();
 for (var i = 0; i < drugs.length; i++) {
@@ -139,26 +139,26 @@ function openDrug() {
      }
      //console.log(cityDrugData);
 
-     bsDrugData = document.getElementById("my-" + vDrugId);
-     if (bsDrugData == null) {
+     dealDrugData = document.getElementById("my-" + vDrugId);
+     if (dealDrugData == null) {
           return;
      }
-     //console.log(bsDrugData);
+     //console.log(dealDrugData);
 
      var wallet = document.getElementById("wallet");
 
      vName = drugData.dataset.name;
      vCost = Number(cityDrugData.dataset.dayprice)
      vCash = Number(wallet.dataset.cash);
-     vHolding = Number(bsDrugData.dataset.holding);
-     vAverage = Number(bsDrugData.dataset.price);
+     vHolding = Number(dealDrugData.dataset.holding);
+     vAverage = Number(dealDrugData.dataset.price);
      vCashDelta = 0;
      vHoldingDelta = 0;
      vAmount = 0;
      buying = true;
      body.classList.add("showDeal");
-     bsSlider.max = vCapacity - vHolding;
-     bsSlider.value = 0;
+     dealSlider.max = vCapacity - vHolding;
+     dealSlider.value = 0;
      refreshValues();
 }
 
@@ -168,8 +168,8 @@ function transactionDirection() {
 
 function positionCounter() {
      // Get the current value and max value of the slider
-     var currentValue = parseFloat(bsSlider.value);
-     var maxValue = parseFloat(bsSlider.max);
+     var currentValue = parseFloat(dealSlider.value);
+     var maxValue = parseFloat(dealSlider.max);
 
      // Calculate the percentage
      var percentage = (currentValue / maxValue) * 100;
@@ -235,10 +235,10 @@ function refreshValues() {
      var cashTotal = vCash + vCashDelta;
      var holdingTotal = vHolding + vHoldingDelta;
 
-     bsName.innerHTML = vName;
-     bsPrice.innerHTML = fmtMoney.format(vCost);
+     dealName.innerHTML = vName;
+     dealPrice.innerHTML = fmtMoney.format(vCost);
      myPrice.innerHTML = fmtMoney.format(vAverage);
-     bsCash.innerHTML = fmtMoney.format(cashTotal);
+     dealCash.innerHTML = fmtMoney.format(cashTotal);
      capacity.innerHTML = holdingTotal + "/" + vCapacity;
      sliderCounter.innerHTML = vAmount;
      cityDay.innerHTML = vDay;
@@ -259,7 +259,7 @@ confirmTransactionButton.onclick = function () {
      var wallet = document.getElementById("wallet");
      wallet.dataset.cash = Number(wallet.dataset.cash) + Number(vCashDelta);
 
-     var totalHolding = Number(bsDrugData.dataset.holding);
+     var totalHolding = Number(dealDrugData.dataset.holding);
      var avg = totalHolding * vAverage;
      avg += vCost * vHoldingDelta;
      totalHolding += vHoldingDelta;
@@ -268,8 +268,8 @@ confirmTransactionButton.onclick = function () {
      } else {
           avg /= totalHolding;
      }
-     bsDrugData.dataset.holding = totalHolding;
-     bsDrugData.dataset.price = avg;
+     dealDrugData.dataset.holding = totalHolding;
+     dealDrugData.dataset.price = avg;
 
      refreshWallet()
      refreshDrugs()
@@ -290,8 +290,8 @@ buyButton.onclick = function () {
      vAmount = 0;
      vCashDelta = 0;
      vHoldingDelta = 0;
-     bsSlider.max = vCapacity - vHolding;
-     bsSlider.value = 0;
+     dealSlider.max = vCapacity - vHolding;
+     dealSlider.value = 0;
      refreshValues();
 };
 
@@ -300,17 +300,17 @@ sellButton.onclick = function () {
      vAmount = 0;
      vCashDelta = 0;
      vHoldingDelta = 0;
-     bsSlider.max = vHolding;
-     bsSlider.value = 0;
+     dealSlider.max = vHolding;
+     dealSlider.value = 0;
      refreshValues();
 };
 
-bsSlider.oninput = function () {
+dealSlider.oninput = function () {
      var totalHolding = vHolding + vHoldingDelta;
      var totalCash = vCash + vCashDelta;
      var direction = transactionDirection();
 
-     while (vAmount < Number(bsSlider.value)) {
+     while (vAmount < Number(dealSlider.value)) {
           var canInc = false;
           if (buying && vCash + vCashDelta >= vCost && vHolding + vHoldingDelta <= vCapacity) {
                canInc = true;
@@ -327,13 +327,13 @@ bsSlider.oninput = function () {
           }
      }
 
-     while (vAmount > Number(bsSlider.value)) {
+     while (vAmount > Number(dealSlider.value)) {
           vAmount -= 1;
           vHoldingDelta -= 1 * direction;
           vCashDelta += vCost * direction;
      }
 
-     bsSlider.value = vAmount;
+     dealSlider.value = vAmount;
      refreshValues();
 };
 
