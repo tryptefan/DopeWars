@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Location</title>
-    <link rel="stylesheet" href="css/style.css"></link>
+    <link rel="stylesheet" href="css/style.css">
+    </link>
 </head>
 
 <body class="app">
@@ -49,13 +50,13 @@
                 <div class="graph">|||</div>
                 <div class="price listing"> </div>
             </div>
-            <div class="drug" data-name="meth">
+            <div class="drug" data-name="cocaine">
                 <div class="amount small">0</div>
                 <div class="drugName listingBold"></div>
                 <div class="graph">|||</div>
                 <div class="price listing"> </div>
             </div>
-            <div class="drug" data-name="cocaine">
+            <div class="drug" data-name="meth">
                 <div class="amount small">0</div>
                 <div class="drugName listingBold"></div>
                 <div class="graph">|||</div>
@@ -89,9 +90,9 @@
         </div><!-- drugTable -->
 
         <div class="actions">
-            <a href="#"
-               class="buttonSecondary button" id="specialButton">Special</a><!-- this is only visible if there's a bank or loanshark. the link text would reflect that "Bank", "Loan Shark"-->
-           <a href="#" class="buttonPrimary button" id="travelButton">Travel</a>
+            <a href="#" class="buttonSecondary button"
+                id="specialButton">Special</a><!-- this is only visible if there's a bank or loanshark. the link text would reflect that "Bank", "Loan Shark"-->
+            <a href="#" class="buttonPrimary button" id="travelButton">Travel</a>
         </div>
 
 
@@ -133,15 +134,15 @@
                 <div style="display:inline-block" id="dealAmount"> </div>
                 </div>-->
 
-                <div class="slidecontainer">
-                    <input type="range" min="0" max="100" value="0" class="slider" id="dealSlider">
-                    <output class="numbers" id="sliderCounter"></output>
-                </div>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="0" class="slider" id="dealSlider">
+                <output class="numbers" id="sliderCounter"></output>
+            </div>
 
-                <div class="actions">
-                    <a href="#" class="buttonSecondary button" id="secondaryAction">Cancel</a>
-                    <a href="#" class="buttonPrimary button" id="primaryAction">Buy</a>
-                </div>
+            <div class="actions">
+                <a href="#" class="buttonSecondary button" id="secondaryAction">Cancel</a>
+                <a href="#" class="buttonPrimary button" id="primaryAction">Buy</a>
+            </div>
 
         </div><!-- DEAL -->
 
@@ -153,25 +154,25 @@
             </div><!-- topBar -->
 
             <div class="locationTable">
-                <div class="location" data-to="bos">
-                    <div class="city" >Boston <span class="special meta">Loan Shark</span></div>
+                <div class="location listingBold" data-to="bos">
+                    <div class="city">Boston <span class="special meta">Loan Shark</span></div>
                 </div>
-                <div class="location" data-to="dal">
+                <div class="location listingBold" data-to="dal">
                     <div class="city">Dallas</div>
                 </div>
-                <div class="location" data-to="los">
-                    <div class="city">Los Angeles <span class=" meta">Bank</span></div>
+                <div class="location listingBold" data-to="los">
+                    <div class="city">Los Angeles <span class="special meta">Bank</span></div>
                 </div>
-                <div class="location" data-to="man">
+                <div class="location listingBold" data-to="man">
                     <div class="city">Manhattan </div>
                 </div>
-                <div class="location" data-to="mia">
+                <div class="location listingBold" data-to="mia">
                     <div class="city">Miami </div>
                 </div>
-                <div class="location" data-to="phi">
+                <div class="location listingBold" data-to="phi">
                     <div class="city">Philadelphia </div>
                 </div>
-                <div class="location">
+                <div class="location listingBold" data-to="tor">
                     <div class="city" data-to="tor">Toronto </div>
                 </div>
             </div><!-- locations-->

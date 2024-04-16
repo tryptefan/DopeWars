@@ -92,7 +92,7 @@ body * {
   border: 3px solid var(--brand);
   color: var(--grey30);
   display: block;
-  padding: 10px 40px;
+  padding: 7px 40px;
   text-align: center;
 }
 .buttonSecondary {
@@ -100,7 +100,7 @@ body * {
   border-radius: 31px;
   color: var(--brand);
   display: block;
-  padding: 10px 40px;
+  padding: 7px 40px;
   text-align: center;
 }
 .toggle {
@@ -199,6 +199,7 @@ h5 {
   top: 0;
   transition: 0.2s opacity;
   width: 0;
+  z-index: 2;
 }
 .showMessage .dark,
 .showTravel .dark,
@@ -218,14 +219,16 @@ h5 {
   bottom: -665px;
   left: 0;
   height: 665px;
-  padding: 44px 24px;
+  overflow: hidden;
+  padding: 32px 24px 44px 24px;
   position: absolute;
   transition: 0.2s bottom;
   width: 100%;
+  z-index: 3;
 }
 .overlay .topBar {
   align-items: flex-start;
-  margin-bottom: 226px;
+  margin-bottom: 245px;
 }
 .overlay .topBar .drugInfo {
   text-align: right;
@@ -281,6 +284,8 @@ h5 {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  position: relative;
+  z-index: 1;
   margin-bottom: 300px;
 }
 .topBar .day .meta {
@@ -307,6 +312,8 @@ h5 {
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 13px;
+  position: relative;
+  z-index: 1;
 }
 .moneyStatus .bank {
   margin-top: 12px;
@@ -316,6 +323,8 @@ h5 {
   background-color: var(--grey20);
   border-radius: 20px;
   margin: 0 0 16px 0;
+  position: relative;
+  z-index: 1;
 }
 .drugTable .drug,
 .locationTable .drug,
@@ -388,10 +397,177 @@ h5 {
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  position: relative;
+  z-index: 1;
 }
 .actions a {
   flex: 1 1 0px;
   min-width: 0;
   white-space: nowrap;
+}
+.container:after {
+  background: url(../img/bgMask.svg) no-repeat;
+  content: "";
+  display: block;
+  height: 112px;
+  position: absolute;
+  top: 387px;
+  left: 0;
+  width: 196px;
+  z-index: 0;
+}
+.container:before {
+  background-color: var(--grey30);
+  background-blend-mode: multiply;
+  background-size: 448px auto;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  content: "";
+  display: block;
+  left: 0;
+  height: 430px;
+  opacity: 0.85;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+.bos .container:before {
+  background-image: url('../img/bgBoston.png');
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .bos .container:before {
+    background-image: url('../img/bgBoston@2x.png');
+  }
+}
+.dal .container:before {
+  background-image: url('../img/bgDallas.png');
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .dal .container:before {
+    background-image: url('../img/bgDallas@2x.png');
+  }
+}
+.los .container:before {
+  background-image: url('../img/bgLA.png');
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .los .container:before {
+    background-image: url('../img/bgLA@2x.png');
+  }
+}
+.man .container:before {
+  background-image: url('../img/bgManhattan.png');
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .man .container:before {
+    background-image: url('../img/bgManhattan@2x.png');
+  }
+}
+.mia .container:before {
+  background-image: url('../img/bgMiami.png');
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .mia .container:before {
+    background-image: url('../img/bgMiami@2x.png');
+  }
+}
+.phi .container:before {
+  background-image: url('../img/bgPhilly.png');
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .phi .container:before {
+    background-image: url('../img/bgPhilly@2x.png');
+  }
+}
+.tor .container:before {
+  background-image: url('../img/bgToronto.png');
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .phi .container:before {
+    background-image: url('../img/bgToronto@2x.png');
+  }
+}
+.overlay.deal:before {
+  background-color: var(--grey30);
+  background-blend-mode: multiply;
+  background-size: 448px auto;
+  background-position: center bottom 30px;
+  background-repeat: no-repeat;
+  content: "";
+  display: block;
+  left: 0;
+  height: 430px;
+  opacity: 0.85;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+.overlay.deal.acid:before {
+  background-image: url('../img/bgAcid.png');
+  background-position: center bottom 38px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .overlay.deal.acid:before {
+    background-image: url('../img/bgAcid@2x.png');
+  }
+}
+.overlay.deal.cocaine:before {
+  background-image: url('../img/bgCocaine.png');
+  background-position: center bottom 41px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .overlay.deal.cocaine:before {
+    background-image: url('../img/bgCocaine@2x.png');
+  }
+}
+.overlay.deal.meth:before {
+  background-image: url('../img/bgCrystalMeth.png');
+  background-position: center bottom 54px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .overlay.deal.meth:before {
+    background-image: url('../img/bgCrystalMeth@2x.png');
+  }
+}
+.overlay.deal.heroin:before {
+  background-image: url('../img/bgHeroin.png');
+  background-position: center bottom 44px;
+  background-size: 391px auto;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .overlay.deal.heroin:before {
+    background-image: url('../img/bgHeroin@2x.png');
+  }
+}
+.overlay.deal.pcp:before {
+  background-image: url('../img/bgPCP.png');
+  background-position: center bottom 44px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .overlay.deal.pcp:before {
+    background-image: url('../img/bgPCP@2x.png');
+  }
+}
+.overlay.deal.valium:before {
+  background-image: url('../img/bgValium.png');
+  background-position: center bottom 44px;
+  background-size: 391px auto;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .overlay.deal.valium:before {
+    background-image: url('../img/bgValium@2x.png');
+  }
+}
+.overlay.deal.weed:before {
+  background-image: url('../img/bgWeed.png');
+  background-position: center bottom 44px;
+  background-size: 391px auto;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .overlay.deal.weed:before {
+    background-image: url('../img/bgWeed@2x.png');
+  }
 }
 /*# sourceMappingURL=./style.css.map */
