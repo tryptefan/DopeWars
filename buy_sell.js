@@ -1,6 +1,6 @@
 const body = document.body;
 const dealOverlay = document.getElementById("dealOverlay");
-const locationTitle = document.getElementById("locationTitle")
+const locationTitle = document.getElementById("locationTitle");
 let darkness = document.getElementById("darkness");
 const cityDay = document.getElementById("cityDay");
 const cityCash = document.getElementById("cityCash");
@@ -20,7 +20,7 @@ const cancelTransactionButton = document.getElementById("secondaryAction");
 const specialButton = document.getElementById("specialButton");
 const travelButton = document.getElementById("travelButton");
 const travCancelButton = document.getElementById("travCancelButton");
-const cashOutButton = document.getElementById("cashOutButton")
+const cashOutButton = document.getElementById("cashOutButton");
 const sliderCounter = document.getElementById("sliderCounter");
 
 const fmtMoney = Intl.NumberFormat("en-US", {
@@ -89,10 +89,10 @@ function clickCity() {
 
      if (city.dataset.to != vCity) {
           enterCity(city.dataset.to);
-          refreshDrugs()
+          refreshDrugs();
      }
 
-     body.classList.remove("showTravel")
+     body.classList.remove("showTravel");
 }
 
 var cities = document.getElementsByClassName("location");
@@ -154,7 +154,7 @@ function openDrug() {
      var wallet = document.getElementById("wallet");
 
      vName = drugData.dataset.name;
-     vCost = Number(cityDrugData.dataset.dayprice)
+     vCost = Number(cityDrugData.dataset.dayprice);
      vCash = Number(wallet.dataset.cash);
      vHolding = Number(dealDrugData.dataset.holding);
      vAverage = Number(dealDrugData.dataset.price);
@@ -181,7 +181,7 @@ function positionCounter() {
      var percentage = (currentValue / maxValue) * 100;
      percentage *= 0.94;
      if (maxValue < 1) {
-          percentage = 0
+          percentage = 0;
      }
 
      // Set the left position of the next element
@@ -189,16 +189,16 @@ function positionCounter() {
 }
 
 function refreshDrugs() {
-     var wallet = document.getElementById("wallet")
+     var wallet = document.getElementById("wallet");
      for (var i = 0; i < drugs.length; i++) {
-          var drug = drugs[i]
-          var drugData = document.getElementById("ur-" + drug.dataset.name)
-          var cityDrugData = document.getElementById("hist-" + drug.dataset.name)
-          var myDrugData = document.getElementById("my-" + drug.dataset.name)
+          var drug = drugs[i];
+          var drugData = document.getElementById("ur-" + drug.dataset.name);
+          var cityDrugData = document.getElementById("hist-" + drug.dataset.name);
+          var myDrugData = document.getElementById("my-" + drug.dataset.name);
           if (drugData != null && myDrugData != null) {
-               var children = drug.children
+               var children = drug.children;
                for (var j = 0; j < children.length; j++) {
-                    var child = children[j]
+                    var child = children[j];
                     if (child.classList.contains("amount")) {
                          child.innerHTML = myDrugData.dataset.holding;
                     } else if (child.classList.contains("drugName")) {
@@ -207,11 +207,11 @@ function refreshDrugs() {
                          // TODO figure out histogram
                     } else if (child.classList.contains("price")) {
                          var basePrice = cityDrugData.dataset.price;
-                         var dayPrice = basePrice
+                         var dayPrice = basePrice;
                          if (vDay > 1) {
                               var minPrice = basePrice / 2;
                               var maxPrice = basePrice * 2;
-                              var dayPrice = (Math.random() * (maxPrice - minPrice)) + minPrice;
+                              var dayPrice = Math.random() * (maxPrice - minPrice) + minPrice;
                               dayPrice = Math.floor(dayPrice);
                          }
 
@@ -220,10 +220,13 @@ function refreshDrugs() {
                     }
                }
 
-               if (Number(drugData.dataset.dayprice) > Number(wallet.dataset.cash) && Number(myDrugData.dataset.holding) < 1) {
-                    drug.classList.add("disabled")
+               if (
+                    Number(drugData.dataset.dayprice) > Number(wallet.dataset.cash) &&
+                    Number(myDrugData.dataset.holding) < 1
+               ) {
+                    drug.classList.add("disabled");
                } else {
-                    drug.classList.remove("disabled")
+                    drug.classList.remove("disabled");
                }
           }
      }
@@ -277,13 +280,13 @@ confirmTransactionButton.onclick = function () {
      dealDrugData.dataset.holding = totalHolding;
      dealDrugData.dataset.price = avg;
 
-     refreshWallet()
-     refreshDrugs()
+     refreshWallet();
+     refreshDrugs();
      body.classList.remove("showDeal");
 };
 
 function cancelTransaction() {
-     body.classList.remove("showDeal");
+     body.classList.remove("showDeal", "showTravel");
      vCashDelta = 0;
      vHoldingDelta = 0;
 }
@@ -343,12 +346,12 @@ dealSlider.oninput = function () {
      refreshValues();
 };
 
-travelButton.onclick = function() {
+travelButton.onclick = function () {
      body.classList.add("showTravel");
-}
+};
 
-travCancelButton.onclick = function() {
+travCancelButton.onclick = function () {
      body.classList.remove("showTravel");
-}
+};
 
 refreshValues();
