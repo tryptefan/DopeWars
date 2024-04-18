@@ -53,7 +53,11 @@ function enterCity(cityId) {
      if (cityData != null && locationTitle != null) {
           vCity = cityId;
           locationTitle.innerHTML = cityData.dataset.name;
-          specialButton.hidden = cityData.dataset.special == null;
+          if (cityData.dataset.special == null) {
+               specialButton.style.visibility = "hidden"
+          } else {
+               specialButton.style.visibility = "visible"
+          }
      }
 
      vDay += 1;
