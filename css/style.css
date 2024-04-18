@@ -256,6 +256,10 @@ h5 {
 .intro {
   text-align: center;
 }
+.intro .container > div {
+  position: relative;
+  z-index: 2;
+}
 .splash {
   display: inline-block;
   font-size: 59.66px;
