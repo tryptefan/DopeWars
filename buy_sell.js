@@ -29,12 +29,6 @@ const fmtMoney = Intl.NumberFormat("en-US", {
      minimumFractionDigits: "0",
 });
 
-const fmtMoneyExact = Intl.NumberFormat("en-US", {
-     style: "currency",
-     currency: "USD",
-     minimumFractionDigits: "2",
-});
-
 var buying = true;
 var vDrugId = "";
 var vName = "";
@@ -246,7 +240,7 @@ function refreshValues() {
 
      dealName.innerHTML = vName;
      dealPrice.innerHTML = fmtMoney.format(vCost);
-     myPrice.innerHTML = fmtMoneyExact.format(vAverage);
+     myPrice.innerHTML = fmtMoney.format(vAverage);
      dealCash.innerHTML = fmtMoney.format(cashTotal);
      capacity.innerHTML = holdingTotal + "/" + vCapacity;
      sliderCounter.innerHTML = vAmount;
@@ -278,7 +272,7 @@ confirmTransactionButton.onclick = function () {
           avg /= totalHolding;
      }
      dealDrugData.dataset.holding = totalHolding;
-     dealDrugData.dataset.price = avg;
+     dealDrugData.dataset.price = Math.trunc(avg);
 
      refreshWallet();
      refreshDrugs();
