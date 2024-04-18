@@ -54,9 +54,9 @@ function enterCity(cityId) {
           vCity = cityId;
           locationTitle.innerHTML = cityData.dataset.name;
           if (cityData.dataset.special == null) {
-               specialButton.style.visibility = "hidden"
+               specialButton.style.display = "none";
           } else {
-               specialButton.style.visibility = "visible"
+               specialButton.style.display = "block";
           }
      }
 
