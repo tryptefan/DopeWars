@@ -258,7 +258,7 @@ h5 {
   bottom: 0;
 }
 .showLoanShark .loanShark .topBar {
-  margin-bottom: 157px;
+  margin-bottom: 345px;
 }
 .intro {
   text-align: center;
@@ -499,7 +499,8 @@ h5 {
     background-image: url('../img/bgToronto@2x.png');
   }
 }
-.overlay.deal:before {
+.overlay.deal:before,
+.overlay.loanShark:before {
   background-color: var(--grey30);
   background-blend-mode: multiply;
   background-size: 448px auto;
@@ -579,6 +580,16 @@ h5 {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .overlay.deal.weed:before {
     background-image: url('../img/bgWeed@2x.png');
+  }
+}
+.overlay.loanShark:before {
+  background-image: url('../img/bgLoanShark.png');
+  background-position: center bottom 44px;
+  background-size: 447px auto;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .overlay.deal:before {
+    background-image: url('../img/bgLoanShark@2x.png');
   }
 }
 /*# sourceMappingURL=./style.css.map */
