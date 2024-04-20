@@ -11,17 +11,36 @@ const capacity = document.getElementById("dealCapacity");
 //const amount = document.getElementById("dealAmount");
 const dealName = document.getElementById("dealName");
 const dealPrice = document.getElementById("dealPrice");
+const dealSlider = document.getElementById("dealSlider");
+const dealSliderCounter = document.getElementById("dealSliderCounter");
 const myPrice = document.getElementById("myPrice");
 const buyButton = document.getElementById("buyButton");
 const sellButton = document.getElementById("sellButton");
-const dealSlider = document.getElementById("dealSlider");
-const confirmTransactionButton = document.getElementById("primaryAction");
-const cancelTransactionButton = document.getElementById("secondaryAction");
+const confirmDealButton = document.getElementById("confirmDeal");
+const cancelDealButton = document.getElementById("cancelDeal");
+
+const bankCash = document.getElementById("bankCash");
+const bankBank = document.getElementById("bankBank");
+const bankSlider = document.getElementById("bankSlider");
+const bankSliderCounter = document.getElementById("bankSliderCounter");
+const depositButton = document.getElementById("depositButton");
+const withdrawButton = document.getElementById("withdrawButton");
+const confirmBankButton = document.getElementById("confirmBank");
+const cancelBankButton = document.getElementById("cancelBank");
+
+const loanCash = document.getElementById("loanCash");
+const loanDebt = document.getElementById("loanDebt");
+const loanSlider = document.getElementById("loanSlider");
+const loanSliderCounter = document.getElementById("loanSliderCounter");
+const payButton = document.getElementById("payButton");
+const borrowButton = document.getElementById("borrowButton");
+const confirmLoanButton = document.getElementById("confirmLoan");
+const cancelLoanButton = document.getElementById("cancelLoan");
+
 const specialButton = document.getElementById("specialButton");
 const travelButton = document.getElementById("travelButton");
 const travCancelButton = document.getElementById("travCancelButton");
 const cashOutButton = document.getElementById("cashOutButton");
-const sliderCounter = document.getElementById("sliderCounter");
 
 const fmtMoney = Intl.NumberFormat("en-US", {
      style: "currency",
@@ -30,14 +49,20 @@ const fmtMoney = Intl.NumberFormat("en-US", {
 });
 
 var buying = true;
+var depositing = true;
+var paying = true;
 var vDrugId = "";
 var vName = "";
 var vCost = 50;
 var vAverage = 0;
 var vCash = 1298;
+var vBank = 0;
+var vDebt = 0;
 var vHolding = 12;
 var vCapacity = 100;
 var vCashDelta = 0;
+var vBankDelta = 0;
+var vDebtDelta = 0;
 var vHoldingDelta = 0;
 var vAmount = 0;
 var vDay = 0;
@@ -45,6 +70,7 @@ var vDay = 0;
 var vCity = "";
 enterCity("bos");
 function enterCity(cityId) {
+     clearBodyClasses();
      if (vCity.length > 0) {
           body.classList.remove(vCity);
      }
@@ -57,12 +83,17 @@ function enterCity(cityId) {
                specialButton.style.display = "none";
           } else {
                specialButton.style.display = "block";
+               var specialData = document.getElementById("special-" + cityData.dataset.special);
+               if(specialData != null) {
+                    specialButton.innerHTML = specialData.dataset.name;
+                    specialButton.dataset.host = cityData.dataset.special;
+               }
           }
      }
 
      vDay += 1;
 
-     refreshValues();
+     refreshDealValues();
      body.classList.add(vCity);
 
      if (vDay > 30) {
@@ -160,20 +191,29 @@ function openDrug() {
      vHoldingDelta = 0;
      vAmount = 0;
      buying = true;
+     clearBodyClasses();
      body.classList.add("showDeal");
      dealSlider.max = vCapacity - vHolding;
      dealSlider.value = 0;
-     refreshValues();
+     refreshDealValues();
 }
 
-function transactionDirection() {
+function dealDirection() {
      return buying ? 1 : -1;
 }
 
-function positionCounter() {
+function bankDirection() {
+     return depositing ? 1 : -1;
+}
+
+function loanDirection() {
+     return paying ? 1 : -1;
+}
+
+function positionCounter(slider, sliderCounter) {
      // Get the current value and max value of the slider
-     var currentValue = parseFloat(dealSlider.value);
-     var maxValue = parseFloat(dealSlider.max);
+     var currentValue = parseFloat(slider.value);
+     var maxValue = parseFloat(slider.max);
 
      // Calculate the percentage
      var percentage = (currentValue / maxValue) * 100;
@@ -184,6 +224,7 @@ function positionCounter() {
 
      // Set the left position of the next element
      sliderCounter.style.left = percentage + "%";
+     //console.log(sliderCounter);
 }
 
 function refreshDrugs() {
@@ -230,13 +271,13 @@ function refreshDrugs() {
      }
 }
 
-function refreshValues() {
+function refreshDealValues() {
      if (buying) {
           sellButton.parentNode.classList.remove("toggled");
-          confirmTransactionButton.innerHTML = "Buy";
+          confirmDealButton.innerHTML = "Buy";
      } else {
           sellButton.parentNode.classList.add("toggled");
-          confirmTransactionButton.innerHTML = "Sell";
+          confirmDealButton.innerHTML = "Sell";
      }
 
      var cashTotal = vCash + vCashDelta;
@@ -247,9 +288,46 @@ function refreshValues() {
      myPrice.innerHTML = fmtMoney.format(vAverage);
      dealCash.innerHTML = fmtMoney.format(cashTotal);
      capacity.innerHTML = holdingTotal + "/" + vCapacity;
-     sliderCounter.innerHTML = vAmount;
-     cityDay.innerHTML = vDay;
-     positionCounter();
+     dealSliderCounter.innerHTML = vAmount;
+     positionCounter(dealSlider, dealSliderCounter)
+
+     //cityDay.innerHTML = vDay;
+}
+
+function refreshBankValues() {
+     if (depositing) {
+          withdrawButton.parentNode.classList.remove("toggled");
+          confirmBankButton.innerHTML = "Deposit";
+     } else {
+          withdrawButton.parentNode.classList.add("toggled");
+          confirmBankButton.innerHTML = "Withdraw";
+     }
+
+     var cashTotal = vCash + vCashDelta;
+     var bankTotal = vBank + vBankDelta;
+
+     bankCash.innerHTML = fmtMoney.format(cashTotal);
+     bankBank.innerHTML = fmtMoney.format(bankTotal);
+     bankSliderCounter.innerHTML = vAmount;
+     positionCounter(bankSlider, bankSliderCounter);
+}
+
+function refreshLoanValues() {
+     if (paying) {
+          borrowButton.parentNode.classList.remove("toggled");
+          confirmLoanButton.innerHTML = "Pay";
+     } else {
+          borrowButton.parentNode.classList.add("toggled");
+          confirmLoanButton.innerHTML = "Borrow";
+     }
+
+     var cashTotal = vCash + vCashDelta;
+     var debtTotal = vDebt + vDebtDelta;
+
+     loanCash.innerHTML = fmtMoney.format(cashTotal);
+     loanDebt.innerHTML = fmtMoney.format(debtTotal);
+     loanSliderCounter.innerHTML = vAmount;
+     positionCounter(loanSlider, loanSliderCounter);
 }
 
 function refreshWallet() {
@@ -262,7 +340,7 @@ function refreshDay() {
      cityDay.innerHTML = vDay;
 }
 
-confirmTransactionButton.onclick = function () {
+confirmDealButton.onclick = function () {
      var wallet = document.getElementById("wallet");
      wallet.dataset.cash = Number(wallet.dataset.cash) + Number(vCashDelta);
 
@@ -284,12 +362,16 @@ confirmTransactionButton.onclick = function () {
 };
 
 function cancelTransaction() {
-     body.classList.remove("showDeal", "showTravel");
+     clearBodyClasses();
      vCashDelta = 0;
+     vBankDelta = 0;
+     vDebtDelta = 0;
      vHoldingDelta = 0;
 }
 
-cancelTransactionButton.onclick = cancelTransaction;
+cancelDealButton.onclick = cancelTransaction;
+cancelBankButton.onclick = cancelTransaction;
+cancelLoanButton.onclick = cancelTransaction;
 darkness.onclick = cancelTransaction;
 
 buyButton.onclick = function () {
@@ -299,7 +381,7 @@ buyButton.onclick = function () {
      vHoldingDelta = 0;
      dealSlider.max = vCapacity - vHolding;
      dealSlider.value = 0;
-     refreshValues();
+     refreshDealValues();
 };
 
 sellButton.onclick = function () {
@@ -309,13 +391,13 @@ sellButton.onclick = function () {
      vHoldingDelta = 0;
      dealSlider.max = vHolding;
      dealSlider.value = 0;
-     refreshValues();
+     refreshDealValues();
 };
 
 dealSlider.oninput = function () {
      var totalHolding = vHolding + vHoldingDelta;
      var totalCash = vCash + vCashDelta;
-     var direction = transactionDirection();
+     var direction = dealDirection();
 
      while (vAmount < Number(dealSlider.value)) {
           var canInc = false;
@@ -341,7 +423,130 @@ dealSlider.oninput = function () {
      }
 
      dealSlider.value = vAmount;
-     refreshValues();
+     refreshDealValues();
+};
+
+specialButton.onclick = function () {
+     if (specialButton.dataset.host == "bank") {
+          clearBodyClasses();
+          body.classList.add("showBank");
+          vCash = Number(wallet.dataset.cash);
+          vBank = Number(wallet.dataset.bank);
+          depositButton.onclick();
+     } else if (specialButton.dataset.host == "loan") {
+          clearBodyClasses();
+          body.classList.add("showLoanShark");
+          vCash = Number(wallet.dataset.cash);
+          vDebt = Number(wallet.dataset.debt);
+          payButton.onclick();
+     }
+}
+
+depositButton.onclick = function () {
+     depositing = true;
+     vAmount = 0;
+     vCashDelta = 0;
+     vBankDelta = 0;
+     bankSlider.max = vCash;
+     bankSlider.value = 0;
+     refreshBankValues();
+};
+
+withdrawButton.onclick = function () {
+     depositing = false;
+     vAmount = 0;
+     vCashDelta = 0;
+     vBankDelta = 0;
+     bankSlider.max = vBank;
+     bankSlider.value = 0;
+     refreshBankValues();
+};
+
+bankSlider.oninput = function () {
+     var totalBank = vBank + vBankDelta;
+     var totalCash = vCash + vCashDelta;
+     var direction = bankDirection();
+
+     while (vAmount < Number(bankSlider.value)) {
+          vAmount += 1;
+          vBankDelta += 1 * direction;
+          vCashDelta -= 1 * direction;
+     }
+
+     while (vAmount > Number(bankSlider.value)) {
+          vAmount -= 1;
+          vBankDelta -= 1 * direction;
+          vCashDelta += 1 * direction;
+     }
+
+     bankSlider.value = vAmount;
+     refreshBankValues();
+};
+
+confirmBankButton.onclick = function () {
+     var wallet = document.getElementById("wallet");
+     wallet.dataset.cash = Number(wallet.dataset.cash) + Number(vCashDelta);
+     wallet.dataset.bank = Number(wallet.dataset.bank) + Number(vBankDelta);
+     vCashDelta = 0;
+     vBankDelta = 0;
+
+     refreshWallet();
+     body.classList.remove("showBank");
+};
+
+payButton.onclick = function () {
+     paying = true;
+     vAmount = 0;
+     vCashDelta = 0;
+     vLoanDelta = 0;
+     loanSlider.max = vCash;
+     if (vDebt < vCash) {
+          loanSlider.max = vDebt;
+     }
+     loanSlider.value = 0;
+     refreshLoanValues();
+};
+
+borrowButton.onclick = function () {
+     paying = false;
+     vAmount = 0;
+     vCashDelta = 0;
+     vLoanDelta = 0;
+     loanSlider.max = 15000 - vDebt;
+     loanSlider.value = 0;
+     refreshLoanValues();
+};
+
+loanSlider.oninput = function () {
+     var totalDebt = vDebt + vDebtDelta;
+     var totalCash = vCash + vCashDelta;
+     var direction = loanDirection();
+
+     while (vAmount < Number(loanSlider.value)) {
+          vAmount += 1;
+          vDebtDelta -= 1 * direction;
+          vCashDelta -= 1 * direction;
+     }
+
+     while (vAmount > Number(loanSlider.value)) {
+          vAmount -= 1;
+          vDebtDelta += 1 * direction;
+          vCashDelta += 1 * direction;
+     }
+
+     loanSlider.value = vAmount;
+     refreshLoanValues();
+};
+
+confirmLoanButton.onclick = function () {
+     var wallet = document.getElementById("wallet");
+     wallet.dataset.cash = Number(wallet.dataset.cash) + Number(vCashDelta);
+     wallet.dataset.debt = Number(wallet.dataset.debt) + Number(vDebtDelta);
+     vCashDelta = 0;
+     vDebtDelta = 0;
+
+     refreshWallet();
+     body.classList.remove("showLoanShark");
 };
 
 travelButton.onclick = function () {
@@ -352,4 +557,13 @@ travCancelButton.onclick = function () {
      body.classList.remove("showTravel");
 };
 
-refreshValues();
+function clearBodyClasses() {
+     body.classList.remove("showDeal");
+     body.classList.remove("showTravel");
+     body.classList.remove("showBank");
+     body.classList.remove("showLoanShark");
+}
+
+refreshDealValues();
+refreshBankValues();
+refreshLoanValues();

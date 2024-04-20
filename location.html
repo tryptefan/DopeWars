@@ -140,12 +140,12 @@
 
             <div class="slidecontainer">
                 <input type="range" min="0" max="100" value="0" class="slider" id="dealSlider">
-                <output class="numbers" id="sliderCounter"></output>
+                <output class="numbers" id="dealSliderCounter"></output>
             </div>
 
             <div class="actions">
-                <a href="#" class="buttonSecondary button" id="secondaryAction">Cancel</a>
-                <a href="#" class="buttonPrimary button" id="primaryAction">Buy</a>
+                <a href="#" class="buttonSecondary button" id="cancelDeal">Cancel</a>
+                <a href="#" class="buttonPrimary button" id="confirmDeal">Buy</a>
             </div>
 
         </div><!-- DEAL -->
@@ -200,13 +200,13 @@
 
             <div class="toggle">
                 <div class="buttonPrimary button" id="payButton">Pay</div>
-                <div class="buttonPrimary button" id="BorrowButton">Borrow</div>
+                <div class="buttonPrimary button" id="borrowButton">Borrow</div>
             </div>
 
             <div class="resources">
                 <div class="cashDisplay">
                     <div class="meta">Cash</div>
-                    <div class="numbers" id="dealCash"> </div>
+                    <div class="numbers" id="loanCash"> </div>
                 </div>
 
                 <div class="capacityDisplay">
@@ -217,12 +217,12 @@
 
             <div class="slidecontainer">
                 <input type="range" min="0" max="100" value="0" class="slider" id="loanSlider">
-                <output class="numbers" id="sliderCounter"></output>
+                <output class="numbers" id="loanSliderCounter"></output>
             </div>
 
             <div class="actions">
-                <a href="#" class="buttonSecondary button" id="secondaryAction">Cancel</a>
-                <a href="#" class="buttonPrimary button" id="primaryAction">Pay</a>
+                <a href="#" class="buttonSecondary button" id="cancelLoan">Cancel</a>
+                <a href="#" class="buttonPrimary button" id="confirmLoan">Pay</a>
             </div>
 
         </div><!-- LOAN SHARK -->
@@ -236,14 +236,14 @@
             </div><!-- topBar -->
 
             <div class="toggle">
-                <div class="buttonPrimary button" id="cancelButton">Deposit</div>
-                <div class="buttonPrimary button" id="depositButton">Withdraw</div>
+                <div class="buttonPrimary button" id="depositButton">Deposit</div>
+                <div class="buttonPrimary button" id="withdrawButton">Withdraw</div>
             </div>
 
             <div class="resources">
                 <div class="cashDisplay">
                     <div class="meta">Cash</div>
-                    <div class="numbers" id="dealCash"> </div>
+                    <div class="numbers" id="bankCash"> </div>
                 </div>
 
                 <div class="capacityDisplay">
@@ -254,15 +254,15 @@
 
             <div class="slidecontainer">
                 <input type="range" min="0" max="100" value="0" class="slider" id="bankSlider">
-                <output class="numbers" id="sliderCounter"></output>
+                <output class="numbers" id="bankSliderCounter"></output>
             </div>
 
             <div class="actions">
-                <a href="#" class="buttonSecondary button" id="secondaryAction">Cancel</a>
-                <a href="#" class="buttonPrimary button" id="primaryAction">Deposit</a>
+                <a href="#" class="buttonSecondary button" id="cancelBank">Cancel</a>
+                <a href="#" class="buttonPrimary button" id="confirmBank">Deposit</a>
             </div>
 
-        </div><!-- LOAN SHARK -->
+        </div><!-- BANK -->
 
 
         <!-- /overlays -->
@@ -283,7 +283,8 @@
         <div id="my-weed" data-holding="0" data-price="0"></div>
     </div>
 
-    <div id="specialBank"></div>
+    <div id="special-bank" data-name="Bank"></div>
+    <div id="special-loan" data-name="Loan Shark"></div>
 
     <div id="ur-acid" data-name="Acid" data-dose="Hit"></div>
     <div id="ur-meth" data-name="Crystal Meth" data-dose="Dose"></div>
@@ -300,7 +301,7 @@
     <div id="hist-valium" data-price="5" data-dayPrice="0"></div>
     <div id="hist-weed" data-price="25" data-dayPrice="0"></div>
 
-    <div id="city-bos" data-name="Boston" data-special="shark"></div>
+    <div id="city-bos" data-name="Boston" data-special="loan"></div>
     <div id="city-dal" data-name="Dallas"></div>
     <div id="city-los" data-name="Los Angeles" data-special="bank"></div>
     <div id="city-man" data-name="Manhattan"></div>
