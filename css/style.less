@@ -191,7 +191,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
 }
 
 
-// OVERLAY +++++++++++++++++++++++++++++++++++++
+// OVERLAYS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .dark { 
     background-color: rgba(0, 0, 0, .35);
@@ -207,7 +207,8 @@ h1, h2, h3, h4, h5 { margin: 0; }
 }
 .showMessage .dark,
 .showTravel .dark,
-.showDeal .dark { 
+.showDeal .dark,
+.showLoanShark .dark { 
     background-color: rgba(0, 0, 0, .35);
     left: 0;
     height: 100%;
@@ -251,6 +252,11 @@ h1, h2, h3, h4, h5 { margin: 0; }
 }
 .showDeal .deal { bottom: 0; } // duplicate this
 .showTravel .travel { 
+    bottom: 0;     
+    .topBar { margin-bottom: 157px; }
+} // duplicate this
+
+.showLoanShark .loanShark { 
     bottom: 0; 
     
     .topBar { margin-bottom: 157px; }

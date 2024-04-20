@@ -203,7 +203,8 @@ h5 {
 }
 .showMessage .dark,
 .showTravel .dark,
-.showDeal .dark {
+.showDeal .dark,
+.showLoanShark .dark {
   background-color: rgba(0, 0, 0, 0.35);
   left: 0;
   height: 100%;
@@ -251,6 +252,12 @@ h5 {
   bottom: 0;
 }
 .showTravel .travel .topBar {
+  margin-bottom: 157px;
+}
+.showLoanShark .loanShark {
+  bottom: 0;
+}
+.showLoanShark .loanShark .topBar {
   margin-bottom: 157px;
 }
 .intro {
