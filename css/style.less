@@ -5,6 +5,13 @@
 // regular     400
 
 @font-face {
+    font-family: 'kameron';
+    src: url('../fonts/Kameron-Bold.ttf') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'inter';
     src: url('../fonts/Inter-Regular.ttf') format('woff2');
     font-weight: 400;
@@ -53,7 +60,7 @@
     --grey30: #F3EDDE;
 }
 
-.title { font-size: 24px; font-weight: 700; line-height: 114%; text-transform: uppercase; }
+.title { font-family: kameron; font-size: 28px; font-weight: 700; line-height: 114%; text-transform: normal; }
 .button { font-size: 20px; font-weight: 500; line-height: 150%; }
 .numbers { font-size: 24px; font-weight: 700; line-height: 96%; }
 .listing { font-size: 17px; font-weight: 400; line-height: 147%; }
@@ -66,7 +73,7 @@ body {
     background-color: #2E2E2E; 
     color: var(--text); 
     font-family: inter; 
-    font-size: 18px;;
+    font-size: 18px;
     font-weight: 400; line-height: 1.35em; 
     margin: 0;
     padding: 0;

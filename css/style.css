@@ -1,4 +1,10 @@
 @font-face {
+  font-family: 'kameron';
+  src: url('../fonts/Kameron-Bold.ttf') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
   font-family: 'inter';
   src: url('../fonts/Inter-Regular.ttf') format('woff2');
   font-weight: 400;
@@ -37,10 +43,11 @@
   --grey30: #F3EDDE;
 }
 .title {
-  font-size: 24px;
+  font-family: kameron;
+  font-size: 28px;
   font-weight: 700;
   line-height: 114%;
-  text-transform: uppercase;
+  text-transform: normal;
 }
 .button {
   font-size: 20px;
