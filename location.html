@@ -228,6 +228,43 @@
         </div><!-- LOAN SHARK -->
 
 
+        <!-- BANK -->
+
+        <div class="overlay bank" id="bankOverlay">
+            <div class="topBar">
+                <h1 class="title" id="bankName">Bank</h1>
+            </div><!-- topBar -->
+
+            <div class="toggle">
+                <div class="buttonPrimary button" id="cancelButton">Deposit</div>
+                <div class="buttonPrimary button" id="depositButton">Withdraw</div>
+            </div>
+
+            <div class="resources">
+                <div class="cashDisplay">
+                    <div class="meta">Cash</div>
+                    <div class="numbers" id="dealCash"> </div>
+                </div>
+
+                <div class="capacityDisplay">
+                    <div class="meta">Bank</div>
+                    <div class="numbers" id="bankBank"> </div>
+                </div>
+            </div>
+
+            <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="0" class="slider" id="bankSlider">
+                <output class="numbers" id="sliderCounter"></output>
+            </div>
+
+            <div class="actions">
+                <a href="#" class="buttonSecondary button" id="secondaryAction">Cancel</a>
+                <a href="#" class="buttonPrimary button" id="primaryAction">Deposit</a>
+            </div>
+
+        </div><!-- LOAN SHARK -->
+
+
         <!-- /overlays -->
 
     </div><!-- container -->

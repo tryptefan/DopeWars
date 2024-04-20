@@ -260,6 +260,12 @@ h5 {
 .showLoanShark .loanShark .topBar {
   margin-bottom: 345px;
 }
+.showBank .bank {
+  bottom: 0;
+}
+.showBank .bank .topBar {
+  margin-bottom: 345px;
+}
 .intro {
   text-align: center;
 }
