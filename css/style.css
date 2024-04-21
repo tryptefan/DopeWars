@@ -269,7 +269,7 @@ h5 {
   bottom: 0;
 }
 .showLoanShark .loanShark .topBar {
-  margin-bottom: 345px;
+  margin-bottom: 313px;
 }
 .showBank .bank {
   bottom: 0;
@@ -396,7 +396,82 @@ h5 {
 .locationTable .drug .graph,
 .drugTable .location .graph,
 .locationTable .location .graph {
-  width: 47px;
+  height: 24px;
+}
+.drugTable .drug .graph .bar,
+.locationTable .drug .graph .bar,
+.drugTable .location .graph .bar,
+.locationTable .location .graph .bar {
+  background-color: var(--brand);
+  display: inline-block;
+  height: 100%;
+  width: 2px;
+}
+.drugTable .drug .graph .under5,
+.locationTable .drug .graph .under5,
+.drugTable .location .graph .under5,
+.locationTable .location .graph .under5 {
+  height: 2%;
+}
+.drugTable .drug .graph .under4,
+.locationTable .drug .graph .under4,
+.drugTable .location .graph .under4,
+.locationTable .location .graph .under4 {
+  height: 12%;
+}
+.drugTable .drug .graph .under3,
+.locationTable .drug .graph .under3,
+.drugTable .location .graph .under3,
+.locationTable .location .graph .under3 {
+  height: 22%;
+}
+.drugTable .drug .graph .under2,
+.locationTable .drug .graph .under2,
+.drugTable .location .graph .under2,
+.locationTable .location .graph .under2 {
+  height: 32%;
+}
+.drugTable .drug .graph .under1,
+.locationTable .drug .graph .under1,
+.drugTable .location .graph .under1,
+.locationTable .location .graph .under1 {
+  height: 42%;
+}
+.drugTable .drug .graph .avg,
+.locationTable .drug .graph .avg,
+.drugTable .location .graph .avg,
+.locationTable .location .graph .avg {
+  height: 52%;
+}
+.drugTable .drug .graph .over1,
+.locationTable .drug .graph .over1,
+.drugTable .location .graph .over1,
+.locationTable .location .graph .over1 {
+  height: 62%;
+}
+.drugTable .drug .graph .over2,
+.locationTable .drug .graph .over2,
+.drugTable .location .graph .over2,
+.locationTable .location .graph .over2 {
+  height: 72%;
+}
+.drugTable .drug .graph .over3,
+.locationTable .drug .graph .over3,
+.drugTable .location .graph .over3,
+.locationTable .location .graph .over3 {
+  height: 82%;
+}
+.drugTable .drug .graph .over4,
+.locationTable .drug .graph .over4,
+.drugTable .location .graph .over4,
+.locationTable .location .graph .over4 {
+  height: 92%;
+}
+.drugTable .drug .graph .over5,
+.locationTable .drug .graph .over5,
+.drugTable .location .graph .over5,
+.locationTable .location .graph .over5 {
+  height: 100%;
 }
 .drugTable .drug .price,
 .locationTable .drug .price,
@@ -591,7 +666,7 @@ h5 {
 }
 .overlay.deal.weed:before {
   background-image: url('../img/bgWeed.png');
-  background-position: center bottom 44px;
+  background-position: center bottom 64px;
   background-size: 391px auto;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -601,7 +676,7 @@ h5 {
 }
 .overlay.loanShark:before {
   background-image: url('../img/bgLoanShark.png');
-  background-position: center bottom 44px;
+  background-position: center bottom 59px;
   background-size: 447px auto;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
