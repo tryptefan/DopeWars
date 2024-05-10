@@ -81,7 +81,7 @@
   text-transform: uppercase;
 }
 body {
-  background-color: #2E2E2E;
+  background: #2E2E2E;
   color: var(--text);
   font-family: inter;
   font-size: 18px;
@@ -193,7 +193,7 @@ h5 {
   margin: 0;
 }
 .container {
-  background-color: var(--grey30);
+  background: var(--grey30);
   max-width: 400px;
   margin: 0 auto;
   overflow: hidden;
@@ -280,12 +280,43 @@ h5 {
 .intro {
   text-align: center;
 }
+.intro .container {
+  background-color: var(--brand);
+}
+.intro .container::before {
+  background-color: var(--brand);
+}
+.intro .container::after {
+  mix-blend-mode: difference;
+  opacity: 0.21;
+  pointer-events: none;
+}
+.intro .container #linkHighScores {
+  background: url(../img/iconHighScores.svg);
+  display: block;
+  height: 26px;
+  position: absolute;
+  top: 50px;
+  right: 24px;
+  width: 26px;
+}
+.intro .container .button {
+  background-color: var(--grey30);
+  color: var(--brand);
+}
+.intro .container .buttonSecondary {
+  background-color: var(--brand);
+  border: 3px solid var(--grey30);
+  color: var(--grey30);
+}
 .intro .container > div {
   position: relative;
   z-index: 2;
 }
 .splash {
+  color: var(--grey30);
   display: inline-block;
+  font-family: kameron;
   font-size: 59.66px;
   font-weight: 800;
   margin: 30px auto 600px auto;
@@ -297,8 +328,8 @@ h5 {
   line-height: 68px;
 }
 .splash div {
-  background-color: var(--brand);
-  color: var(--grey30);
+  background-color: var(--grey30);
+  color: var(--brand);
   font-size: 27px;
   font-weight: 700;
   padding: 4px 0 3px 0;
@@ -377,7 +408,7 @@ h5 {
 .drugTable .location .drugName,
 .locationTable .location .drugName {
   color: var(--brand);
-  width: 116px;
+  width: 150px;
 }
 .drugTable .drug .city,
 .locationTable .drug .city,
@@ -411,13 +442,13 @@ h5 {
 .locationTable .drug .graph .under5,
 .drugTable .location .graph .under5,
 .locationTable .location .graph .under5 {
-  height: 2%;
+  height: 43%;
 }
 .drugTable .drug .graph .under4,
 .locationTable .drug .graph .under4,
 .drugTable .location .graph .under4,
 .locationTable .location .graph .under4 {
-  height: 12%;
+  height: 13%;
 }
 .drugTable .drug .graph .under3,
 .locationTable .drug .graph .under3,
@@ -509,15 +540,23 @@ h5 {
   white-space: nowrap;
 }
 .container:after {
-  background: url(../img/bgMask.svg) no-repeat;
+  background: url("../img/grit.png");
+  mix-blend-mode: exclusion;
+  background-size: cover;
   content: "";
   display: block;
-  height: 112px;
   position: absolute;
-  top: 387px;
+  opacity: 0.2;
+  height: 100%;
   left: 0;
-  width: 196px;
+  top: 0;
+  width: 100%;
   z-index: 0;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .container:after {
+    background-image: url('../img/grit@2x.png');
+  }
 }
 .container:before {
   background-color: var(--grey30);

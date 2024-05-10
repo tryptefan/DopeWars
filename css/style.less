@@ -70,7 +70,7 @@
 
 
 body { 
-    background-color: #2E2E2E; 
+    background: #2E2E2E; 
     color: var(--text); 
     font-family: inter; 
     font-size: 18px;
@@ -192,12 +192,16 @@ a { text-decoration: none; }
 h1, h2, h3, h4, h5 { margin: 0; }
 
 .container { 
-    background-color: var(--grey30);
+    background: 
+        var(--grey30)
+    ;
     max-width: 400px; 
     margin: 0 auto;
     overflow: hidden;
     padding: 67px 24px 29px 24px;
     position: relative;
+
+    
 }
 
 
@@ -286,10 +290,38 @@ h1, h2, h3, h4, h5 { margin: 0; }
 // Intro +++++++++++++++++++++++++
 
 .intro { text-align: center; }
+.intro .container {
+    background-color: var(--brand);
+
+    &::before {
+        background-color: var(--brand);
+    }
+
+    &::after {
+    mix-blend-mode: difference;
+    opacity: .21;
+    pointer-events: none;
+    }
+
+    #linkHighScores {
+        background: url(../img/iconHighScores.svg);
+        display: block;
+        height: 26px;
+        position: absolute;
+        top: 50px;
+        right: 24px;
+        width: 26px;
+    }
+
+    .button { background-color: var(--grey30); color: var(--brand); }
+    .buttonSecondary {background-color: var(--brand); border: 3px solid var(--grey30); color: var(--grey30); }
+}
 
 .intro .container > div { position: relative; z-index: 2; }
 .splash {
+    color: var(--grey30); 
     display: inline-block;
+    font-family: kameron;
     font-size: 59.66px;
     font-weight: 800;
     margin: 30px auto 600px auto;
@@ -298,8 +330,8 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
     .wars { font-size: 51.76px; line-height: 68px; }
     div { 
-        background-color: var(--brand); 
-        color: var(--grey30);
+        background-color: var(--grey30); 
+        color: var(--brand);
         font-size: 27px;
         font-weight: 700;
         padding: 4px 0 3px 0;
@@ -307,7 +339,8 @@ h1, h2, h3, h4, h5 { margin: 0; }
         margin-top: -8px;
     }
     span { letter-spacing: 3px; }
-}
+
+} // splash
 
 
 
@@ -367,7 +400,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
         padding: 11px 43px 8px 19px;
 
         .amount { color: var(--text); width: 27px; }
-        .drugName { color: var(--brand); width: 116px; }
+        .drugName { color: var(--brand); width: 150px; }
         .city { 
             color: var(--brand); 
             width: auto; 
@@ -384,8 +417,8 @@ h1, h2, h3, h4, h5 { margin: 0; }
                 height: 100%; 
                 width: 2px; 
             }
-            .under5 { height: 2%; } // 2% just to be able to see something
-            .under4 { height: 12%; }
+            .under5 { height: 43%; } // 2% just to be able to see something
+            .under4 { height: 13%; }
             .under3 { height: 22%; }
             .under2 { height: 32%; }
             .under1 { height: 42%; }
@@ -428,16 +461,28 @@ h1, h2, h3, h4, h5 { margin: 0; }
 // BACKGROUNDS
 // Locations
 
+
 .container:after {
-    background: url(../img/bgMask.svg) no-repeat;
+    //background: url(../img/bgMask.svg) no-repeat; 
+    //height: 112px;
+    //top: 387px;
+    //width: 196px;
+    background: url("../img/grit.png");
+    mix-blend-mode: exclusion;
+    background-size: cover;
     content: "";
     display: block;
-    height: 112px;
     position: absolute;
-    top: 387px;
+    opacity: .2;
+    height: 100%;
     left: 0;
-    width: 196px;
+    top: 0;
+    width: 100%;
     z-index: 0;
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            background-image: url('../img/grit@2x.png');
+    }
 }
 .container:before {
     background-color: var(--grey30);
