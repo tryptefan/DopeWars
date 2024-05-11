@@ -263,7 +263,7 @@ h5 {
   bottom: 0;
 }
 .showTravel .travel .topBar {
-  margin-bottom: 157px;
+  margin-bottom: 226px;
 }
 .showLoanShark .loanShark {
   bottom: 0;
@@ -394,7 +394,7 @@ h5 {
   display: flex;
   gap: 8px;
   align-items: baseline;
-  padding: 11px 43px 8px 19px;
+  padding: 8px 43px 6px 19px;
 }
 .drugTable .drug .amount,
 .locationTable .drug .amount,
@@ -631,7 +631,8 @@ h5 {
   }
 }
 .overlay.deal:before,
-.overlay.loanShark:before {
+.overlay.loanShark:before,
+.overlay.travel:before {
   background-color: var(--grey30);
   background-blend-mode: multiply;
   background-size: 448px auto;
@@ -715,12 +716,22 @@ h5 {
 }
 .overlay.loanShark:before {
   background-image: url('../img/bgLoanShark.png');
-  background-position: center bottom 59px;
+  background-position: center bottom 137px;
   background-size: 447px auto;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .overlay.deal:before {
+  .overlay.loanShark:before {
     background-image: url('../img/bgLoanShark@2x.png');
+  }
+}
+.overlay.travel:before {
+  background-image: url('../img/bgTravel.png');
+  background-position: center bottom 137px;
+  background-size: 447px auto;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .overlay.travel:before {
+    background-image: url('../img/bgTravel@2x.png');
   }
 }
 /*# sourceMappingURL=./style.css.map */
