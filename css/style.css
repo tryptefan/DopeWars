@@ -716,7 +716,7 @@ h5 {
 }
 .overlay.loanShark:before {
   background-image: url('../img/bgLoanShark.png');
-  background-position: center bottom 137px;
+  background-position: center bottom 59px;
   background-size: 447px auto;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
