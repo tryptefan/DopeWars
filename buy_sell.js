@@ -84,7 +84,7 @@ function enterCity(cityId) {
           } else {
                specialButton.style.display = "block";
                var specialData = document.getElementById("special-" + cityData.dataset.special);
-               if(specialData != null) {
+               if (specialData != null) {
                     specialButton.innerHTML = specialData.dataset.name;
                     specialButton.dataset.host = cityData.dataset.special;
                }
@@ -289,7 +289,7 @@ function refreshDealValues() {
      dealCash.innerHTML = fmtMoney.format(cashTotal);
      capacity.innerHTML = holdingTotal + "/" + vCapacity;
      dealSliderCounter.innerHTML = vAmount;
-     positionCounter(dealSlider, dealSliderCounter)
+     positionCounter(dealSlider, dealSliderCounter);
 
      //cityDay.innerHTML = vDay;
 }
@@ -440,7 +440,7 @@ specialButton.onclick = function () {
           vDebt = Number(wallet.dataset.debt);
           payButton.onclick();
      }
-}
+};
 
 depositButton.onclick = function () {
      depositing = true;
