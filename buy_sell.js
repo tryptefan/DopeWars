@@ -217,7 +217,7 @@ function positionCounter(slider, sliderCounter) {
 
      // Calculate the percentage
      var percentage = (currentValue / maxValue) * 100;
-     percentage *= 0.94;
+     percentage *= 0.85; // 94
      if (maxValue < 1) {
           percentage = 0;
      }

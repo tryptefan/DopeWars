@@ -232,10 +232,10 @@ body * {
 #loanSliderCounter {
   position: relative;
   display: inline-block;
-  width: 50px;
   text-align: center;
-  margin-left: -11px;
   padding-top: 7px;
+  white-space: nowrap;
+  /* Prevents text from wrapping */
 }
 a {
   text-decoration: none;

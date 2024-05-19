@@ -223,6 +223,7 @@ body * { user-select: none; }
     background: var(--grey20);
     outline: none;
     -webkit-transition: .2s;
+
   }
   
   .slider::-webkit-slider-thumb {
@@ -250,10 +251,14 @@ body * { user-select: none; }
   #loanSliderCounter {
     position: relative;
     display: inline-block;
-    width: 50px;
     text-align: center;
-    margin-left: -11px;
     padding-top: 7px;
+    white-space: nowrap;
+
+    //position: absolute;
+    //top: 30px; /* Adjust to position below the slider */
+    white-space: nowrap; /* Prevents text from wrapping */
+    //transform: translateX(-50%);
   }
 
 
