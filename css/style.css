@@ -150,18 +150,19 @@ body * {
 .buttonPrimary {
   background: var(--brand);
   border-radius: 31px;
-  border: 3px solid var(--brand);
+  border: 0;
   color: var(--grey30);
   display: block;
-  padding: 7px 40px;
+  padding: 7px 36px;
   text-align: center;
+  line-height: 1.8em;
 }
 .buttonSecondary {
   border: 3px solid var(--brand);
   border-radius: 31px;
   color: var(--brand);
   display: block;
-  padding: 7px 40px;
+  padding: 7px 36px;
   text-align: center;
 }
 .toggle {
@@ -438,6 +439,9 @@ h5 {
 .moneyStatus .bank {
   margin-top: 12px;
 }
+.moneyStatus .debt .meta {
+  text-align: right;
+}
 .drugTable,
 .locationTable {
   background-color: var(--grey20);
@@ -489,6 +493,8 @@ h5 {
 .drugTable .location .graph,
 .locationTable .location .graph {
   height: 24px;
+  position: relative;
+  top: 5px;
 }
 .drugTable .drug .graph .bar,
 .locationTable .drug .graph .bar,
