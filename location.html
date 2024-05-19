@@ -200,6 +200,13 @@
                 <div class="buttonPrimary button" id="sellButton">Sell</div>
             </div>
 
+
+            <div class="slidecontainer">
+                <output class="numbers" id="dealSliderCounter"></output>
+                <input type="range" min="0" max="100" value="0" class="slider" id="dealSlider">
+            </div>
+
+
             <div class="resources">
                 <div class="cashDisplay">
                     <div class="meta">Cash</div>
@@ -212,14 +219,6 @@
                 </div>
             </div><!-- resources -->
 
-            <!--<div class="slider">
-                <div style="display:inline-block" id="dealAmount"> </div>
-                </div>-->
-
-            <div class="slidecontainer">
-                <input type="range" min="0" max="100" value="0" class="slider" id="dealSlider">
-                <output class="numbers" id="dealSliderCounter"></output>
-            </div>
 
             <div class="actions">
                 <a href="#" class="buttonSecondary button" id="cancelDeal">Cancel</a>
@@ -281,6 +280,11 @@
                 <div class="buttonPrimary button" id="borrowButton">Borrow</div>
             </div>
 
+            <div class="slidecontainer">
+                <output class="numbers" id="loanSliderCounter"></output>
+                <input type="range" min="0" max="100" value="0" class="slider" id="loanSlider">
+            </div>
+
             <div class="resources">
                 <div class="cashDisplay">
                     <div class="meta">Cash</div>
@@ -291,12 +295,8 @@
                     <div class="meta">Debt</div>
                     <div class="numbers" id="loanDebt"> </div>
                 </div>
-            </div>
+            </div><!-- /resources -->
 
-            <div class="slidecontainer">
-                <input type="range" min="0" max="100" value="0" class="slider" id="loanSlider">
-                <output class="numbers" id="loanSliderCounter"></output>
-            </div>
 
             <div class="actions">
                 <a href="#" class="buttonSecondary button" id="cancelLoan">Cancel</a>
@@ -318,6 +318,11 @@
                 <div class="buttonPrimary button" id="withdrawButton">Withdraw</div>
             </div>
 
+            <div class="slidecontainer">
+                <output class="numbers" id="bankSliderCounter"></output>
+                <input type="range" min="0" max="100" value="0" class="slider" id="bankSlider">
+            </div>
+
             <div class="resources">
                 <div class="cashDisplay">
                     <div class="meta">Cash</div>
@@ -330,10 +335,6 @@
                 </div>
             </div>
 
-            <div class="slidecontainer">
-                <input type="range" min="0" max="100" value="0" class="slider" id="bankSlider">
-                <output class="numbers" id="bankSliderCounter"></output>
-            </div>
 
             <div class="actions">
                 <a href="#" class="buttonSecondary button" id="cancelBank">Cancel</a>
