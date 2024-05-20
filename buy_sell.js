@@ -217,13 +217,35 @@ function positionCounter(slider, sliderCounter) {
 
      // Calculate the percentage
      var percentage = (currentValue / maxValue) * 100;
-     percentage *= 0.85; // 94
+     //percentage *= 0.94; // 94
      if (maxValue < 1) {
           percentage = 0;
      }
 
+     // ben's shitty hax---------------
+
+     // Get the width of the counter element in pixels
+     var counterWidth = sliderCounter.offsetWidth;
+
+     // Select the parent element
+     var parent = sliderCounter.parentElement;
+
+     // Get the width of the parent element in pixels
+     var parentWidth = parent.offsetWidth;
+
+     // Calculate the maximum left position in pixels
+     var maxLeftPx = parentWidth - counterWidth;
+
+     // Calculate the left position in pixels based on the value (0-100%)
+     var leftPx = (percentage / 100) * maxLeftPx;
+
+     // Set the left position of the butterfly element in pixels
+     sliderCounter.style.left = leftPx + "px";
+
+     // end ben code -----------------
+
      // Set the left position of the next element
-     sliderCounter.style.left = percentage + "%";
+     // sliderCounter.style.left = percentage + "%"; // forgive me Sam
      //console.log(sliderCounter);
 }
 
