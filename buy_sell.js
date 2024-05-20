@@ -294,12 +294,15 @@ function refreshDrugs() {
 }
 
 function refreshDealValues() {
+     var purchaseInfo = document.getElementById("purchaseInfo");
      if (buying) {
           sellButton.parentNode.classList.remove("toggled");
           confirmDealButton.innerHTML = "Buy";
+          purchaseInfo.style.visibility = "hidden"; // the thinking here is that you don't need purchase price to buy...thoughts?
      } else {
           sellButton.parentNode.classList.add("toggled");
           confirmDealButton.innerHTML = "Sell";
+          purchaseInfo.style.visibility = "visible";
      }
 
      var cashTotal = vCash + vCashDelta;

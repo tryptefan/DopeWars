@@ -410,7 +410,6 @@ h5 {
   z-index: 1;
 }
 .topBar .day .meta {
-  color: var(--grey);
   display: inline-block;
 }
 .topBar .day .daysLeft {
