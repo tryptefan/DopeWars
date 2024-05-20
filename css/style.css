@@ -494,15 +494,17 @@ h5 {
   height: 24px;
   position: relative;
   top: 5px;
+  display: flex;
+  align-items: flex-end;
 }
 .drugTable .drug .graph .bar,
 .locationTable .drug .graph .bar,
 .drugTable .location .graph .bar,
 .locationTable .location .graph .bar {
   background-color: var(--brand);
-  display: inline-block;
   height: 100%;
   width: 2px;
+  margin-right: 3px;
 }
 .drugTable .drug .graph .under5,
 .locationTable .drug .graph .under5,
@@ -585,6 +587,10 @@ h5 {
 .drugTable .drug.disabled *,
 .locationTable .drug.disabled * {
   color: var(--grey);
+}
+.drugTable .drug.disabled .bar,
+.locationTable .drug.disabled .bar {
+  background-color: var(--grey);
 }
 .drugTable .drug:last-child,
 .locationTable .drug:last-child,

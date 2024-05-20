@@ -492,12 +492,14 @@ h1, h2, h3, h4, h5 { margin: 0; }
             height: 24px;
             position: relative;
             top: 5px;
+            display: flex;    
+            align-items: flex-end;
 
             .bar { 
                 background-color: var(--brand); 
-                display: inline-block;
                 height: 100%; 
                 width: 2px; 
+                margin-right: 3px;
             }
             .under5 { height: 43%; } // 2% just to be able to see something
             .under4 { height: 13%; }
@@ -516,6 +518,8 @@ h1, h2, h3, h4, h5 { margin: 0; }
     .drug.disabled { 
         background-image: url("../img/iconArrowDisabled.svg"); 
         * { color: var(--grey); }
+
+        .bar { background-color: var(--grey);; }
     }
     .drug:last-child, .location:last-child { 
         border-bottom: 0;
