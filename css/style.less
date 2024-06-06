@@ -374,6 +374,17 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
     &::before {
         background-color: var(--brand);
+        background-color: transparent;
+        background: url(../img/coverArt.png) no-repeat center;
+        height: 488px;
+        top: 27.3vh;
+
+    }
+    
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        &::before {
+            background-image: url('../img/coverArt@2x.png');
+        }
     }
 
     &::after {

@@ -348,6 +348,15 @@ h5 {
 }
 .intro .container::before {
   background-color: var(--brand);
+  background-color: transparent;
+  background: url(../img/coverArt.png) no-repeat center;
+  height: 488px;
+  top: 27.3vh;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .intro .container::before {
+    background-image: url('../img/coverArt@2x.png');
+  }
 }
 .intro .container::after {
   mix-blend-mode: difference;
