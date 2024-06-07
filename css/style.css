@@ -35,7 +35,7 @@
   font-style: normal;
 }
 :root {
-  --brand: #245EB5;
+  --brand: #0F6130;
   --text: #656565;
   --grey: #888381;
   --grey10: #D8D1C3;
@@ -173,6 +173,7 @@ body * {
   margin-bottom: 13px;
   padding: 8px;
   position: relative;
+  z-index: 3;
 }
 .toggle .buttonPrimary {
   background-color: transparent;
@@ -298,6 +299,19 @@ h5 {
   width: 100%;
   z-index: 3;
 }
+.overlay .circle {
+  aspect-ratio: 1/1;
+  border-radius: 300px;
+  background: var(--brand);
+  -moz-border-radius: 300px;
+  -webkit-border-radius: 300px;
+  left: 50%;
+  opacity: 0.21;
+  position: absolute;
+  top: 13%;
+  transform: translateX(-50%);
+  width: 58.72%;
+}
 .overlay .topBar {
   align-items: flex-start;
   margin-bottom: 245px;
@@ -416,7 +430,7 @@ h5 {
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 .topBar .day .meta {
   display: inline-block;
@@ -715,8 +729,6 @@ h5 {
 .overlay.deal:before,
 .overlay.loanShark:before,
 .overlay.travel:before {
-  background-color: var(--grey30);
-  background-blend-mode: multiply;
   background-size: 448px auto;
   background-position: center bottom 30px;
   background-repeat: no-repeat;
@@ -728,7 +740,7 @@ h5 {
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: 0;
+  z-index: 1;
 }
 .overlay.deal.acid:before {
   background-image: url('../img/bgAcid.png');
