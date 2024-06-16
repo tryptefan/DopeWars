@@ -829,6 +829,19 @@ h5 {
   }
 }
 .popup {
+  background: var(--grey30);
+  border-radius: 40px;
   display: none;
+  padding: 26px;
+  width: calc(100% - 48px);
+  box-sizing: border-box;
+  z-index: 3;
+}
+.showMessage .popup {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 /*# sourceMappingURL=./style.css.map */
