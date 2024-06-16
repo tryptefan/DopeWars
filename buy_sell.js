@@ -316,7 +316,7 @@ function refreshDealValues() {
      dealSliderCounter.innerHTML = vAmount;
      positionCounter(dealSlider, dealSliderCounter);
 
-     //cityDay.innerHTML = vDay;
+     cityDay.innerHTML = vDay;
 }
 
 function refreshBankValues() {
