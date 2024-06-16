@@ -828,4 +828,7 @@ h5 {
     background-image: url('../img/bgTravel@2x.png');
   }
 }
+.popup {
+  display: none;
+}
 /*# sourceMappingURL=./style.css.map */
