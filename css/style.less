@@ -41,6 +41,32 @@
     font-weight: 800;
     font-style: normal;
 }
+
+// georgia
+@font-face {
+    font-family: 'georgia';
+    src: url('../fonts/georgia.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'georgia';
+    src: url('../fonts/b.ttf') format('ttf');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'georgia';
+    src: url('../fonts/georgiai.ttf') format('ttf');
+    font-weight: 400;
+    font-style: otalic;
+}
+@font-face {
+    font-family: 'georgia';
+    src: url('../fonts/georgiaz.ttf') format('ttf');
+    font-weight: 600;
+    font-style: italic;
+}
  
 // COLORS
 
@@ -62,11 +88,11 @@
 
 .title { font-family: kameron; font-size: 28px; font-weight: 700; line-height: 114%; text-transform: normal; }
 .button { font-size: 20px; font-weight: 500; line-height: 150%; }
-.numbers { font-size: 24px; font-weight: 700; line-height: 96%; }
-.listing { font-size: 17px; font-weight: 400; line-height: 147%; }
-.listingBold { font-size: 17px; font-weight: 600; line-height: 147%; }
-.small { font-size: 14px; font-weight: 500; line-height: 147%; }
-.meta { font-size: 12px; line-height: 194%; font-weight: 600; text-transform: uppercase; }
+.numbers { font-family: inter; font-size: 24px; font-weight: 700; line-height: 96%; }
+.listing { font-family: inter; font-size: 17px; font-weight: 400; line-height: 147%; }
+.listingBold { font-family: inter; font-size: 17px; font-weight: 600; line-height: 147%; }
+.small { font-family: inter; font-size: 14px; font-weight: 500; line-height: 147%; }
+.meta { font-family: inter; font-size: 12px; line-height: 194%; font-weight: 600; text-transform: uppercase; }
 
 
 
@@ -141,7 +167,7 @@ html, body {
 body { 
     background: #2E2E2E; 
     color: var(--text); 
-    font-family: inter; 
+    font-family: georgia; 
     font-size: 18px;
     font-weight: 400; line-height: 1.35em; 
     margin: 0;
@@ -562,6 +588,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
     
     a {
         flex: 1 1 0px;
+        font-family: inter;
         min-width: 0;
         white-space: nowrap;
     }
