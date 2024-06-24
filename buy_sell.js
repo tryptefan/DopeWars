@@ -42,6 +42,14 @@ const travelButton = document.getElementById("travelButton");
 const travCancelButton = document.getElementById("travCancelButton");
 const cashOutButton = document.getElementById("cashOutButton");
 
+const messageTitle = document.getElementById("messageTitle");
+const messageBody = document.getElementById("messageBody");
+const messageActionsSolo = document.getElementById("messageActionsSolo");
+const messageActionsDouble = document.getElementById("messageActionsDouble");
+const messageButton = document.getElementById("messageButton");
+const messageButton1 = document.getElementById("messageButton1");
+const messageButton2 = document.getElementById("messageButton2");
+
 const fmtMoney = Intl.NumberFormat("en-US", {
      style: "currency",
      currency: "USD",
@@ -365,6 +373,31 @@ function refreshDay() {
      cityDay.innerHTML = vDay;
 }
 
+function showMessage(msgTitle, msgBody, msgButton1, msgButton2) {
+     body.classList.add("showMessage");
+     messageTitle.innerHTML = msgTitle;
+     messageBody.innerHTML = msgBody;
+     if (msgButton2 == null || msgButton2 == "") {
+          messageActionsSolo.style.visibility = "visible";
+          messageActionsSolo.style.removeProperty("height");
+          messageActionsDouble.style.visibility = "hidden";
+          messageActionsDouble.style.height = 0;
+          messageButton.innerHTML = msgButton1;
+     }
+     else {
+          messageActionsDouble.style.visibility = "visible";
+          messageActionsDouble.style.removeProperty("height");
+          messageActionsSolo.style.visibility = "hidden";
+          messageActionsSolo.style.height = 0;
+          messageButton1.innerHTML = msgButton1;
+          messageButton2.innerHTML = msgButton2;
+     }
+}
+
+function secondaryButton(buttonText) {
+     return "<a href=\"#\" class=\"buttonSecondary button\">" + buttonText + "</a>";
+}
+
 confirmDealButton.onclick = function () {
      var wallet = document.getElementById("wallet");
      wallet.dataset.cash = Number(wallet.dataset.cash) + Number(vCashDelta);
@@ -587,8 +620,14 @@ function clearBodyClasses() {
      body.classList.remove("showTravel");
      body.classList.remove("showBank");
      body.classList.remove("showLoanShark");
+     body.classList.remove("showMessage");
 }
 
 refreshDealValues();
 refreshBankValues();
 refreshLoanValues();
+
+// @Ben uncomment to see placeholder event
+//showMessage("event title", "<p>and body</p><p>with more</p>", "affirmative", "");
+//showMessage("event title", "<p>and body</p><p>with more</p>", "do it", "skip");
+
