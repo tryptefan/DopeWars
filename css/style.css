@@ -760,7 +760,8 @@ h5 {
 }
 .overlay.deal:before,
 .overlay.loanShark:before,
-.overlay.travel:before {
+.overlay.travel:before,
+.overlay.bank:before {
   background-size: 448px auto;
   background-position: center bottom 30px;
   background-repeat: no-repeat;
@@ -858,6 +859,16 @@ h5 {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .overlay.travel:before {
     background-image: url('../img/bgTravel@2x.png');
+  }
+}
+.overlay.bank:before {
+  background-image: url('../img/bgBank.png');
+  background-position: center bottom 64px;
+  background-size: 413px auto;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .overlay.travel:before {
+    background-image: url('../img/bgBank@2x.png');
   }
 }
 .popup {

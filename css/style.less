@@ -706,7 +706,8 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
 .overlay.deal:before,
 .overlay.loanShark:before,
-.overlay.travel:before {
+.overlay.travel:before,
+.overlay.bank:before {
     //background-color: var(--grey30);
     //background-blend-mode: multiply;
     background-size: 448px auto;
@@ -791,6 +792,14 @@ h1, h2, h3, h4, h5 { margin: 0; }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .overlay.travel:before {
         background-image: url('../img/bgTravel@2x.png');
+    }
+}
+
+// Bank
+.overlay.bank:before {  background-image: url('../img/bgBank.png'); background-position: center bottom 64px;  background-size: 413px auto; }
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .overlay.travel:before {
+        background-image: url('../img/bgBank@2x.png');
     }
 }
 
