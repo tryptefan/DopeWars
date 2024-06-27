@@ -172,6 +172,7 @@ body {
   line-height: 1.35em;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 body * {
   user-select: none;
@@ -280,16 +281,18 @@ h5 {
 }
 .container {
   background: var(--grey30);
-  height: 100%;
   max-height: 100%;
   margin: 0 auto;
-  overflow: hidden;
   padding: 67px 24px 29px 24px;
   position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100vw;
+  height: 100vh;
+  transform: translateX(0);
+  transition: transform 1s linear;
 }
 .dark {
   background-color: rgba(0, 0, 0, 0.35);
@@ -407,14 +410,12 @@ h5 {
   opacity: 0.21;
   pointer-events: none;
 }
-.intro .container #linkHighScores {
-  background: url(../img/iconHighScores.svg);
-  display: block;
-  height: 26px;
-  position: absolute;
-  top: 50px;
-  right: 24px;
-  width: 26px;
+.intro .container #highScore {
+  color: var(--grey30);
+  margin-bottom: 30px;
+}
+.intro .container #highScore span {
+  font-weight: bold;
 }
 .intro .container .button {
   background-color: var(--grey30);
@@ -874,5 +875,42 @@ h5 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+#landscape {
+  background: var(--grey30) url(../img/bgLandscape.png) repeat-x;
+  background-position: 0 calc(50% + 80px);
+  height: 100%;
+  width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: background-position 2s linear;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  #landscape {
+    background: var(--grey30) url(../img/bgLandscape@2x.png) center repeat-x;
+  }
+}
+#transit {
+  height: 100%;
+  width: 100%;
+  background: url(../img/bgTransit.png) center no-repeat;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(100%);
+  transition: transform 1s linear;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  #transit {
+    background: url(../img/bgTransit@2x.png) center no-repeat;
+  }
 }
 /*# sourceMappingURL=./style.css.map */

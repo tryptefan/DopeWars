@@ -115,6 +115,9 @@ function clickCity() {
           return;
      }
 
+     // ben's code
+     transit();
+
      var city = event.target;
      while (city != null && !city.classList.contains("location")) {
           city = city.parentElement;
@@ -383,8 +386,7 @@ function showMessage(msgTitle, msgBody, msgButton1, msgButton2) {
           messageActionsDouble.style.visibility = "hidden";
           messageActionsDouble.style.height = 0;
           messageButton.innerHTML = msgButton1;
-     }
-     else {
+     } else {
           messageActionsDouble.style.visibility = "visible";
           messageActionsDouble.style.removeProperty("height");
           messageActionsSolo.style.visibility = "hidden";
@@ -395,7 +397,7 @@ function showMessage(msgTitle, msgBody, msgButton1, msgButton2) {
 }
 
 function secondaryButton(buttonText) {
-     return "<a href=\"#\" class=\"buttonSecondary button\">" + buttonText + "</a>";
+     return '<a href="#" class="buttonSecondary button">' + buttonText + "</a>";
 }
 
 confirmDealButton.onclick = function () {
@@ -631,3 +633,47 @@ refreshLoanValues();
 //showMessage("event title", "<p>and body</p><p>with more</p>", "affirmative", "");
 //showMessage("event title", "<p>and body</p><p>with more</p>", "do it", "skip");
 
+// Ben's transit code
+
+let transitState = 0;
+
+function transit() {
+     const screen = document.getElementById("mainScreen");
+     const screen2 = document.getElementById("transit");
+     const screen3 = document.getElementById("landscape");
+     var incrementAmount = -100;
+     var currentPos = window.getComputedStyle(screen3).getPropertyValue("background-position-x");
+     console.log(currentPos);
+     var currentPosition = parseFloat(currentPos);
+     currentPosition += incrementAmount;
+
+     if (transitState === 0) {
+          screen.style.transform = "translateX(-100%)";
+          screen2.style.transition = "transform 1s linear";
+          screen2.style.transform = "translateX(0%)";
+
+          screen3.style.transition = "background-position-x 2s linear";
+          screen3.style.backgroundPositionX = currentPosition + "px";
+
+          transitState = 1;
+          setTimeout(() => {
+               screen.style.transition = "none"; // Disable transition for immediate jump
+               screen.style.transform = "translateX(100%)"; // Move screen to the right side
+
+               setTimeout(() => {
+                    screen.style.transition = "transform 1s linear"; // Re-enable transition
+                    screen.style.transform = "translateX(0)"; // Slide screen back to the center
+                    screen2.style.transform = "translateX(-100%)"; // Slide screen back to the center
+                    transitState = 0;
+               }, 20);
+          }, 1000); // This timeout should match the CSS transition duration
+
+          setTimeout(() => {
+               screen2.style.transition = "none";
+               screen2.style.transform = "translateX(100%)";
+
+               screen3.style.transition = "none";
+               screen3.style.backgroundPositionX = 0;
+          }, 2002);
+     }
+}
