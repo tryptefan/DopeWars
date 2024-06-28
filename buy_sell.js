@@ -643,7 +643,6 @@ function transit() {
      const screen3 = document.getElementById("landscape");
      var incrementAmount = -100;
      var currentPos = window.getComputedStyle(screen3).getPropertyValue("background-position-x");
-     console.log(currentPos);
      var currentPosition = parseFloat(currentPos);
      currentPosition += incrementAmount;
 
