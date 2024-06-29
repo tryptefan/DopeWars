@@ -762,7 +762,6 @@ h5 {
 .overlay.loanShark:before,
 .overlay.travel:before,
 .overlay.bank:before {
-  background-size: 448px auto;
   background-position: center bottom 30px;
   background-repeat: no-repeat;
   content: "";
@@ -777,7 +776,7 @@ h5 {
 }
 .overlay.deal.acid:before {
   background-image: url('../img/bgAcid.png');
-  background-position: center bottom 38px;
+  background-position: center bottom 35px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .overlay.deal.acid:before {
@@ -786,7 +785,7 @@ h5 {
 }
 .overlay.deal.cocaine:before {
   background-image: url('../img/bgCocaine.png');
-  background-position: center bottom 41px;
+  background-position: center bottom 53px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .overlay.deal.cocaine:before {
@@ -795,7 +794,7 @@ h5 {
 }
 .overlay.deal.meth:before {
   background-image: url('../img/bgCrystalMeth.png');
-  background-position: center bottom 54px;
+  background-position: center bottom 66px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .overlay.deal.meth:before {
@@ -804,8 +803,7 @@ h5 {
 }
 .overlay.deal.heroin:before {
   background-image: url('../img/bgHeroin.png');
-  background-position: center bottom 44px;
-  background-size: 391px auto;
+  background-position: center bottom 69px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .overlay.deal.heroin:before {
@@ -814,7 +812,7 @@ h5 {
 }
 .overlay.deal.pcp:before {
   background-image: url('../img/bgPCP.png');
-  background-position: center bottom 44px;
+  background-position: center bottom 56px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .overlay.deal.pcp:before {
@@ -824,7 +822,6 @@ h5 {
 .overlay.deal.valium:before {
   background-image: url('../img/bgValium.png');
   background-position: center bottom 44px;
-  background-size: 391px auto;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .overlay.deal.valium:before {
@@ -834,7 +831,6 @@ h5 {
 .overlay.deal.weed:before {
   background-image: url('../img/bgWeed.png');
   background-position: center bottom 64px;
-  background-size: 391px auto;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .overlay.deal.weed:before {
