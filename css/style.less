@@ -696,7 +696,11 @@ h1, h2, h3, h4, h5 { margin: 0; }
     }
 }
 // miami
-.mia .container:before { background-image: url('../img/bgMiami.png'); }
+.mia .container:before { 
+    background-image: url('../img/bgMiami.png'); 
+    background-size: auto;
+    background-position-y: 90px;
+}
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .mia .container:before {
         background-image: url('../img/bgMiami@2x.png');
@@ -714,7 +718,10 @@ h1, h2, h3, h4, h5 { margin: 0; }
     }
 }
 // toronto
-.tor .container:before { background-image: url('../img/bgToronto.png'); }
+.tor .container:before { 
+    background-image: url('../img/bgToronto.png'); 
+    background-size: auto;
+}
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .phi .container:before {
         background-image: url('../img/bgToronto@2x.png');

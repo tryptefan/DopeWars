@@ -743,6 +743,8 @@ h5 {
 }
 .mia .container:before {
   background-image: url('../img/bgMiami.png');
+  background-size: auto;
+  background-position-y: 90px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .mia .container:before {
@@ -761,6 +763,7 @@ h5 {
 }
 .tor .container:before {
   background-image: url('../img/bgToronto.png');
+  background-size: auto;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .phi .container:before {
