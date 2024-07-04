@@ -653,14 +653,22 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
 
 // boston
-.bos .container:before { background-image: url('../img/bgBoston.png'); }
+.bos .container:before { 
+    background-image: url('../img/bgBoston.png');
+    background-size: auto;
+    background-position: center bottom 37px;
+ }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .bos .container:before {
         background-image: url('../img/bgBoston@2x.png');
     }
 }
 // dallas
-.dal .container:before { background-image: url('../img/bgDallas.png'); }
+.dal .container:before { 
+    background-image: url('../img/bgDallas.png'); 
+    background-size: auto;
+    background-position: center bottom 21px;
+}
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .dal .container:before {
         background-image: url('../img/bgDallas@2x.png');
@@ -688,7 +696,11 @@ h1, h2, h3, h4, h5 { margin: 0; }
     }
 }
 // philly
-.phi .container:before { background-image: url('../img/bgPhilly.png'); background-position: center bottom 25px; }
+.phi .container:before { 
+    background-image: url('../img/bgPhilly.png'); 
+    background-position: center bottom 25px; 
+    background-size: auto;
+}
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .phi .container:before {
         background-image: url('../img/bgPhilly@2x.png');

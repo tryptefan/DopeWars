@@ -704,6 +704,8 @@ h5 {
 }
 .bos .container:before {
   background-image: url('../img/bgBoston.png');
+  background-size: auto;
+  background-position: center bottom 37px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .bos .container:before {
@@ -712,6 +714,8 @@ h5 {
 }
 .dal .container:before {
   background-image: url('../img/bgDallas.png');
+  background-size: auto;
+  background-position: center bottom 21px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .dal .container:before {
@@ -745,6 +749,7 @@ h5 {
 .phi .container:before {
   background-image: url('../img/bgPhilly.png');
   background-position: center bottom 25px;
+  background-size: auto;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .phi .container:before {
