@@ -675,14 +675,21 @@ h1, h2, h3, h4, h5 { margin: 0; }
     }
 }
 // los angeles
-.los .container:before { background-image: url('../img/bgLA.png'); }
+.los .container:before { 
+    background-image: url('../img/bgLA.png'); 
+    background-size: auto;
+}
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .los .container:before {
         background-image: url('../img/bgLA@2x.png');
     }
 }
 // manhattan
-.man .container:before { background-image: url('../img/bgManhattan.png'); }
+.man .container:before { 
+    background-image: url('../img/bgManhattan.png'); 
+    background-size: auto;
+    background-position-y: 99px;
+}
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .man .container:before {
         background-image: url('../img/bgManhattan@2x.png');

@@ -724,6 +724,7 @@ h5 {
 }
 .los .container:before {
   background-image: url('../img/bgLA.png');
+  background-size: auto;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .los .container:before {
@@ -732,6 +733,8 @@ h5 {
 }
 .man .container:before {
   background-image: url('../img/bgManhattan.png');
+  background-size: auto;
+  background-position-y: 99px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .man .container:before {
