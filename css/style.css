@@ -744,6 +744,7 @@ h5 {
 }
 .phi .container:before {
   background-image: url('../img/bgPhilly.png');
+  background-position: center bottom 25px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .phi .container:before {
