@@ -1,4 +1,5 @@
 const body = document.body;
+const popup = document.getElementById("eventPopup");
 const dealOverlay = document.getElementById("dealOverlay");
 const locationTitle = document.getElementById("locationTitle");
 let darkness = document.getElementById("darkness");
@@ -376,8 +377,9 @@ function refreshDay() {
      cityDay.innerHTML = vDay;
 }
 
-function showMessage(msgTitle, msgBody, msgButton1, msgButton2) {
+function showMessage(msgTitle, msgBody, msgButton1, msgButton2, artSignifier) {
      body.classList.add("showMessage");
+     popup.classList.add(artSignifier);
      messageTitle.innerHTML = msgTitle;
      messageBody.innerHTML = msgBody;
      if (msgButton2 == null || msgButton2 == "") {
@@ -631,7 +633,124 @@ refreshLoanValues();
 
 // @Ben uncomment to see placeholder event
 //showMessage("event title", "<p>and body</p><p>with more</p>", "affirmative", "");
-//showMessage("event title", "<p>and body</p><p>with more</p>", "do it", "skip");
+
+// Jumped
+// showMessage(
+//      "You Got Jumped!",
+//      "<p>They made off with $N cash and M units of drug.</p>",
+//      "Damn",
+//      "",
+//      "jumped"
+// );
+
+// // shakedown
+// showMessage(
+//      "Cops shake you down!",
+//      "<p>They made off with $N cash and M units of drug.</p>",
+//      "damn",
+//      "",
+//      "shakedown"
+// );
+
+// shakedown
+// showMessage(
+//      "You found a package!",
+//      "<p>You found a package in a suitcase that looked like yours at the baggage claim.<br />+ N units of drug</p>",
+//      "Nice",
+//      "",
+//      "package"
+// );
+
+// stash
+// showMessage(
+//      "You found a stash!",
+//      "<p>A friend stashed his stuff at your place before getting busted.<br />+ N units of drug</p>",
+//      "Nice",
+//      "",
+//      "stash"
+// );
+
+// buySetup
+//showMessage("It's a setup!", "<p>The drugs are fake!</p>", "Attack", "Surrender", "buySetup");
+
+// buySetupAttack
+// showMessage(
+//      "You start shooting...",
+//      "<p>Through a hail of gunfire, you make your way to the fire escape and flee.</p>",
+//      "Continue",
+//      "",
+//      "buySetupAttack"
+// );
+
+// buySetupSurrender
+// showMessage(
+//      "This doesn't look good...",
+//      "<p>You throw your hands up and try to bargain for your life. The dealer cleans you out and leaves you in a dumpster with a mild concussion.<br />- N cash<br />- N units of drug</p>",
+//      "Continue",
+//      "",
+//      "buySetupSurrender"
+// );
+
+// sellSetup
+// showMessage(
+//      "It's a setup!",
+//      "<p>The dude was wearing a wire. Two cops bust into the apartment!</p>",
+//      "Fire Escape",
+//      "Surrender",
+//      "sellSetup"
+// );
+
+// sellSetupFlee
+// showMessage(
+//      "You make a break for it...",
+//      "<p>Shots ring out as you crash through a second story window, onto a fire-escape...<br />- N units of drug</p>",
+//      "Continue",
+//      "",
+//      "sellSetupFlee"
+// );
+
+// sellSetupSurrender
+// showMessage(
+//      "You're severely outgunned...",
+//      "<p>You throw your hands up and say a quick prayer. Maybe the cops just want to rob you.<br />- N cash<br />- N units of drug</p>",
+//      "Continue",
+//      "",
+//      "sellSetupSurrender"
+// );
+
+// loanReminder
+// showMessage(
+//      "Big Rick wants his money...",
+//      "<p>This is a friendly reminder that you owe our associate $N.<br /><br />You got N days.</p>",
+//      "Understood",
+//      "",
+//      "loanReminder"
+// );
+
+// loanDeadline
+showMessage(
+     "Times up pretty boy...",
+     "<p>Big Rick feels he's been more than patient with you. He sent us to make an example...</p>",
+     "Damn",
+     "",
+     "loanDeadline"
+);
+
+// jumped
+// shakedown
+// package
+// stash
+
+// buySetup
+// buySetupAttack
+// buySetupSurrender
+
+// sellSetup
+// sellSetupFlee
+// sellSetupSurrender
+
+// loanReminder
+// loanDeadline
 
 // Ben's transit code
 

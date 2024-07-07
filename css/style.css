@@ -177,6 +177,9 @@ body {
 body * {
   user-select: none;
 }
+p {
+  margin: 0 0 18px 0;
+}
 .buttonPrimary {
   background: var(--brand);
   border-radius: 31px;
@@ -472,14 +475,17 @@ h5 {
 .topBar .day .daysLeft .dayCurrent {
   font-size: 33px;
   font-weight: 500;
+  font-family: inter;
 }
 .topBar .day .daysLeft .daySlash {
   font-size: 24px;
   font-weight: 500;
+  font-family: inter;
 }
 .topBar .day .daysLeft .dayLast {
   font-size: 17px;
   font-weight: 500;
+  font-family: inter;
 }
 .moneyStatus {
   display: flex;
@@ -894,6 +900,134 @@ h5 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.popup.art #messageBody::before {
+  content: "";
+  display: block;
+  margin: 10px -26px 10px -26px;
+  opacity: 0.8;
+}
+.popup.art.jumped #messageBody::before {
+  background: url("../img/eventJumped.png") no-repeat;
+  height: 300px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.jumped #messageBody::before {
+    background-image: url("../img/eventJumped@2X.png");
+  }
+}
+.popup.art.shakedown #messageBody::before {
+  background: url("../img/eventFrisk.png") no-repeat;
+  background-position-x: center;
+  height: 300px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.shakedown #messageBody::before {
+    background-image: url("../img/eventFrisk@2X.png");
+  }
+}
+.popup.art.package #messageBody::before {
+  background: url("../img/eventPackage.png") no-repeat;
+  background-position-x: center;
+  height: 300px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.package #messageBody::before {
+    background-image: url("../img/eventPackage@2X.png");
+  }
+}
+.popup.art.stash #messageBody::before {
+  background: url("../img/eventStash.png") no-repeat;
+  background-position-x: -21px;
+  height: 300px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.stash #messageBody::before {
+    background-image: url("../img/eventStash@2X.png");
+  }
+}
+.popup.art.buySetup #messageBody::before {
+  background: url("../img/eventBuySetup.png") no-repeat;
+  background-position-x: center;
+  height: 300px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.buySetup #messageBody::before {
+    background-image: url("../img/eventBuySetup@2X.png");
+  }
+}
+.popup.art.buySetupAttack #messageBody::before {
+  background: url("../img/eventBuySetupAttack.png") no-repeat;
+  background-position-x: center;
+  height: 300px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.buySetupAttack #messageBody::before {
+    background-image: url("../img/eventBuySetupAttack@2X.png");
+  }
+}
+.popup.art.buySetupSurrender #messageBody::before {
+  background: url("../img/eventBuySetupSurrender.png") no-repeat;
+  background-position-x: center;
+  height: 254px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.buySetupSurrender #messageBody::before {
+    background-image: url("../img/eventBuySetupSurrender@2X.png");
+  }
+}
+.popup.art.sellSetup #messageBody::before {
+  background: url("../img/eventSellSetup.png") no-repeat;
+  background-position-x: center;
+  background-position-y: -35px;
+  height: 254px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.sellSetup #messageBody::before {
+    background-image: url("../img/eventSellSetup@2X.png");
+  }
+}
+.popup.art.sellSetupFlee #messageBody::before {
+  background: url("../img/eventSellSetupFlee.png") no-repeat;
+  background-position-x: center;
+  background-position-y: -35px;
+  height: 264px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.sellSetupFlee #messageBody::before {
+    background-image: url("../img/eventSellSetupFlee@2X.png");
+  }
+}
+.popup.art.sellSetupSurrender #messageBody::before {
+  background: url("../img/eventBuySetupSurrender.png") no-repeat;
+  background-position-x: center;
+  height: 254px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.sellSetupSurrender #messageBody::before {
+    background-image: url("../img/eventBuySetupSurrender@2X.png");
+  }
+}
+.popup.art.loanReminder #messageBody::before {
+  background: url("../img/eventLoanReminder.png") no-repeat;
+  background-position-x: center;
+  background-position-y: -15px;
+  height: 254px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.loanReminder #messageBody::before {
+    background-image: url("../img/eventLoanReminder@2X.png");
+  }
+}
+.popup.art.loanDeadline #messageBody::before {
+  background: url("../img/eventLoanDeadline.png") no-repeat;
+  background-position-x: center;
+  height: 254px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.loanDeadline #messageBody::before {
+    background-image: url("../img/eventLoanDeadline@2X.png");
+  }
 }
 #landscape {
   background: var(--grey30) url(../img/bgLandscape.png) repeat-x;

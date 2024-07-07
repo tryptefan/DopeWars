@@ -4,6 +4,9 @@
 // medium      500
 // regular     400
 
+// https://web.dev/blog/viewport-units
+// inof on responsive phone units like DVH
+
 @font-face {
     font-family: 'kameron';
     src: url('../fonts/Kameron-Bold.ttf') format('woff2');
@@ -176,6 +179,8 @@ body {
 }
 
 body * { user-select: none; }
+
+p { margin: 0 0 18px 0; }
 
 .buttonPrimary { 
     background: var(--brand);
@@ -507,9 +512,9 @@ h1, h2, h3, h4, h5 { margin: 0; }
         .daysLeft {  
             display: inline-block;
 
-            .dayCurrent { font-size: 33px; font-weight: 500; }
-            .daySlash { font-size: 24px; font-weight: 500; }
-            .dayLast { font-size: 17px; font-weight: 500; }
+            .dayCurrent { font-size: 33px; font-weight: 500; font-family: inter; }
+            .daySlash { font-size: 24px; font-weight: 500; font-family: inter; }
+            .dayLast { font-size: 17px; font-weight: 500; font-family: inter; }
         }
     } // days
 } // topBar
@@ -833,7 +838,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
 
 
-// Popups
+// Popups ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .popup {
     background: var(--grey30);
@@ -852,6 +857,112 @@ h1, h2, h3, h4, h5 { margin: 0; }
     left: 50%;
 	transform: translate(-50%, -50%);
 }
+
+.popup.art #messageBody::before {
+    content: "";
+    display: block;
+    margin: 10px -26px 10px -26px;
+    opacity: .8;
+}
+
+// jumped
+.popup.art.jumped #messageBody::before {
+    background: url("../img/eventJumped.png") no-repeat;
+    height: 300px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventJumped@2X.png"); }
+}
+
+// shakedown
+.popup.art.shakedown #messageBody::before {
+    background: url("../img/eventFrisk.png") no-repeat;
+    background-position-x: center;
+    height: 300px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventFrisk@2X.png"); }
+}
+
+// package
+.popup.art.package #messageBody::before {
+    background: url("../img/eventPackage.png") no-repeat;
+    background-position-x: center;
+    height: 300px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventPackage@2X.png"); }
+}
+
+// stash
+.popup.art.stash #messageBody::before {
+    background: url("../img/eventStash.png") no-repeat;
+    background-position-x: -21px;
+    height: 300px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventStash@2X.png"); }
+}
+
+// buySetup
+.popup.art.buySetup #messageBody::before {
+    background: url("../img/eventBuySetup.png") no-repeat;
+    background-position-x: center;
+    height: 300px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventBuySetup@2X.png"); }
+}
+
+// buySetupAttack
+.popup.art.buySetupAttack #messageBody::before {
+    background: url("../img/eventBuySetupAttack.png") no-repeat;
+    background-position-x: center;
+    height: 300px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventBuySetupAttack@2X.png"); }
+}
+
+//buySetupSurrender
+.popup.art.buySetupSurrender #messageBody::before {
+    background: url("../img/eventBuySetupSurrender.png") no-repeat;
+    background-position-x: center;
+    height: 254px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventBuySetupSurrender@2X.png"); }
+}
+
+//sellSetup
+.popup.art.sellSetup #messageBody::before {
+    background: url("../img/eventSellSetup.png") no-repeat;
+    background-position-x: center;
+    background-position-y: -35px;
+    height: 254px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventSellSetup@2X.png"); }
+}
+
+//sellSetupFlee
+.popup.art.sellSetupFlee #messageBody::before {
+    background: url("../img/eventSellSetupFlee.png") no-repeat;
+    background-position-x: center;
+    background-position-y: -35px;
+    height: 264px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventSellSetupFlee@2X.png"); }
+}
+
+//sellSetupSurrender
+.popup.art.sellSetupSurrender #messageBody::before {
+    background: url("../img/eventBuySetupSurrender.png") no-repeat;
+    background-position-x: center;
+    height: 254px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventBuySetupSurrender@2X.png"); }
+}
+
+//loanReminder
+.popup.art.loanReminder #messageBody::before {
+    background: url("../img/eventLoanReminder.png") no-repeat;
+    background-position-x: center;
+    background-position-y: -15px;
+    height: 254px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventLoanReminder@2X.png"); }
+}
+
+//loanDeadline
+.popup.art.loanDeadline #messageBody::before {
+    background: url("../img/eventLoanDeadline.png") no-repeat;
+    background-position-x: center;
+    height: 254px;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { background-image: url("../img/eventLoanDeadline@2X.png"); }
+}
+
 
 
 
