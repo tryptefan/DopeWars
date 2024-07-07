@@ -162,6 +162,9 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
 }
 body {
   background: #2E2E2E;
@@ -906,6 +909,9 @@ h5 {
   display: block;
   margin: 10px -26px 10px -26px;
   opacity: 0.8;
+}
+.popup #messageBody span {
+  color: var(--brand);
 }
 .popup.art.jumped #messageBody::before {
   background: url("../img/eventJumped.png") no-repeat;

@@ -634,19 +634,32 @@ refreshLoanValues();
 // @Ben uncomment to see placeholder event
 //showMessage("event title", "<p>and body</p><p>with more</p>", "affirmative", "");
 
+// @Sam...I'm sure we'll end up putting all this content into objects or something..I just wanted to see these popups with their artowrk
+
+// welcome
+showMessage(
+     "it's late april, 1987",
+     `<p>You've flunked out of college, rent is due, and you're broke. Out of desperation, you decide to try your hand at the 
+     drug game.</p>Against your girlfriend's advice, you hit up notorious loan shark “Big Rick”. He loan's you $5000, at 10%/day interest.</p>
+     <p>The loan is due in 10 days.<br />Rent is due in 20 days.</p>`,
+     "Let's Go",
+     "",
+     "welcome"
+);
+
 // Jumped
 // showMessage(
 //      "You Got Jumped!",
-//      "<p>They made off with $N cash and M units of drug.</p>",
+//      "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
 //      "Damn",
 //      "",
 //      "jumped"
 // );
 
-// // shakedown
+// shakedown
 // showMessage(
 //      "Cops shake you down!",
-//      "<p>They made off with $N cash and M units of drug.</p>",
+//      "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
 //      "damn",
 //      "",
 //      "shakedown"
@@ -655,7 +668,7 @@ refreshLoanValues();
 // shakedown
 // showMessage(
 //      "You found a package!",
-//      "<p>You found a package in a suitcase that looked like yours at the baggage claim.<br />+ N units of drug</p>",
+//      "<p>You found a package in a suitcase that looked like yours at the baggage claim.<br />+ <span>N units</span> of <span>drug</span></p>",
 //      "Nice",
 //      "",
 //      "package"
@@ -664,14 +677,14 @@ refreshLoanValues();
 // stash
 // showMessage(
 //      "You found a stash!",
-//      "<p>A friend stashed his stuff at your place before getting busted.<br />+ N units of drug</p>",
+//      "<p>A friend stashed his stuff at your place before getting busted.<br />+ <span>N units</span> of <span>drug</span></p>",
 //      "Nice",
 //      "",
 //      "stash"
 // );
 
 // buySetup
-//showMessage("It's a setup!", "<p>The drugs are fake!</p>", "Attack", "Surrender", "buySetup");
+// showMessage("It's a setup!", "<p>The drugs are fake!</p>", "Attack", "Surrender", "buySetup");
 
 // buySetupAttack
 // showMessage(
@@ -685,7 +698,7 @@ refreshLoanValues();
 // buySetupSurrender
 // showMessage(
 //      "This doesn't look good...",
-//      "<p>You throw your hands up and try to bargain for your life. The dealer cleans you out and leaves you in a dumpster with a mild concussion.<br />- N cash<br />- N units of drug</p>",
+//      "<p>You throw your hands up and try to bargain for your life. The dealer cleans you out and leaves you in a dumpster with a mild concussion.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
 //      "Continue",
 //      "",
 //      "buySetupSurrender"
@@ -703,7 +716,7 @@ refreshLoanValues();
 // sellSetupFlee
 // showMessage(
 //      "You make a break for it...",
-//      "<p>Shots ring out as you crash through a second story window, onto a fire-escape...<br />- N units of drug</p>",
+//      "<p>Shots ring out as you crash through a second story window, onto a fire-escape...<br />- <span>N units</span> of <span>drug</span></p>",
 //      "Continue",
 //      "",
 //      "sellSetupFlee"
@@ -712,7 +725,7 @@ refreshLoanValues();
 // sellSetupSurrender
 // showMessage(
 //      "You're severely outgunned...",
-//      "<p>You throw your hands up and say a quick prayer. Maybe the cops just want to rob you.<br />- N cash<br />- N units of drug</p>",
+//      "<p>You throw your hands up and say a quick prayer. Maybe the cops just want to rob you.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
 //      "Continue",
 //      "",
 //      "sellSetupSurrender"
@@ -721,20 +734,20 @@ refreshLoanValues();
 // loanReminder
 // showMessage(
 //      "Big Rick wants his money...",
-//      "<p>This is a friendly reminder that you owe our associate $N.<br /><br />You got N days.</p>",
+//      "<p>This is a friendly reminder that you owe our associate <span>$N</span>.<br /><br />You got <span>N</span> days.</p>",
 //      "Understood",
 //      "",
 //      "loanReminder"
 // );
 
 // loanDeadline
-showMessage(
-     "Times up pretty boy...",
-     "<p>Big Rick feels he's been more than patient with you. He sent us to make an example...</p>",
-     "Damn",
-     "",
-     "loanDeadline"
-);
+// showMessage(
+//      "Times up pretty boy...",
+//      "<p>Big Rick feels he's been more than patient with you. He sent us to make an example...</p>",
+//      "Damn",
+//      "",
+//      "loanDeadline"
+// );
 
 // jumped
 // shakedown
