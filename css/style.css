@@ -189,7 +189,7 @@ p {
   border: 0;
   color: var(--grey30);
   display: block;
-  padding: 7px 36px;
+  padding: 7px 8px;
   text-align: center;
   line-height: 1.8em;
 }
@@ -198,7 +198,7 @@ p {
   border-radius: 31px;
   color: var(--brand);
   display: block;
-  padding: 7px 36px;
+  padding: 7px 8px;
   text-align: center;
 }
 .toggle {
