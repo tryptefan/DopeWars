@@ -128,6 +128,7 @@ function clickCity() {
           return;
      }
 
+     // i *think* this should be moved to the transit code..
      if (city.dataset.to != vCity) {
           enterCity(city.dataset.to);
           refreshDrugs();
@@ -637,17 +638,17 @@ refreshLoanValues();
 // @Sam...I'm sure we'll end up putting all this content into objects or something..I just wanted to see these popups with their artowrk
 
 // welcome
-showMessage(
-     "it's late april, 1987",
-     `<p>You've flunked out of college, rent is due, and you're broke. Out of desperation, you decide to try your hand at the
-     drug game.</p>Against your girlfriend's advice, you hit up notorious loan shark “Big Rick”. He loan's you $5000, at 10%/day interest.</p>
-     <p>The loan is due in 10 days.<br />Rent is due in 20 days.</p>`,
-     "Let's Go",
-     "",
-     "welcome"
-);
+// showMessage(
+//      "it's late april, 1987",
+//      `<p>You've flunked out of college, rent is due, and you're broke. Out of desperation, you decide to try your hand at the
+//      drug game.</p>Against your girlfriend's advice, you hit up notorious loan shark “Big Rick”. He loan's you $5000, at 10%/day interest.</p>
+//      <p>The loan is due in 10 days.<br />Rent is due in 20 days.</p>`,
+//      "Let's Go",
+//      "",
+//      "welcome"
+// );
 
-// Jumped
+//Jumped;
 // showMessage(
 //      "You Got Jumped!",
 //      "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
@@ -748,6 +749,9 @@ showMessage(
 //      "",
 //      "loanDeadline"
 // );
+
+// Shamrock
+showMessage("You found a four leaf clover!", "<p>It's your lucky day.</p>", "Nice", "", "shamrock");
 
 // jumped
 // shakedown

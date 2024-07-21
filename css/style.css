@@ -1035,6 +1035,16 @@ h5 {
     background-image: url("../img/eventLoanDeadline@2X.png");
   }
 }
+.popup.art.shamrock #messageBody::before {
+  background: url("../img/eventShamrock.png") no-repeat;
+  background-position-x: center;
+  height: 254px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .popup.art.shamrock #messageBody::before {
+    background-image: url("../img/eventShamrock@2X.png");
+  }
+}
 #landscape {
   background: var(--grey30) url(../img/bgLandscape.png) repeat-x;
   background-position: 0 calc(50% + 80px);
