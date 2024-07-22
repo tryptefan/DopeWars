@@ -462,7 +462,7 @@ h5 {
 .splash span {
   letter-spacing: 3px;
 }
-.shamrock .topBar::after {
+.shamrock .locationTop::after {
   background: url(../img/iconShamrock.svg) center no-repeat;
   height: 19px;
   width: 15px;
