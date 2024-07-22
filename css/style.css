@@ -462,6 +462,16 @@ h5 {
 .splash span {
   letter-spacing: 3px;
 }
+.shamrock .topBar::after {
+  background: url(../img/iconShamrock.svg) center no-repeat;
+  height: 19px;
+  width: 15px;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 37px;
+  left: 0;
+}
 .topBar {
   display: flex;
   justify-content: space-between;
