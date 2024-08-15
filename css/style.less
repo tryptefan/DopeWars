@@ -996,7 +996,6 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
 
 // TRANSIT 
-
 #landscape {
     background: var(--grey30) url(../img/bgLandscape.png) repeat-x;
     background-position: 0 calc(50% + 80px);
@@ -1022,10 +1021,10 @@ h1, h2, h3, h4, h5 { margin: 0; }
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
         background: url(../img/bgTransit@2x.png) center no-repeat;
     }
-  
+
     overflow: hidden;
     box-sizing: border-box;
-    display: flex;
+    display: flex; 
     flex-direction: column;
     justify-content: space-between;
 
@@ -1035,6 +1034,25 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
     transform: translateX(100%);
     transition: transform 1s linear;
+}
+
+.fisherWatching {
+    #landscape {
+        background-image: url(../img/bgLandscapeFisher.png);
+        background-position-y: calc(50% + 60px);
+        
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+            background-image: url(../img/bgLandscapeFisher@2x.png);
+        }
+    }
+
+    #transit {
+        background-image: url(../img/bgTransitFisher.png);
+        
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+            background-image: url(../img/bgTransitFisher@2x.png);
+        }
+    }
 }
 
 

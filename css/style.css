@@ -1092,4 +1092,21 @@ h5 {
     background: url(../img/bgTransit@2x.png) center no-repeat;
   }
 }
+.fisherWatching #landscape {
+  background-image: url(../img/bgLandscapeFisher.png);
+  background-position-y: calc(50% + 60px);
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .fisherWatching #landscape {
+    background-image: url(../img/bgLandscapeFisher@2x.png);
+  }
+}
+.fisherWatching #transit {
+  background-image: url(../img/bgTransitFisher.png);
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .fisherWatching #transit {
+    background-image: url(../img/bgTransitFisher@2x.png);
+  }
+}
 /*# sourceMappingURL=./style.css.map */
