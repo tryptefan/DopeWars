@@ -774,10 +774,15 @@ showMessage("You found a four leaf clover!", "<p>It's your lucky day.</p>", "Nic
 let transitState = 0;
 
 function transit() {
+     // if there is a body class of "fisherWatching", then bg speed is "1s" else "2s"
+     //const speed = body.classList.contains("fisherWatching") ? "1s" : "2s";
+     const incrementAmount = body.classList.contains("fisherWatching") ? -270 : -100;
+
+     const speed = "2s";
+
      const screen = document.getElementById("mainScreen");
      const screen2 = document.getElementById("transit");
      const screen3 = document.getElementById("landscape");
-     var incrementAmount = -100;
      var currentPos = window.getComputedStyle(screen3).getPropertyValue("background-position-x");
      var currentPosition = parseFloat(currentPos);
      currentPosition += incrementAmount;
