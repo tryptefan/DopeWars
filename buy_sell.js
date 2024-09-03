@@ -434,7 +434,6 @@ function showMessage(msgTitle, msgBody, msgButton1, msgButton2, callback1, callb
 
      messageButton2.onclick = function() {
           body.classList.remove("showMessage");
-          callback2();
           if (callback2 != null) {
                callback2();
           }
@@ -745,8 +744,7 @@ function buySetupAttack()
      var roll = Math.random();
      var fail = roll < buySetupChance.dataset.attackdeath;
      if (fail) {
-          // TODO @sam set callback1 to the correct function
-          console.log("DEAD");
+          msgBuySetupAttack.callback = endDeath();
      }
 
      showMessageBundle(msgBuySetupAttack);
@@ -787,8 +785,7 @@ function sellSetupFlee() {
      var roll = Math.random();
      var fail = roll < sellSetupChance.dataset.fleedeath;
      if (fail) {
-          // TODO @sam set callback 1 to correct function
-          console.log("DEAD");
+          msgSellSetupFlee.callback1 = endDeath();
      }
 
      showMessageBundle(msgSellSetupFlee);
@@ -806,8 +803,7 @@ function sellSetupSurrender() {
      var roll = Math.random();
      var fail = roll < sellSetupChance.dataset.surrenderjail;
      if (fail) {
-          // TODO @sam set callback 1 to correct function
-          console.log("JAIL");
+          msgSellSetupSurrender.callback1 = endJail();
      }
      showMessageBundle(msgSellSetupSurrender);
 }
@@ -846,6 +842,37 @@ function showBigEvent() {
      var events = [msgBuySetup, msgSellSetup];
      var roll = Math.random();
      showMessageBundle(events[Math.floor(roll * events.length)]);
+}
+
+function endDeath() {
+     // TODO Sam we ends will actually new slides instead of a pop-up
+     // TODO @sam WHY does the message not appear? It doesn't even seem to be called. Should we use showMessageBundle?
+     showMessage("End of the Line", "You died", "New Game", null, restart(), null, null);
+}
+
+function endJail() {
+     // TODO Sam we ends will actually new slides instead of a pop-up
+     showMessage("End of the Line", "You went to jail", "New Game", null, restart(), null, null);
+}
+
+function endBroke() {
+     // TODO Sam we ends will actually new slides instead of a pop-up
+     showMessage("End of the Line", "You went broke", "New Game", null, restart(), null, null);
+}
+
+function endRich() {
+     // TODO Sam we ends will actually new slides instead of a pop-up
+     showMessage("End of the Line", "You made that money!", "New Game", null, restart(), null, null);
+}
+
+function endRecruit() {
+     // TODO Sam we ends will actually new slides instead of a pop-up
+     showMessage("End of the Line", "You're pretty good at this", "...", null, restart(), null, null);
+}
+
+function restart() {
+     // TODO Sam how do we want to reset the app?
+     location.reload();
 }
 
 // Ben's transit code
