@@ -51,6 +51,10 @@ const messageButton = document.getElementById("messageButton");
 const messageButton1 = document.getElementById("messageButton1");
 const messageButton2 = document.getElementById("messageButton2");
 
+const eventChance = document.getElementById("chance-event");
+const buySetupChance = document.getElementById("chance-buySetup");
+const sellSetupChance = document.getElementById("chance-sellSetup");
+
 const fmtMoney = Intl.NumberFormat("en-US", {
      style: "currency",
      currency: "USD",
@@ -77,7 +81,11 @@ var vAmount = 0;
 var vDay = 0;
 
 var vCity = "";
-enterCity("bos");
+
+function lastDayPassed() {
+     return vDay > 30;
+}
+
 function enterCity(cityId) {
      clearBodyClasses();
      if (vCity.length > 0) {
@@ -105,21 +113,37 @@ function enterCity(cityId) {
      refreshDealValues();
      body.classList.add(vCity);
 
-     if (vDay > 30) {
+     if (lastDayPassed()) {
           // TODO end game
+     }
+}
+
+function attemptEvent() {
+     if (!lastDayPassed()) {
+          var eventRoll = Math.random();
+          if (eventRoll < eventChance.dataset.anyshow) {
+               var bigRoll = Math.random();
+               if (bigRoll < eventChance.dataset.bigshow) {
+                    showBigEvent();
+               }
+               else {
+                    showSmallEvent();
+               }
+          }
      }
 }
 
 function clickCity() {
      var event = window.event;
-     if (event == null) {
+     if (event == null || event.target == null) {
           return;
      }
 
-     // ben's code
-     transit();
-
      var city = event.target;
+
+     // ben's code
+     transit(city);
+
      while (city != null && !city.classList.contains("location")) {
           city = city.parentElement;
      }
@@ -127,14 +151,6 @@ function clickCity() {
      if (city == null) {
           return;
      }
-
-     // i *think* this should be moved to the transit code..
-     if (city.dataset.to != vCity) {
-          enterCity(city.dataset.to);
-          refreshDrugs();
-     }
-
-     body.classList.remove("showTravel");
 }
 
 var cities = document.getElementsByClassName("location");
@@ -378,7 +394,11 @@ function refreshDay() {
      cityDay.innerHTML = vDay;
 }
 
-function showMessage(msgTitle, msgBody, msgButton1, msgButton2, artSignifier) {
+function showMessageBundle(message) {
+     showMessage(message.title, message.body, message.button1, message.button2, message.callback1, message.callback2, message.art);
+}
+
+function showMessage(msgTitle, msgBody, msgButton1, msgButton2, callback1, callback2, artSignifier) {
      body.classList.add("showMessage");
      popup.classList.add(artSignifier);
      messageTitle.innerHTML = msgTitle;
@@ -396,6 +416,28 @@ function showMessage(msgTitle, msgBody, msgButton1, msgButton2, artSignifier) {
           messageActionsSolo.style.height = 0;
           messageButton1.innerHTML = msgButton1;
           messageButton2.innerHTML = msgButton2;
+     }
+
+     messageButton.onclick = function() {
+          body.classList.remove("showMessage");
+          if (callback1 != null) {
+               callback1();
+          }
+     }
+
+     messageButton1.onclick = function() {
+          body.classList.remove("showMessage");
+          if (callback1 != null) {
+               callback1();
+          }
+     }
+
+     messageButton2.onclick = function() {
+          body.classList.remove("showMessage");
+          callback2();
+          if (callback2 != null) {
+               callback2();
+          }
      }
 }
 
@@ -637,143 +679,180 @@ refreshLoanValues();
 
 // @Sam...I'm sure we'll end up putting all this content into objects or something..I just wanted to see these popups with their artowrk
 
-// welcome
-// showMessage(
-//      "it's late May 1, 1987",
-//      `<p>You’ve flunked out of college, you’re broke, and running out of options. Out of desperation, you decide to try your hand at the drug game.</p>
-//      <p>Against your girlfriend's advice, you hit up notorious loan shark “Big Rick”. He loan's you $5000, at 10% interest per day.</p>
-//      <p>The loan is due in 10 days.<br />Rent is due in 30 days.</p>`,
-//      "Let's Go",
-//      "",
-//      "welcome"
-// );
+//function showMessage(msgTitle, msgBody, msgButton1, msgButton2, artSignifier) {
+msgWelcome = {
+     title:   "it's late May 1, 1987",
+     body:    `<p>You’ve flunked out of college, you’re broke, and running out of options. Out of desperation, you decide to try your hand at the drug game.</p>
+     <p>Against your girlfriend's advice, you hit up notorious loan shark “Big Rick”. He loan's you $5000, at 10% interest per day.</p>
+     <p>The loan is due in 10 days.<br />Rent is due in 30 days.</p>`,
+     button1: "Let's Go",
+     button2: "",
+     art:     "welcome"
+};
 
-//Jumped;
-// showMessage(
-//      "You Got Jumped!",
-//      "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
-//      "Damn",
-//      "",
-//      "jumped"
-// );
+msgJumped = {
+     title:   "You Got Jumped!",
+     body:    "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
+     button1: "Damn",
+     button2: "",
+     art:     "jumped"
+};
 
-// shakedown
-// showMessage(
-//      "Cops shake you down!",
-//      "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
-//      "damn",
-//      "",
-//      "shakedown"
-// );
+msgShakedown = {
+     title:   "Cops shake you down!",
+     body:    "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
+     button1: "damn",
+     button2: "",
+     art:     "shakedown"
+};
 
-// shakedown
-// showMessage(
-//      "You found a package!",
-//      "<p>You found a package in a suitcase that looked like yours at the baggage claim.<br />+ <span>N units</span> of <span>drug</span></p>",
-//      "Nice",
-//      "",
-//      "package"
-// );
+msgPackage = {
+     title:   "You found a package!",
+     body:    "<p>You found a package in a suitcase that looked like yours at the baggage claim.<br />+ <span>N units</span> of <span>drug</span></p>",
+     button1: "Nice",
+     button2: "",
+     art:     "package"
+};
 
-// stash
-// showMessage(
-//      "You found a stash!",
-//      "<p>A friend stashed his stuff at your place before getting busted.<br />+ <span>N units</span> of <span>drug</span></p>",
-//      "Nice",
-//      "",
-//      "stash"
-// );
+msgStash = {
+     title:   "You found a stash!",
+     body:    "<p>A friend stashed his stuff at your place before getting busted.<br />+ <span>N units</span> of <span>drug</span></p>",
+     button1: "Nice",
+     button2: "",
+     art:     "stash"
+};
 
-// buySetup
-// showMessage("It's a setup!", "<p>The drugs are fake!</p>", "Attack", "Surrender", "buySetup");
+msgBuySetup = {
+     title:   "It's a setup!",
+     body:    "<p>The drugs are fake!</p>",
+     button1: "Attack",
+     button2: "Surrender",
+     callback1: buySetupAttack,
+     callback2: buySetupSurrender,
+     art:     "buySetup"
+};
 
-// buySetupAttack
-// showMessage(
-//      "You start shooting...",
-//      "<p>Through a hail of gunfire, you make your way to the fire escape and flee.</p>",
-//      "Continue",
-//      "",
-//      "buySetupAttack"
-// );
+function buySetupAttack()
+{
+     msgBuySetupAttack = {
+          title:   "You start shooting...",
+          body:    "<p>Through a hail of gunfire, you make your way to the fire escape and flee.</p>",
+          button1: "Continue",
+          button2: "",
+          art:     "buySetupAttack"
+     };
 
-// buySetupSurrender
-// showMessage(
-//      "This doesn't look good...",
-//      "<p>You throw your hands up and try to bargain for your life. The dealer cleans you out and leaves you in a dumpster with a mild concussion.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
-//      "Continue",
-//      "",
-//      "buySetupSurrender"
-// );
+     var roll = Math.random();
+     var fail = roll < buySetupChance.dataset.attackdeath;
+     if (fail) {
+          // TODO @sam set callback1 to the correct function
+          console.log("DEAD");
+     }
 
-// sellSetup
-// showMessage(
-//      "It's a setup!",
-//      "<p>The dude was wearing a wire. Two cops bust into the apartment!</p>",
-//      "Flee",
-//      "Surrender",
-//      "sellSetup"
-// );
+     showMessageBundle(msgBuySetupAttack);
+}
 
-// sellSetupFlee
-// showMessage(
-//      "You make a break for it...",
-//      "<p>Shots ring out as you crash through a second story window, onto a fire-escape...<br />- <span>N units</span> of <span>drug</span></p>",
-//      "Continue",
-//      "",
-//      "sellSetupFlee"
-// );
+function buySetupSurrender()
+{
+     msgBuySetupSurrender = {
+          title:   "This doesn't look good...",
+          body:    "<p>You throw your hands up and try to bargain for your life. The dealer cleans you out and leaves you in a dumpster with a mild concussion.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
+          button1: "Continue",
+          button2: "",
+          art:     "buySetupSurrender"
+     };
 
-// sellSetupSurrender
-// showMessage(
-//      "You're severely outgunned...",
-//      "<p>You throw your hands up and say a quick prayer. Maybe the cops just want to rob you.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
-//      "Continue",
-//      "",
-//      "sellSetupSurrender"
-// );
+     showMessageBundle(msgBuySetupSurrender);
+}
 
-// loanReminder
-// showMessage(
-//      "Big Rick wants his money...",
-//      "<p>This is a friendly reminder that you owe our associate <span>$N</span>.<br /><br />You got <span>N</span> days.</p>",
-//      "Understood",
-//      "",
-//      "loanReminder"
-// );
+msgSellSetup = {
+     title:   "It's a setup!",
+     body:    "<p>The dude was wearing a wire. Two cops bust into the apartment!</p>",
+     button1: "Flee",
+     button2: "Surrender",
+     callback1: sellSetupFlee,
+     callback2: sellSetupSurrender,
+     art:     "sellSetup"
+};
 
-// loanDeadline
-// showMessage(
-//      "Times up pretty boy...",
-//      "<p>Big Rick feels he's been more than patient with you. He sent us to make an example...</p>",
-//      "Damn",
-//      "",
-//      "loanDeadline"
-// );
+function sellSetupFlee() {
+     msgSellSetupFlee = {
+          title:   "You make a break for it...",
+          body:    "<p>Shots ring out as you crash through a second story window, onto a fire-escape...<br />- <span>N units</span> of <span>drug</span></p>",
+          button1: "Continue",
+          button2: "",
+          art:     "sellSetupFlee"
+     };
 
-// Shamrock
-showMessage("You found a four leaf clover!", "<p>It's your lucky day.</p>", "Nice", "", "shamrock");
+     var roll = Math.random();
+     var fail = roll < sellSetupChance.dataset.fleedeath;
+     if (fail) {
+          // TODO @sam set callback 1 to correct function
+          console.log("DEAD");
+     }
 
-// jumped
-// shakedown
-// package
-// stash
+     showMessageBundle(msgSellSetupFlee);
+}
 
-// buySetup
-// buySetupAttack
-// buySetupSurrender
+function sellSetupSurrender() {
+     msgSellSetupSurrender = {
+          title:   "You're severely outgunned...",
+          body:    "<p>You throw your hands up and say a quick prayer. Maybe the cops just want to rob you.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
+          button1: "Continue",
+          button2: "",
+          art:     "sellSetupSurrender"
+     };
 
-// sellSetup
-// sellSetupFlee
-// sellSetupSurrender
+     var roll = Math.random();
+     var fail = roll < sellSetupChance.dataset.surrenderjail;
+     if (fail) {
+          // TODO @sam set callback 1 to correct function
+          console.log("JAIL");
+     }
+     showMessageBundle(msgSellSetupSurrender);
+}
 
-// loanReminder
-// loanDeadline
+msgLoanReminder = {
+     title:   "Big Rick wants his money...",
+     body:    "<p>This is a friendly reminder that you owe our associate <span>$N</span>.<br /><br />You got <span>N</span> days.</p>",
+     button1: "Understood",
+     button2: "",
+     art:     "loanReminder"
+};
+
+msgLoanDeadline = {
+     title:   "Times up pretty boy...",
+     body:    "<p>Big Rick feels he's been more than patient with you. He sent us to make an example...</p>",
+     button1: "Damn",
+     button2: "",
+     art:     "loanDeadline"
+};
+
+msgShamrock = {
+     title:   "You found a four leaf clover!",
+     body:    "<p>It's your lucky day.</p>",
+     button1: "Nice",
+     button2: "",
+     art:     "shamrock"
+};
+
+function showSmallEvent() {
+     var events = [msgJumped, msgShakedown, msgPackage, msgStash];
+     var roll = Math.random();
+     showMessageBundle(events[Math.floor(roll * events.length)]);
+}
+
+function showBigEvent() {
+     var events = [msgBuySetup, msgSellSetup];
+     var roll = Math.random();
+     showMessageBundle(events[Math.floor(roll * events.length)]);
+}
 
 // Ben's transit code
 
 let transitState = 0;
 
-function transit() {
+function transit(city) {
      // if there is a body class of "fisherWatching", then bg speed is "1s" else "2s"
      //const speed = body.classList.contains("fisherWatching") ? "1s" : "2s";
      const incrementAmount = body.classList.contains("fisherWatching") ? -270 : -100;
@@ -805,8 +884,17 @@ function transit() {
                     screen.style.transform = "translateX(0)"; // Slide screen back to the center
                     screen2.style.transform = "translateX(-100%)"; // Slide screen back to the center
                     transitState = 0;
+
+                    // Change city
+                    if (city.dataset.to != vCity) {
+                         enterCity(city.dataset.to);
+                         refreshDrugs();
+                    }
                }, 20);
           }, 1000); // This timeout should match the CSS transition duration
+
+
+          body.classList.remove("showTravel");
 
           setTimeout(() => {
                screen2.style.transition = "none";
@@ -814,6 +902,14 @@ function transit() {
 
                screen3.style.transition = "none";
                screen3.style.backgroundPositionX = 0;
+
+               // Show an event if there is one
+               attemptEvent()
           }, 2002);
+
      }
 }
+
+// --- ENTER GAME --- //
+enterCity("bos");
+showMessageBundle(msgWelcome);
