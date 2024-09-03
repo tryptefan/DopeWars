@@ -551,6 +551,7 @@ h5 {
 .locationTable .drug .city,
 .drugTable .location .city,
 .locationTable .location .city {
+  pointer-events: none;
   color: var(--brand);
   width: auto;
 }
