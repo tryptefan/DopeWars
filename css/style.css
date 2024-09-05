@@ -787,7 +787,7 @@ h5 {
   background-size: 100%;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .phi .container:before {
+  .tor .container:before {
     background-image: url('../img/bgToronto@2x.png');
   }
 }
