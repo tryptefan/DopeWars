@@ -725,7 +725,7 @@ h5 {
 }
 .bos .container:before {
   background-image: url('../img/bgBoston.png');
-  background-size: auto;
+  background-size: 100%;
   background-position: center bottom 37px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
