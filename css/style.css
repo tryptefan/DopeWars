@@ -1060,6 +1060,7 @@ h5 {
 }
 #landscape {
   background: var(--grey30) url(../img/bgLandscape.png) repeat-x;
+  background-size: 132.09%;
   background-position: 0 calc(50% + 80px);
   height: 100%;
   width: 100%;
