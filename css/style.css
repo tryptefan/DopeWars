@@ -1059,7 +1059,7 @@ h5 {
   }
 }
 #landscape {
-  background: var(--grey30) url(../img/bgLandscape.png) repeat-x;
+  background: var(--grey30) url(../img/bgLandscape.png) center repeat-x;
   background-size: 132.09%;
   background-position: 0 calc(50% + 80px);
   height: 100%;
@@ -1073,7 +1073,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   #landscape {
-    background: var(--grey30) url(../img/bgLandscape@2x.png) center repeat-x;
+    background-image: url(../img/bgLandscape@2x.png);
   }
 }
 #transit {
