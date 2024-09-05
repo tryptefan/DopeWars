@@ -797,6 +797,7 @@ h5 {
 .overlay.bank:before {
   background-position: center bottom 30px;
   background-repeat: no-repeat;
+  background-size: 100%;
   content: "";
   display: block;
   left: 0;
@@ -896,7 +897,7 @@ h5 {
   background-size: auto;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .overlay.travel:before {
+  .overlay.bank:before {
     background-image: url('../img/bgBank@2x.png');
   }
 }
