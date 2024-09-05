@@ -928,6 +928,7 @@ h5 {
 }
 .popup.art.jumped #messageBody::before {
   background: url("../img/eventJumped.png") no-repeat;
+  background-size: 100%;
   height: 300px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -937,6 +938,7 @@ h5 {
 }
 .popup.art.shakedown #messageBody::before {
   background: url("../img/eventFrisk.png") no-repeat;
+  background-size: 100%;
   background-position-x: center;
   height: 300px;
 }
@@ -947,6 +949,7 @@ h5 {
 }
 .popup.art.package #messageBody::before {
   background: url("../img/eventPackage.png") no-repeat;
+  background-size: 100%;
   background-position-x: center;
   height: 300px;
 }
@@ -957,6 +960,7 @@ h5 {
 }
 .popup.art.stash #messageBody::before {
   background: url("../img/eventStash.png") no-repeat;
+  background-size: 100%;
   background-position-x: -21px;
   height: 300px;
 }
@@ -967,6 +971,7 @@ h5 {
 }
 .popup.art.buySetup #messageBody::before {
   background: url("../img/eventBuySetup.png") no-repeat;
+  background-size: 100%;
   background-position-x: center;
   height: 300px;
 }
@@ -977,6 +982,7 @@ h5 {
 }
 .popup.art.buySetupAttack #messageBody::before {
   background: url("../img/eventBuySetupAttack.png") no-repeat;
+  background-size: 100%;
   background-position-x: center;
   height: 300px;
 }
@@ -987,6 +993,7 @@ h5 {
 }
 .popup.art.buySetupSurrender #messageBody::before {
   background: url("../img/eventBuySetupSurrender.png") no-repeat;
+  background-size: 100%;
   background-position-x: center;
   height: 254px;
 }
@@ -997,6 +1004,7 @@ h5 {
 }
 .popup.art.sellSetup #messageBody::before {
   background: url("../img/eventSellSetup.png") no-repeat;
+  background-size: 100%;
   background-position-x: center;
   background-position-y: -35px;
   height: 254px;
@@ -1008,6 +1016,7 @@ h5 {
 }
 .popup.art.sellSetupFlee #messageBody::before {
   background: url("../img/eventSellSetupFlee.png") no-repeat;
+  background-size: 100%;
   background-position-x: center;
   background-position-y: -35px;
   height: 264px;
@@ -1019,6 +1028,7 @@ h5 {
 }
 .popup.art.sellSetupSurrender #messageBody::before {
   background: url("../img/eventBuySetupSurrender.png") no-repeat;
+  background-size: 100%;
   background-position-x: center;
   height: 254px;
 }
@@ -1029,6 +1039,7 @@ h5 {
 }
 .popup.art.loanReminder #messageBody::before {
   background: url("../img/eventLoanReminder.png") no-repeat;
+  background-size: 100%;
   background-position-x: center;
   background-position-y: -15px;
   height: 254px;
@@ -1040,6 +1051,7 @@ h5 {
 }
 .popup.art.loanDeadline #messageBody::before {
   background: url("../img/eventLoanDeadline.png") no-repeat;
+  background-size: 100%;
   background-position-x: center;
   height: 254px;
 }
@@ -1050,6 +1062,7 @@ h5 {
 }
 .popup.art.shamrock #messageBody::before {
   background: url("../img/eventShamrock.png") no-repeat;
+  background-size: 100%;
   background-position-x: center;
   height: 254px;
 }
