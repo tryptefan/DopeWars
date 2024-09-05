@@ -735,7 +735,7 @@ h5 {
 }
 .dal .container:before {
   background-image: url('../img/bgDallas.png');
-  background-size: auto;
+  background-size: 100%;
   background-position: center bottom 21px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -745,7 +745,7 @@ h5 {
 }
 .los .container:before {
   background-image: url('../img/bgLA.png');
-  background-size: auto;
+  background-size: 100%;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .los .container:before {
@@ -754,7 +754,7 @@ h5 {
 }
 .man .container:before {
   background-image: url('../img/bgManhattan.png');
-  background-size: auto;
+  background-size: 100%;
   background-position-y: 99px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -764,7 +764,7 @@ h5 {
 }
 .mia .container:before {
   background-image: url('../img/bgMiami.png');
-  background-size: auto;
+  background-size: 100%;
   background-position-y: 90px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -775,7 +775,7 @@ h5 {
 .phi .container:before {
   background-image: url('../img/bgPhilly.png');
   background-position: center bottom 25px;
-  background-size: auto;
+  background-size: 100%;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .phi .container:before {
@@ -784,7 +784,7 @@ h5 {
 }
 .tor .container:before {
   background-image: url('../img/bgToronto.png');
-  background-size: auto;
+  background-size: 100%;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .phi .container:before {
