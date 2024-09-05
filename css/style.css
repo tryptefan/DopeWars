@@ -409,6 +409,7 @@ h5 {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .intro .container::before {
     background-image: url('../img/coverArt@2x.png');
+    background-size: 97%;
   }
 }
 .intro .container::after {
