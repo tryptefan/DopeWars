@@ -125,8 +125,7 @@ function attemptEvent() {
                var bigRoll = Math.random();
                if (bigRoll < eventChance.dataset.bigshow) {
                     showBigEvent();
-               }
-               else {
+               } else {
                     showSmallEvent();
                }
           }
@@ -395,10 +394,26 @@ function refreshDay() {
 }
 
 function showMessageBundle(message) {
-     showMessage(message.title, message.body, message.button1, message.button2, message.callback1, message.callback2, message.art);
+     showMessage(
+          message.title,
+          message.body,
+          message.button1,
+          message.button2,
+          message.callback1,
+          message.callback2,
+          message.art
+     );
 }
 
-function showMessage(msgTitle, msgBody, msgButton1, msgButton2, callback1, callback2, artSignifier) {
+function showMessage(
+     msgTitle,
+     msgBody,
+     msgButton1,
+     msgButton2,
+     callback1,
+     callback2,
+     artSignifier
+) {
      body.classList.add("showMessage");
      popup.classList.add(artSignifier);
      messageTitle.innerHTML = msgTitle;
@@ -418,26 +433,26 @@ function showMessage(msgTitle, msgBody, msgButton1, msgButton2, callback1, callb
           messageButton2.innerHTML = msgButton2;
      }
 
-     messageButton.onclick = function() {
+     messageButton.onclick = function () {
           body.classList.remove("showMessage");
           if (callback1 != null) {
                callback1();
           }
-     }
+     };
 
-     messageButton1.onclick = function() {
+     messageButton1.onclick = function () {
           body.classList.remove("showMessage");
           if (callback1 != null) {
                callback1();
           }
-     }
+     };
 
-     messageButton2.onclick = function() {
+     messageButton2.onclick = function () {
           body.classList.remove("showMessage");
           if (callback2 != null) {
                callback2();
           }
-     }
+     };
 }
 
 function secondaryButton(buttonText) {
@@ -680,65 +695,64 @@ refreshLoanValues();
 
 //function showMessage(msgTitle, msgBody, msgButton1, msgButton2, artSignifier) {
 msgWelcome = {
-     title:   "it's late May 1, 1987",
-     body:    `<p>You’ve flunked out of college, you’re broke, and running out of options. Out of desperation, you decide to try your hand at the drug game.</p>
+     title: "It's late May 1, 1987",
+     body: `<p>You've flunked out of college, you're broke, and running out of options. Out of desperation, you decide to try your hand at the drug game.</p>
      <p>Against your girlfriend's advice, you hit up notorious loan shark “Big Rick”. He loan's you $5000, at 10% interest per day.</p>
      <p>The loan is due in 10 days.<br />Rent is due in 30 days.</p>`,
      button1: "Let's Go",
      button2: "",
-     art:     "welcome"
+     art: "welcome",
 };
 
 msgJumped = {
-     title:   "You Got Jumped!",
-     body:    "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
+     title: "You Got Jumped!",
+     body: "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
      button1: "Damn",
      button2: "",
-     art:     "jumped"
+     art: "jumped",
 };
 
 msgShakedown = {
-     title:   "Cops shake you down!",
-     body:    "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
+     title: "Cops shake you down!",
+     body: "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
      button1: "damn",
      button2: "",
-     art:     "shakedown"
+     art: "shakedown",
 };
 
 msgPackage = {
-     title:   "You found a package!",
-     body:    "<p>You found a package in a suitcase that looked like yours at the baggage claim.<br />+ <span>N units</span> of <span>drug</span></p>",
+     title: "You found a package!",
+     body: "<p>You found a package in a suitcase that looked like yours at the baggage claim.<br />+ <span>N units</span> of <span>drug</span></p>",
      button1: "Nice",
      button2: "",
-     art:     "package"
+     art: "package",
 };
 
 msgStash = {
-     title:   "You found a stash!",
-     body:    "<p>A friend stashed his stuff at your place before getting busted.<br />+ <span>N units</span> of <span>drug</span></p>",
+     title: "You found a stash!",
+     body: "<p>A friend stashed his stuff at your place before getting busted.<br />+ <span>N units</span> of <span>drug</span></p>",
      button1: "Nice",
      button2: "",
-     art:     "stash"
+     art: "stash",
 };
 
 msgBuySetup = {
-     title:   "It's a setup!",
-     body:    "<p>The drugs are fake!</p>",
+     title: "It's a setup!",
+     body: "<p>The drugs are fake!</p>",
      button1: "Attack",
      button2: "Surrender",
      callback1: buySetupAttack,
      callback2: buySetupSurrender,
-     art:     "buySetup"
+     art: "buySetup",
 };
 
-function buySetupAttack()
-{
+function buySetupAttack() {
      msgBuySetupAttack = {
-          title:   "You start shooting...",
-          body:    "<p>Through a hail of gunfire, you make your way to the fire escape and flee.</p>",
+          title: "You start shooting...",
+          body: "<p>Through a hail of gunfire, you make your way to the fire escape and flee.</p>",
           button1: "Continue",
           button2: "",
-          art:     "buySetupAttack"
+          art: "buySetupAttack",
      };
 
      var roll = Math.random();
@@ -750,36 +764,35 @@ function buySetupAttack()
      showMessageBundle(msgBuySetupAttack);
 }
 
-function buySetupSurrender()
-{
+function buySetupSurrender() {
      msgBuySetupSurrender = {
-          title:   "This doesn't look good...",
-          body:    "<p>You throw your hands up and try to bargain for your life. The dealer cleans you out and leaves you in a dumpster with a mild concussion.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
+          title: "This doesn't look good...",
+          body: "<p>You throw your hands up and try to bargain for your life. The dealer cleans you out and leaves you in a dumpster with a mild concussion.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
           button1: "Continue",
           button2: "",
-          art:     "buySetupSurrender"
+          art: "buySetupSurrender",
      };
 
      showMessageBundle(msgBuySetupSurrender);
 }
 
 msgSellSetup = {
-     title:   "It's a setup!",
-     body:    "<p>The dude was wearing a wire. Two cops bust into the apartment!</p>",
+     title: "It's a setup!",
+     body: "<p>The dude was wearing a wire. Two cops bust into the apartment!</p>",
      button1: "Flee",
      button2: "Surrender",
      callback1: sellSetupFlee,
      callback2: sellSetupSurrender,
-     art:     "sellSetup"
+     art: "sellSetup",
 };
 
 function sellSetupFlee() {
      msgSellSetupFlee = {
-          title:   "You make a break for it...",
-          body:    "<p>Shots ring out as you crash through a second story window, onto a fire-escape...<br />- <span>N units</span> of <span>drug</span></p>",
+          title: "You make a break for it...",
+          body: "<p>Shots ring out as you crash through a second story window, onto a fire-escape...<br />- <span>N units</span> of <span>drug</span></p>",
           button1: "Continue",
           button2: "",
-          art:     "sellSetupFlee"
+          art: "sellSetupFlee",
      };
 
      var roll = Math.random();
@@ -793,11 +806,11 @@ function sellSetupFlee() {
 
 function sellSetupSurrender() {
      msgSellSetupSurrender = {
-          title:   "You're severely outgunned...",
-          body:    "<p>You throw your hands up and say a quick prayer. Maybe the cops just want to rob you.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
+          title: "You're severely outgunned...",
+          body: "<p>You throw your hands up and say a quick prayer. Maybe the cops just want to rob you.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
           button1: "Continue",
           button2: "",
-          art:     "sellSetupSurrender"
+          art: "sellSetupSurrender",
      };
 
      var roll = Math.random();
@@ -809,27 +822,27 @@ function sellSetupSurrender() {
 }
 
 msgLoanReminder = {
-     title:   "Big Rick wants his money...",
-     body:    "<p>This is a friendly reminder that you owe our associate <span>$N</span>.<br /><br />You got <span>N</span> days.</p>",
+     title: "Big Rick wants his money...",
+     body: "<p>This is a friendly reminder that you owe our associate <span>$N</span>.<br /><br />You got <span>N</span> days.</p>",
      button1: "Understood",
      button2: "",
-     art:     "loanReminder"
+     art: "loanReminder",
 };
 
 msgLoanDeadline = {
-     title:   "Times up pretty boy...",
-     body:    "<p>Big Rick feels he's been more than patient with you. He sent us to make an example...</p>",
+     title: "Times up pretty boy...",
+     body: "<p>Big Rick feels he's been more than patient with you. He sent us to make an example...</p>",
      button1: "Damn",
      button2: "",
-     art:     "loanDeadline"
+     art: "loanDeadline",
 };
 
 msgShamrock = {
-     title:   "You found a four leaf clover!",
-     body:    "<p>It's your lucky day.</p>",
+     title: "You found a four leaf clover!",
+     body: "<p>It's your lucky day.</p>",
      button1: "Nice",
      button2: "",
-     art:     "shamrock"
+     art: "shamrock",
 };
 
 function showSmallEvent() {
@@ -862,12 +875,28 @@ function endBroke() {
 
 function endRich() {
      // TODO Sam we ends will actually new slides instead of a pop-up
-     showMessage("End of the Line", "You made that money!", "New Game", null, restart(), null, null);
+     showMessage(
+          "End of the Line",
+          "You made that money!",
+          "New Game",
+          null,
+          restart(),
+          null,
+          null
+     );
 }
 
 function endRecruit() {
      // TODO Sam we ends will actually new slides instead of a pop-up
-     showMessage("End of the Line", "You're pretty good at this", "...", null, restart(), null, null);
+     showMessage(
+          "End of the Line",
+          "You're pretty good at this",
+          "...",
+          null,
+          restart(),
+          null,
+          null
+     );
 }
 
 function restart() {
@@ -920,7 +949,6 @@ function transit(city) {
                }, 20);
           }, 1000); // This timeout should match the CSS transition duration
 
-
           body.classList.remove("showTravel");
 
           setTimeout(() => {
@@ -931,9 +959,8 @@ function transit(city) {
                screen3.style.backgroundPositionX = 0;
 
                // Show an event if there is one
-               attemptEvent()
+               attemptEvent();
           }, 2002);
-
      }
 }
 
