@@ -317,6 +317,11 @@ function refreshDrugs() {
                          child.lastChild.classList.add("bar");
                          child.lastChild.classList.add("graph" + graphLevel);
 
+                         // if there are more than 10 divs, remove the first one
+                         if (child.children.length > 10) {
+                              child.removeChild(child.firstChild);
+                         }
+
                          // end Ben code -------------------------------
                     } else if (child.classList.contains("price")) {
                          var basePrice = cityDrugData.dataset.price;
