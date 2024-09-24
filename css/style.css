@@ -894,7 +894,7 @@ h5 {
 .overlay.bank:before {
   background-image: url('../img/bgBank.png');
   background-position: center bottom 64px;
-  background-size: auto;
+  background-size: 447px auto;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .overlay.bank:before {
