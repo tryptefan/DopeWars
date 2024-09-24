@@ -277,7 +277,7 @@ function positionCounter(slider, sliderCounter) {
      //console.log(sliderCounter);
 }
 
-function refreshDrugs() {
+function refreshDrugs(noGraph) {
      var wallet = document.getElementById("wallet");
      for (var i = 0; i < drugs.length; i++) {
           var drug = drugs[i];
@@ -285,44 +285,21 @@ function refreshDrugs() {
           var cityDrugData = document.getElementById("hist-" + drug.dataset.name);
           var myDrugData = document.getElementById("my-" + drug.dataset.name);
           if (drugData != null && myDrugData != null) {
-               var children = drug.children;
+               var children = Array.from(drug.children);
+
+               // swap last 2 children so price is derived before graph is built
+               var child1 = children[children.length - 1];
+               var child2 = children[children.length - 2];
+               children[children.length - 1] = child2;
+               children[children.length - 2] = child1;
+               //
+
                for (var j = 0; j < children.length; j++) {
                     var child = children[j];
                     if (child.classList.contains("amount")) {
                          child.innerHTML = myDrugData.dataset.holding;
                     } else if (child.classList.contains("drugName")) {
                          child.innerHTML = drugData.dataset.name;
-                    } else if (child.classList.contains("graph")) {
-                         // TODO figure out histogram
-                         // BEN: I'll take a crack at it... ---------------------------------
-                         var basePrice = cityDrugData.dataset.price;
-                         var dayPrice = basePrice;
-                         if (vDay > 1) {
-                              var minPrice = basePrice / 2;
-                              var maxPrice = basePrice * 2;
-                              var dayPrice = Math.random() * (maxPrice - minPrice) + minPrice;
-                              dayPrice = Math.floor(dayPrice);
-                         } else {
-                              var minPrice = basePrice / 2;
-                              var maxPrice = basePrice * 2;
-                         }
-
-                         // remap dayPrice to a whole number between 0 and 11 (inclusive). minPrice is 0, maxPrice is 11
-                         var graphLevel = Math.round(
-                              ((dayPrice - minPrice) / (maxPrice - minPrice)) * 11
-                         );
-
-                         // add div with class "bar" and one of the following values: under5, under4, under3, under2, under1, avg, over1, over2, over3, over4, over5
-                         child.appendChild(document.createElement("div"));
-                         child.lastChild.classList.add("bar");
-                         child.lastChild.classList.add("graph" + graphLevel);
-
-                         // if there are more than 10 divs, remove the first one
-                         if (child.children.length > 10) {
-                              child.removeChild(child.firstChild);
-                         }
-
-                         // end Ben code -------------------------------
                     } else if (child.classList.contains("price")) {
                          var basePrice = cityDrugData.dataset.price;
                          var dayPrice = basePrice;
@@ -335,6 +312,29 @@ function refreshDrugs() {
 
                          child.innerHTML = fmtMoney.format(dayPrice);
                          cityDrugData.dataset.dayprice = dayPrice;
+                    } else if (child.classList.contains("graph")) {
+                         // TODO figure out histogram
+                         // BEN: I'll take a crack at it... ---------------------------------
+                         if (!noGraph) {
+                              var minPrice = basePrice / 2;
+                              var maxPrice = basePrice * 2;
+
+                              // remap dayPrice to a whole number between 0 and 11 (inclusive). minPrice is 0, maxPrice is 11
+                              var graphLevel = Math.round(
+                                   ((dayPrice - minPrice) / (maxPrice - minPrice)) * 11
+                              );
+
+                              // add div with class "bar" and one of the following values: graph0, graph1, graph2, etc.
+                              child.appendChild(document.createElement("div"));
+                              child.lastChild.classList.add("bar");
+                              child.lastChild.classList.add("graph" + graphLevel);
+
+                              // if there are more than 10 divs, remove the first one
+                              if (child.children.length > 10) {
+                                   child.removeChild(child.firstChild);
+                              }
+                         }
+                         // end Ben code -------------------------------
                     }
                }
 
@@ -505,7 +505,7 @@ confirmDealButton.onclick = function () {
      dealDrugData.dataset.price = Math.trunc(avg);
 
      refreshWallet();
-     refreshDrugs();
+     refreshDrugs(1);
      body.classList.remove("showDeal");
 };
 
