@@ -581,70 +581,70 @@ h5 {
   width: 2px;
   margin-right: 3px;
 }
-.drugTable .drug .graph .under5,
-.locationTable .drug .graph .under5,
-.drugTable .location .graph .under5,
-.locationTable .location .graph .under5 {
+.drugTable .drug .graph .graph0,
+.locationTable .drug .graph .graph0,
+.drugTable .location .graph .graph0,
+.locationTable .location .graph .graph0 {
   height: 6%;
 }
-.drugTable .drug .graph .under4,
-.locationTable .drug .graph .under4,
-.drugTable .location .graph .under4,
-.locationTable .location .graph .under4 {
+.drugTable .drug .graph .graph1,
+.locationTable .drug .graph .graph1,
+.drugTable .location .graph .graph1,
+.locationTable .location .graph .graph1 {
   height: 13%;
 }
-.drugTable .drug .graph .under3,
-.locationTable .drug .graph .under3,
-.drugTable .location .graph .under3,
-.locationTable .location .graph .under3 {
+.drugTable .drug .graph .graph2,
+.locationTable .drug .graph .graph2,
+.drugTable .location .graph .graph2,
+.locationTable .location .graph .graph2 {
   height: 22%;
 }
-.drugTable .drug .graph .under2,
-.locationTable .drug .graph .under2,
-.drugTable .location .graph .under2,
-.locationTable .location .graph .under2 {
+.drugTable .drug .graph .graph3,
+.locationTable .drug .graph .graph3,
+.drugTable .location .graph .graph3,
+.locationTable .location .graph .graph3 {
   height: 32%;
 }
-.drugTable .drug .graph .under1,
-.locationTable .drug .graph .under1,
-.drugTable .location .graph .under1,
-.locationTable .location .graph .under1 {
+.drugTable .drug .graph .graph4,
+.locationTable .drug .graph .graph4,
+.drugTable .location .graph .graph4,
+.locationTable .location .graph .graph4 {
   height: 42%;
 }
-.drugTable .drug .graph .avg,
-.locationTable .drug .graph .avg,
-.drugTable .location .graph .avg,
-.locationTable .location .graph .avg {
+.drugTable .drug .graph .graph5,
+.locationTable .drug .graph .graph5,
+.drugTable .location .graph .graph5,
+.locationTable .location .graph .graph5 {
   height: 52%;
 }
-.drugTable .drug .graph .over1,
-.locationTable .drug .graph .over1,
-.drugTable .location .graph .over1,
-.locationTable .location .graph .over1 {
+.drugTable .drug .graph .graph6,
+.locationTable .drug .graph .graph6,
+.drugTable .location .graph .graph6,
+.locationTable .location .graph .graph6 {
   height: 62%;
 }
-.drugTable .drug .graph .over2,
-.locationTable .drug .graph .over2,
-.drugTable .location .graph .over2,
-.locationTable .location .graph .over2 {
+.drugTable .drug .graph .graph7,
+.locationTable .drug .graph .graph7,
+.drugTable .location .graph .graph7,
+.locationTable .location .graph .graph7 {
   height: 72%;
 }
-.drugTable .drug .graph .over3,
-.locationTable .drug .graph .over3,
-.drugTable .location .graph .over3,
-.locationTable .location .graph .over3 {
+.drugTable .drug .graph .graph8,
+.locationTable .drug .graph .graph8,
+.drugTable .location .graph .graph8,
+.locationTable .location .graph .graph8 {
   height: 82%;
 }
-.drugTable .drug .graph .over4,
-.locationTable .drug .graph .over4,
-.drugTable .location .graph .over4,
-.locationTable .location .graph .over4 {
+.drugTable .drug .graph .graph9,
+.locationTable .drug .graph .graph9,
+.drugTable .location .graph .graph9,
+.locationTable .location .graph .graph9 {
   height: 92%;
 }
-.drugTable .drug .graph .over5,
-.locationTable .drug .graph .over5,
-.drugTable .location .graph .over5,
-.locationTable .location .graph .over5 {
+.drugTable .drug .graph .graph10,
+.locationTable .drug .graph .graph10,
+.drugTable .location .graph .graph10,
+.locationTable .location .graph .graph10 {
   height: 100%;
 }
 .drugTable .drug .price,

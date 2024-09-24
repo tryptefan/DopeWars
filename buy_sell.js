@@ -294,6 +294,30 @@ function refreshDrugs() {
                          child.innerHTML = drugData.dataset.name;
                     } else if (child.classList.contains("graph")) {
                          // TODO figure out histogram
+                         // BEN: I'll take a crack at it... ---------------------------------
+                         var basePrice = cityDrugData.dataset.price;
+                         var dayPrice = basePrice;
+                         if (vDay > 1) {
+                              var minPrice = basePrice / 2;
+                              var maxPrice = basePrice * 2;
+                              var dayPrice = Math.random() * (maxPrice - minPrice) + minPrice;
+                              dayPrice = Math.floor(dayPrice);
+                         } else {
+                              var minPrice = basePrice / 2;
+                              var maxPrice = basePrice * 2;
+                         }
+
+                         // remap dayPrice to a whole number between 0 and 11 (inclusive). minPrice is 0, maxPrice is 11
+                         var graphLevel = Math.round(
+                              ((dayPrice - minPrice) / (maxPrice - minPrice)) * 11
+                         );
+
+                         // add div with class "bar" and one of the following values: under5, under4, under3, under2, under1, avg, over1, over2, over3, over4, over5
+                         child.appendChild(document.createElement("div"));
+                         child.lastChild.classList.add("bar");
+                         child.lastChild.classList.add("graph" + graphLevel);
+
+                         // end Ben code -------------------------------
                     } else if (child.classList.contains("price")) {
                          var basePrice = cityDrugData.dataset.price;
                          var dayPrice = basePrice;
@@ -962,6 +986,12 @@ function transit(city) {
                attemptEvent();
           }, 2002);
      }
+}
+
+// Ben's graph code
+
+function buildGraphs() {
+     console.log("ff");
 }
 
 // --- ENTER GAME --- //
