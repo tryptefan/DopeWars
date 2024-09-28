@@ -79,6 +79,7 @@ var vDebtDelta = 0;
 var vHoldingDelta = 0;
 var vAmount = 0;
 var vDay = 0;
+var interest = 0.1;
 
 var vCity = "";
 
@@ -112,6 +113,10 @@ function enterCity(cityId) {
 
      refreshDealValues();
      body.classList.add(vCity);
+     refreshWallet();
+
+     wallet.dataset.debt = Number(wallet.dataset.debt) + Number(wallet.dataset.debt) * interest;
+     console.log(wallet.dataset.debt);
 
      if (lastDayPassed()) {
           // TODO end game
