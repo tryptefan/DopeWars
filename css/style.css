@@ -782,13 +782,13 @@ h5 {
     background-image: url('../img/bgPhilly@2x.png');
   }
 }
-.tor .container:before {
-  background-image: url('../img/bgToronto.png');
+.tel .container:before {
+  background-image: url('../img/bgTelluride.png');
   background-size: 100%;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .tor .container:before {
-    background-image: url('../img/bgToronto@2x.png');
+  .tel .container:before {
+    background-image: url('../img/bgTelluride@2x.png');
   }
 }
 .overlay.deal:before,
