@@ -116,23 +116,24 @@ function enterCity(cityId) {
      refreshWallet();
 
      wallet.dataset.debt = Number(wallet.dataset.debt) + Number(wallet.dataset.debt) * interest;
-     console.log(wallet.dataset.debt);
+     //console.log(wallet.dataset.debt);
 
      if (lastDayPassed()) {
           // TODO end game
      }
 }
 
-function attemptEvent() {
+function attemptArriveEvent() {
      if (!lastDayPassed()) {
           var eventRoll = Math.random();
           if (eventRoll < eventChance.dataset.anyshow) {
-               var bigRoll = Math.random();
-               if (bigRoll < eventChance.dataset.bigshow) {
-                    showBigEvent();
-               } else {
-                    showSmallEvent();
-               }
+               showSmallEvent();
+               //var bigRoll = Math.random();
+               //if (bigRoll < eventChance.dataset.bigshow) {
+               //     showBigEvent();
+               //} else {
+               //     showSmallEvent();
+               //}
           }
      }
 }
@@ -511,6 +512,17 @@ confirmDealButton.onclick = function () {
 
      refreshWallet();
      refreshDrugs(1);
+
+     if (buying) {
+          if (Math.random() < buySetupChance.dataset.show) {
+               showBuySetup();
+          }
+
+     } else {
+          if (Math.random() < sellSetupChance.dataset.show) {
+               showSellSetup();
+          }
+     }
      body.classList.remove("showDeal");
 };
 
@@ -885,10 +897,18 @@ function showSmallEvent() {
      showMessageBundle(events[Math.floor(roll * events.length)]);
 }
 
-function showBigEvent() {
-     var events = [msgBuySetup, msgSellSetup];
-     var roll = Math.random();
-     showMessageBundle(events[Math.floor(roll * events.length)]);
+//function showBigEvent() {
+//     var events = [msgBuySetup, msgSellSetup];
+//     var roll = Math.random();
+//     showMessageBundle(events[Math.floor(roll * events.length)]);
+//}
+
+function showBuySetup() {
+     showMessageBundle(msgBuySetup);
+}
+
+function showSellSetup() {
+     showMessageBundle(msgSellSetup);
 }
 
 function endDeath() {
@@ -993,7 +1013,7 @@ function transit(city) {
                screen3.style.backgroundPositionX = 0;
 
                // Show an event if there is one
-               attemptEvent();
+               attemptArriveEvent();
           }, 2002);
      }
 }
