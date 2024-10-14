@@ -309,12 +309,12 @@ function refreshDrugs(noGraph) {
                     } else if (child.classList.contains("price")) {
                          var basePrice = cityDrugData.dataset.price;
                          var dayPrice = basePrice;
-                         if (vDay > 1) {
-                              var minPrice = basePrice / 2;
-                              var maxPrice = basePrice * 2;
-                              var dayPrice = Math.random() * (maxPrice - minPrice) + minPrice;
-                              dayPrice = Math.floor(dayPrice);
-                         }
+                         // if (vDay > 1) {
+                         var minPrice = basePrice / 2;
+                         var maxPrice = basePrice * 2;
+                         var dayPrice = Math.random() * (maxPrice - minPrice) + minPrice;
+                         dayPrice = Math.floor(dayPrice);
+                         //  }
 
                          child.innerHTML = fmtMoney.format(dayPrice);
                          cityDrugData.dataset.dayprice = dayPrice;
@@ -511,13 +511,12 @@ confirmDealButton.onclick = function () {
      dealDrugData.dataset.price = Math.trunc(avg);
 
      refreshWallet();
-     refreshDrugs(1);
+     refreshDrugs(1); // we need this in ordert to see the new amount we're holding
 
      if (buying) {
           if (Math.random() < buySetupChance.dataset.show) {
                showBuySetup();
           }
-
      } else {
           if (Math.random() < sellSetupChance.dataset.show) {
                showSellSetup();
@@ -527,11 +526,15 @@ confirmDealButton.onclick = function () {
 };
 
 function cancelTransaction() {
-     clearBodyClasses();
-     vCashDelta = 0;
-     vBankDelta = 0;
-     vDebtDelta = 0;
-     vHoldingDelta = 0;
+     if (body.classList.contains("showMessage")) {
+          return;
+     } else {
+          clearBodyClasses();
+          vCashDelta = 0;
+          vBankDelta = 0;
+          vDebtDelta = 0;
+          vHoldingDelta = 0;
+     }
 }
 
 cancelDealButton.onclick = cancelTransaction;
