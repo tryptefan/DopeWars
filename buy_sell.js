@@ -396,7 +396,7 @@ function refreshBankValues() {
 
      bankCash.innerHTML = fmtMoney.format(cashTotal);
      bankBank.innerHTML = fmtMoney.format(bankTotal);
-     bankSliderCounter.innerHTML = vAmount;
+     bankSliderCounter.innerHTML = fmtMoney.format(vAmount);
      positionCounter(bankSlider, bankSliderCounter);
 }
 
@@ -414,7 +414,7 @@ function refreshLoanValues() {
 
      loanCash.innerHTML = fmtMoney.format(cashTotal);
      loanDebt.innerHTML = fmtMoney.format(debtTotal);
-     loanSliderCounter.innerHTML = vAmount;
+     loanSliderCounter.innerHTML = fmtMoney.format(vAmount);
      positionCounter(loanSlider, loanSliderCounter);
 }
 
