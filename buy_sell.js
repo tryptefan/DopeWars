@@ -145,16 +145,21 @@ function clickCity() {
      }
 
      var city = event.target;
+     // get data.to
+     var targetCity = city.dataset.to;
 
-     // ben's code
-     transit(city);
+     // prevent travel to same city
+     if (vCity != targetCity) {
+          // ben's code
+          transit(city);
 
-     while (city != null && !city.classList.contains("location")) {
-          city = city.parentElement;
-     }
+          while (city != null && !city.classList.contains("location")) {
+               city = city.parentElement;
+          }
 
-     if (city == null) {
-          return;
+          if (city == null) {
+               return;
+          }
      }
 }
 
@@ -409,8 +414,8 @@ function refreshLoanValues() {
           confirmLoanButton.innerHTML = "Borrow";
      }
 
-     var cashTotal = vCash + vCashDelta;
-     var debtTotal = vDebt + vDebtDelta;
+     var cashTotal = Math.floor(vCash + vCashDelta);
+     var debtTotal = Math.floor(vDebt + vDebtDelta);
 
      loanCash.innerHTML = fmtMoney.format(cashTotal);
      loanDebt.innerHTML = fmtMoney.format(debtTotal);
