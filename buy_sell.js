@@ -145,6 +145,15 @@ function clickCity() {
      }
 
      var city = event.target;
+
+     // loop through all .location and remove class "disabledCity"
+     var locations = document.getElementsByClassName("location");
+     for (var i = 0; i < locations.length; i++) {
+          locations[i].classList.remove("disabledCity");
+     }
+
+     // add class ""disabledCity" to city
+     city.classList.add("disabledCity");
      // get data.to
      var targetCity = city.dataset.to;
 

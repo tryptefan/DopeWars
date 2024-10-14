@@ -655,6 +655,10 @@ h5 {
   flex-grow: 1;
   text-align: right;
 }
+.drugTable .location.disabledCity .city,
+.locationTable .location.disabledCity .city {
+  color: var(--grey);
+}
 .drugTable .drug.disabled,
 .locationTable .drug.disabled {
   background-image: url("../img/iconArrowDisabled.svg");
