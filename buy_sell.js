@@ -80,6 +80,7 @@ var vHoldingDelta = 0;
 var vAmount = 0;
 var vDay = 0;
 var interest = 0.1;
+var loanAge = 0;
 
 var vCity = "";
 
@@ -116,24 +117,91 @@ function enterCity(cityId) {
      refreshWallet();
 
      wallet.dataset.debt = Number(wallet.dataset.debt) + Number(wallet.dataset.debt) * interest;
-     //console.log(wallet.dataset.debt);
+     if (wallet.dataset.debt > 0) {
+          loanAge++;
+     }
 
      if (lastDayPassed()) {
           // TODO end game
      }
 }
 
+function loanReminderCheck() {
+     if (loanAge == 6) {
+          showMessageBundle(msgLoanReminder);
+     } else if (loanAge == 10) {
+          // DEADDDDDDD
+     } else {
+          return true;
+     }
+}
+
+function priceCheck() {
+     var news = false;
+     var newsItems = [];
+     var direction = "";
+     // loop through all drugs; find the graph for each one; find the last item in the graph...if it's a graph0 or graph10 then showMessage
+     for (var i = 0; i < drugs.length; i++) {
+          var drug = drugs[i];
+          var drugData = document.getElementById("ur-" + drug.dataset.name);
+          if (drugData != null) {
+               var children = Array.from(drug.children);
+               for (var j = 0; j < children.length; j++) {
+                    var child = children[j];
+                    if (child.classList.contains("graph")) {
+                         // find the last child in graph
+                         var graphTick = child.lastChild;
+                         var graphLevel = graphTick.classList[graphTick.classList.length - 1];
+
+                         if (graphLevel == "graph0") {
+                              news = true;
+                              ///grab the low one
+                              newsItems.push(
+                                   "msg" +
+                                        drug.dataset.name.charAt(0).toUpperCase() +
+                                        drug.dataset.name.slice(1) +
+                                        "Down"
+                              );
+                         } else if (graphLevel == "graph10") {
+                              // grab the high one
+                              newsItems.push(
+                                   "msg" +
+                                        drug.dataset.name.charAt(0).toUpperCase() +
+                                        drug.dataset.name.slice(1) +
+                                        "Up"
+                              );
+                         }
+                    }
+               }
+          }
+     }
+
+     var newsItem = newsItems[Math.floor(Math.random() * newsItems.length)];
+
+     if (news) {
+          //showMessage(window[newsItem]);
+          showMessageBundle(eval(newsItem));
+          console.log(eval(newsItem));
+     } else {
+          return true;
+     }
+}
+
 function attemptArriveEvent() {
      if (!lastDayPassed()) {
-          var eventRoll = Math.random();
-          if (eventRoll < eventChance.dataset.anyshow) {
-               showSmallEvent();
-               //var bigRoll = Math.random();
-               //if (bigRoll < eventChance.dataset.bigshow) {
-               //     showBigEvent();
-               //} else {
-               //     showSmallEvent();
-               //}
+          if (loanReminderCheck() && priceCheck()) {
+               var eventRoll = Math.random();
+               if (eventRoll < eventChance.dataset.anyshow) {
+                    showSmallEvent();
+                    //var bigRoll = Math.random();
+                    //if (bigRoll < eventChance.dataset.bigshow) {
+                    //     showBigEvent();
+                    //} else {
+                    //     showSmallEvent();
+                    //}
+               } else {
+                    //cloverCheck();
+               }
           }
      }
 }
@@ -328,6 +396,9 @@ function refreshDrugs(noGraph) {
                          var maxPrice = basePrice * 2;
                          var dayPrice = Math.random() * (maxPrice - minPrice) + minPrice;
                          dayPrice = Math.floor(dayPrice);
+                         if (dayPrice < minPrice) {
+                              dayPrice = minPrice;
+                         }
                          //  }
 
                          child.innerHTML = fmtMoney.format(dayPrice);
@@ -339,8 +410,12 @@ function refreshDrugs(noGraph) {
                               var minPrice = basePrice / 2;
                               var maxPrice = basePrice * 2;
 
-                              // remap dayPrice to a whole number between 0 and 11 (inclusive). minPrice is 0, maxPrice is 11
-                              var graphLevel = Math.round(
+                              // remap dayPrice to a whole number between 0 and 11 (inclusive). minPrice is 0, maxPrice is 10
+                              // var graphLevel = Math.round(
+                              //      ((dayPrice - minPrice) / (maxPrice - minPrice)) * 10
+                              // );
+
+                              var graphLevel = Math.floor(
                                    ((dayPrice - minPrice) / (maxPrice - minPrice)) * 11
                               );
 
@@ -443,6 +518,9 @@ function refreshDay() {
 }
 
 function showMessageBundle(message) {
+     //const stack = new Error().stack;
+     // console.log(stack); // Logs the stack trace
+
      showMessage(
           message.title,
           message.body,
@@ -464,7 +542,10 @@ function showMessage(
      artSignifier
 ) {
      body.classList.add("showMessage");
-     popup.classList.add(artSignifier);
+     if (artSignifier) {
+          popup.classList.add(artSignifier, "art");
+     }
+
      messageTitle.innerHTML = msgTitle;
      messageBody.innerHTML = msgBody;
      if (msgButton2 == null || msgButton2 == "") {
@@ -484,6 +565,7 @@ function showMessage(
 
      messageButton.onclick = function () {
           body.classList.remove("showMessage");
+          popup.className = "popup";
           if (callback1 != null) {
                callback1();
           }
@@ -491,6 +573,7 @@ function showMessage(
 
      messageButton1.onclick = function () {
           body.classList.remove("showMessage");
+          popup.className = "popup";
           if (callback1 != null) {
                callback1();
           }
@@ -498,6 +581,7 @@ function showMessage(
 
      messageButton2.onclick = function () {
           body.classList.remove("showMessage");
+          popup.className = "popup";
           if (callback2 != null) {
                callback2();
           }
@@ -906,6 +990,97 @@ msgShamrock = {
      button1: "Nice",
      button2: "",
      art: "shamrock",
+};
+
+// Price events ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// up
+
+msgAcidUp = {
+     title: "<span class=arrow>↑</span> Acid Up",
+     body: "<p>Grateful Dead release a new album; acid prices are peaking.</p>",
+     button1: "Got it",
+};
+
+msgMethUp = {
+     title: "<span class=arrow>↑</span> Meth Up",
+     body: "<p>Huge Crystal Meth lab explosion; prices are ridiculous.</p>",
+     button1: "Got it",
+};
+
+msgCocaineUp = {
+     title: "<span class=arrow>↑</span> Cocaine Up",
+     body: "<p>Rival gangs are waging a turf war; cocaine prices at a premium.</p>",
+     button1: "Got it",
+};
+
+msgHeroinUp = {
+     title: "<span class=arrow>↑</span> Heroin Up",
+     body: "<p>Cops are cracking down on Heroin; prices are through the roof.</p>",
+     button1: "Got it",
+};
+
+msgPcpUp = {
+     title: "<span class=arrow>↑</span> PCP Up",
+     body: "<p>A federal task seized 2.25 gallons of liquid PCP worth more than $12 million; prices are astronomical.</p>",
+     button1: "Got it",
+};
+
+msgValiumUp = {
+     title: "<span class=arrow>↑</span> Valium Up",
+     body: "<p>Heroin scarcity results in Valium demand; prices are high.</p>",
+     button1: "Got it",
+};
+
+msgWeedUp = {
+     title: "<span class=arrow>↑</span> Weed Up",
+     body: "<p>DEA torches huge Weed farm in Arkansas; it's “Reefer Madness”!</p>",
+     button1: "Got it",
+};
+
+//----------------------------------------
+// down
+
+msgAcidDown = {
+     title: "<span class=arrow>↓</span> Acid Down",
+     body: "<p>Hippies report bad trips from tainted sheets of Acid; prices are a total bummer.</p>",
+     button1: "Got it",
+};
+
+msgMethDown = {
+     title: "<span class=arrow>↓</span> Meth Down",
+     body: "<p>Underground lab tech steals chemical tanker filled with Crystal Meth precursor; prices have plummeted.</p>",
+     button1: "Got it",
+};
+
+msgCocaineDown = {
+     title: "<span class=arrow>↓</span> Cocaine Down",
+     body: "<p>The CIA is flooding the market with Cocaine; prices have bottomed out.</p>",
+     button1: "Got it",
+};
+
+msgHeroinDown = {
+     title: "<span class=arrow>↓</span> Heroin Down",
+     body: "<p>Crooked cops turn blind eye to Heroin sales after a significant donation to the Police Athletics League; the market is saturated.</p>",
+     button1: "Got it",
+};
+
+msgPcpDown = {
+     title: "<span class=arrow>↓</span> PCP Down",
+     body: "<p>Word got out that PCP is embalming fluid; prices have flat-lined.</p>",
+     button1: "Got it",
+};
+
+msgValiumDown = {
+     title: "<span class=arrow>↓</span> Valium Down",
+     body: "<p>Big pharma got into the game with predatory marketing schemes; the Valium market is flooded.</p>",
+     button1: "Got it",
+};
+
+msgWeedDown = {
+     title: "<span class=arrow>↓</span> Weed Down",
+     body: "<p>Mexican cartels discover the forbidden Acapulco Weed strain; prices are down.</p>",
+     button1: "Got it",
 };
 
 function showSmallEvent() {

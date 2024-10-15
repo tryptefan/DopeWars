@@ -730,7 +730,7 @@ h5 {
 .bos .container:before {
   background-image: url('../img/bgBoston.png');
   background-size: 100%;
-  background-position: center bottom 37px;
+  background-position: center bottom 25px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .bos .container:before {
@@ -920,6 +920,15 @@ h5 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.showMessage .popup h1 {
+  margin-bottom: 18px;
+}
+.showMessage .popup h1 .arrow {
+  color: var(--brand);
+  font-size: 22px;
+  position: relative;
+  top: -5px;
 }
 .popup.art #messageBody::before {
   content: "";

@@ -680,7 +680,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
 .bos .container:before { 
     background-image: url('../img/bgBoston.png');
     background-size: 100%;
-    background-position: center bottom 37px;
+    background-position: center bottom 25px;
  }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .bos .container:before {
@@ -876,6 +876,12 @@ h1, h2, h3, h4, h5 { margin: 0; }
     top: 50%;
     left: 50%;
 	transform: translate(-50%, -50%);
+    h1 { margin-bottom: 18px; }
+    h1 .arrow { 
+        color: var(--brand);    
+        font-size: 22px;
+        position: relative;
+        top: -5px; }
 }
 
 .popup.art #messageBody::before {
