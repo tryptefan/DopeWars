@@ -499,16 +499,23 @@ h1, h2, h3, h4, h5 { margin: 0; }
 } // splash
 
 
-.shamrock .locationTop::after {
+.locationTop::after {
     background: url(../img/iconShamrock.svg) center no-repeat;
     height: 19px;
     width: 15px;
     content: "";
     display: block;
+    opacity: 0;
     position: absolute;
     top: 37px;
     left: 0;
+    transition: opacity .3s;
 }
+
+.shamrock .locationTop::after {
+    opacity: 1;
+}
+
 
 .topBar {
     display: flex;

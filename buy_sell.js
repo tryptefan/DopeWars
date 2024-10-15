@@ -81,11 +81,24 @@ var vAmount = 0;
 var vDay = 0;
 var interest = 0.1;
 var loanAge = 0;
+var cloverChance = 200;
+var lucky = false;
 
 var vCity = "";
 
 function lastDayPassed() {
      return vDay > 30;
+}
+
+function cloverCheck() {
+     // Generate a random number between 1 and cloverChance
+     let randomNumber = Math.floor(Math.random() * cloverChance) + 1;
+
+     if (randomNumber === 1) {
+          body.classList.add("shamrock");
+          lucky = true;
+          showMessageBundle(msgShamrock);
+     }
 }
 
 function enterCity(cityId) {
@@ -181,7 +194,7 @@ function priceCheck() {
      if (news) {
           //showMessage(window[newsItem]);
           showMessageBundle(eval(newsItem));
-          console.log(eval(newsItem));
+          //console.log(eval(newsItems));
      } else {
           return true;
      }
@@ -200,7 +213,7 @@ function attemptArriveEvent() {
                     //     showSmallEvent();
                     //}
                } else {
-                    //cloverCheck();
+                    cloverCheck();
                }
           }
      }

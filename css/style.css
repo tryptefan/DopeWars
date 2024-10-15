@@ -463,15 +463,20 @@ h5 {
 .splash span {
   letter-spacing: 3px;
 }
-.shamrock .locationTop::after {
+.locationTop::after {
   background: url(../img/iconShamrock.svg) center no-repeat;
   height: 19px;
   width: 15px;
   content: "";
   display: block;
+  opacity: 0;
   position: absolute;
   top: 37px;
   left: 0;
+  transition: opacity 0.3s;
+}
+.shamrock .locationTop::after {
+  opacity: 1;
 }
 .topBar {
   display: flex;
