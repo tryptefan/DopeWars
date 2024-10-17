@@ -83,6 +83,7 @@ var interest = 0.1;
 var loanAge = 0;
 var cloverChance = 200;
 var lucky = false;
+var eventOccurring = false;
 
 var vCity = "";
 
@@ -554,6 +555,7 @@ function showMessage(
      callback2,
      artSignifier
 ) {
+     eventOccurring = true;
      body.classList.add("showMessage");
      if (artSignifier) {
           popup.classList.add(artSignifier, "art");
@@ -848,6 +850,72 @@ refreshDealValues();
 refreshBankValues();
 refreshLoanValues();
 
+// Message helper functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function robberyCash() {
+     console.log(eventOccurring);
+     if (eventOccurring) {
+          console.log("robbery actually hapepning");
+          var cash = wallet.dataset.cash;
+          var randomPercentage = Math.random() * 100;
+          var amountToRemove = (randomPercentage / 100) * cash;
+          amountToRemove = Math.round(amountToRemove / 10) * 10;
+          wallet.dataset.cash = cash - amountToRemove;
+          refreshWallet();
+          return fmtMoney.format(amountToRemove);
+     }
+}
+
+function robberyDrugs() {
+     // get access to your wallet
+     const wallet = document.getElementById("wallet");
+     var drugsHolding = [];
+
+     // get drugs in wallet where holding is greater than 0
+     for (var i = 0; i < wallet.children.length; i++) {
+          var drug = wallet.children[i];
+          if (drug.dataset.holding > 0) {
+               drugsHolding.push(drug);
+          }
+     }
+
+     // pick a random drug out of drugsHolding
+     var randomIndex = Math.floor(Math.random() * drugsHolding.length);
+     var drug = drugsHolding[randomIndex];
+     var drugHoldingAmount = drug.dataset.holding;
+
+     // remove random percentage (int)
+     var randomPercentage = Math.floor(Math.random() * 100);
+     var amountToRemove = (randomPercentage / 100) * drugHoldingAmount;
+     amountToRemove = Math.round(amountToRemove / 10) * 10;
+     drug.dataset.holding -= amountToRemove;
+
+     // find drug unit name
+     var drugId = drug.id;
+     console.log("drugId = " + drugId);
+     var drugName = drugId.replace("my-", "");
+
+     var drugData = document.getElementById("ur-" + drugName);
+     var drugUnit = drugData.dataset.dose;
+
+     refreshDrugs(1);
+
+     return { amount: amountToRemove, name: drugName, units: drugUnit };
+}
+
+// function findDrugs()
+// pick drug
+// get unit
+// add amount
+// return { name: "meth", amount: "10", units: "gram" }
+
+// Get dynamic values
+//const stolenMoney = robberyCash();
+// const stolenDrugs = robberyDrugs();
+// const foundDrugs = findDrugs();
+
+// ${stolenMoney}
+
 // @Ben uncomment to see placeholder event
 //showMessage("event title", "<p>and body</p><p>with more</p>", "affirmative", "");
 
@@ -866,10 +934,22 @@ msgWelcome = {
 
 msgJumped = {
      title: "You Got Jumped!",
-     body: "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
+     _bodyTemplate: `<p>They made off with <span>{cash}</span> and <span>{amount} {units}</span> of <span>{name}</span>.</p>`,
      button1: "Damn",
      button2: "",
      art: "jumped",
+
+     // Method to get the body, calling functions only when needed
+     get body() {
+          const cash = robberyCash();
+          const { amount, name, units } = robberyDrugs(); // Destructure the returned object
+
+          return this._bodyTemplate
+               .replace("{cash}", cash)
+               .replace("{amount}", amount)
+               .replace("{units}", units)
+               .replace("{name}", name);
+     },
 };
 
 msgShakedown = {
