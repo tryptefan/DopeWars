@@ -898,26 +898,40 @@ function robberyDrugs() {
      var drugData = document.getElementById("ur-" + drugName);
      var drugUnit = drugData.dataset.dose;
 
+     console.log("amount to remove =" + amountToRemove);
+
      refreshDrugs(1);
 
      return { amount: amountToRemove, name: drugName, units: drugUnit };
 }
 
-// function findDrugs()
-// pick drug
-// get unit
-// add amount
-// return { name: "meth", amount: "10", units: "gram" }
+function findDrugs() {
+     const wallet = document.getElementById("wallet");
+     // pick drug
+     var randomIndex = Math.floor(Math.random() * wallet.children.length);
+     var drug = wallet.children[randomIndex];
+     // drug = drug id but without "my-"
+     var drugName = drug.id.replace("my-", "");
 
-// Get dynamic values
-//const stolenMoney = robberyCash();
-// const stolenDrugs = robberyDrugs();
-// const foundDrugs = findDrugs();
+     // get dose unit name for drug
+     var drugData = document.getElementById("ur-" + drugName);
+     var drugUnit = drugData.dataset.dose;
+     // get current drug price
+     var cityDrugData = document.getElementById("hist-" + drugName);
+     var drugPrice = Number(cityDrugData.dataset.dayprice);
 
-// ${stolenMoney}
+     // generate a random value between 10 and 20,000
+     var randomAmount = Math.floor(Math.random() * 10000) + 10;
+     // calculate how many units of drug i can buy with rendomAmount
+     var amountToFind = Math.floor(randomAmount / drugPrice);
 
-// @Ben uncomment to see placeholder event
-//showMessage("event title", "<p>and body</p><p>with more</p>", "affirmative", "");
+     drug.dataset.holding = Number(drug.dataset.holding) + amountToFind;
+
+     refreshDrugs(1);
+
+     // select random amount. integer. between 0 and 10
+     return { amount: amountToFind, name: drugName, units: drugUnit };
+}
 
 // @Sam...I'm sure we'll end up putting all this content into objects or something..I just wanted to see these popups with their artowrk
 
@@ -954,18 +968,41 @@ msgJumped = {
 
 msgShakedown = {
      title: "Cops shake you down!",
-     body: "<p>They made off with <span>$N cash</span> and <span>M units</span> of <span>drug</span>.</p>",
+     _bodyTemplate:
+          "<p>They made off with <span>{cash}</span> and <span>{amount} {units}</span> of <span>{name}</span>.</p>",
      button1: "damn",
      button2: "",
      art: "shakedown",
+
+     // Method to get the body, calling functions only when needed
+     get body() {
+          const cash = robberyCash();
+          const { amount, name, units } = robberyDrugs(); // Destructure the returned object
+
+          return this._bodyTemplate
+               .replace("{cash}", cash)
+               .replace("{amount}", amount)
+               .replace("{units}", units)
+               .replace("{name}", name);
+     },
 };
 
 msgPackage = {
      title: "You found a package!",
-     body: "<p>You found a package in a suitcase that looked like yours at the baggage claim.<br />+ <span>N units</span> of <span>drug</span></p>",
+     _bodyTemplate:
+          "<p>You found a package in a suitcase that looked like yours at the baggage claim.<br />+ <span>{amount} {units}</span> of <span>{name}</span></p>",
      button1: "Nice",
      button2: "",
      art: "package",
+     // Method to get the body, calling functions only when needed
+     get body() {
+          const { amount, name, units } = findDrugs(); // Destructure the returned object
+
+          return this._bodyTemplate
+               .replace("{amount}", amount)
+               .replace("{units}", units)
+               .replace("{name}", name);
+     },
 };
 
 msgStash = {
