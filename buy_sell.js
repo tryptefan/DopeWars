@@ -1007,10 +1007,20 @@ msgPackage = {
 
 msgStash = {
      title: "You found a stash!",
-     body: "<p>A friend stashed his stuff at your place before getting busted.<br />+ <span>N units</span> of <span>drug</span></p>",
+     _bodyTemplate:
+          "<p>A friend stashed his stuff at your place before getting busted.<br />+ <span>{amount} {units}</span> of <span>{name}</span></p>",
      button1: "Nice",
      button2: "",
      art: "stash",
+     // Method to get the body, calling functions only when needed
+     get body() {
+          const { amount, name, units } = findDrugs(); // Destructure the returned object
+
+          return this._bodyTemplate
+               .replace("{amount}", amount)
+               .replace("{units}", units)
+               .replace("{name}", name);
+     },
 };
 
 msgBuySetup = {
