@@ -1090,3 +1090,83 @@ h1, h2, h3, h4, h5 { margin: 0; }
 }
 
 
+
+// END GAME -------------------------------------------------------------------------------------------------------
+#endScreen {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    top: 0;
+    transition: opacity .3s;
+    width: 100%;
+    z-index: 3;
+
+    background: var(--grey30);
+    max-height: 100%;
+    margin: 0 auto;
+    //overflow: hidden;
+    padding: 67px 24px 29px 24px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100vw;
+    height: 100vh;
+
+    & > div { flex-grow: 0; }
+
+    .topBar { margin-bottom: 18px;; }
+
+    #art {
+        background-position: center;
+        background-repeat: no-repeat;
+        flex-grow: 1;
+        margin: 0 -24px;
+        opacity: .85;
+    }
+
+    
+    #totalEarnings { margin-bottom: 26px; }
+}
+
+.gameOver #endScreen {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.endScreen.death #art {
+    background-image: url(../img/endDead.png);
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+        background-image: url(../img/endDead@2X.png);
+    }
+}
+.endScreen.jail #art {
+    background-image: url(../img/endJail.png);
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+        background-image: url(../img/endJail@2X.png);
+    }
+}
+.endScreen.broke #art {
+    background-image: url(../img/endBroke.png);
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+        background-image: url(../img/endBroke@2X.png);
+    }
+}
+
+.endScreen.rich #art {
+    background-image: url(../img/endRich.png);
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+        background-image: url(../img/endRich@2X.png);
+    }
+}
+
+.endScreen.recruit #art {
+    background-image: url(../img/endRecruit.png);
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+        background-image: url(../img/endRecruit@2X.png);
+    }
+}
+
+

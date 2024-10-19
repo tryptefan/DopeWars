@@ -55,6 +55,11 @@ const eventChance = document.getElementById("chance-event");
 const buySetupChance = document.getElementById("chance-buySetup");
 const sellSetupChance = document.getElementById("chance-sellSetup");
 
+const endScreen = document.getElementById("endScreen");
+const endCityDay = document.getElementById("endCityDay");
+const endMessage = document.getElementById("endMessage");
+const totalEarnings = document.getElementById("totalEarnings");
+
 const fmtMoney = Intl.NumberFormat("en-US", {
      style: "currency",
      currency: "USD",
@@ -1023,6 +1028,8 @@ msgStash = {
      },
 };
 
+// buy setup ------------------
+
 msgBuySetup = {
      title: "It's a setup!",
      body: "<p>The drugs are fake!</p>",
@@ -1045,7 +1052,7 @@ function buySetupAttack() {
      var roll = Math.random();
      var fail = roll < buySetupChance.dataset.attackdeath;
      if (fail) {
-          msgBuySetupAttack.callback = endDeath();
+          msgBuySetupAttack.callback1 = endDeath;
      }
 
      showMessageBundle(msgBuySetupAttack);
@@ -1054,14 +1061,28 @@ function buySetupAttack() {
 function buySetupSurrender() {
      msgBuySetupSurrender = {
           title: "This doesn't look good...",
-          body: "<p>You throw your hands up and try to bargain for your life. The dealer cleans you out and leaves you in a dumpster with a mild concussion.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
+          _bodyTemplate:
+               "<p>You throw your hands up and try to bargain for your life. The dealer robs you and leaves you in a dumpster with a mild concussion.<br />- <span>{cash}</span><br />- <span>{amount} {units}</span> of <span>{name}</span></p>",
           button1: "Continue",
           button2: "",
-          art: "buySetupSurrender",
+          art: "buySetupSurrender", // Method to get the body, calling functions only when needed
+
+          get body() {
+               const cash = robberyCash();
+               const { amount, name, units } = robberyDrugs(); // Destructure the returned object
+
+               return this._bodyTemplate
+                    .replace("{cash}", cash)
+                    .replace("{amount}", amount)
+                    .replace("{units}", units)
+                    .replace("{name}", name);
+          },
      };
 
      showMessageBundle(msgBuySetupSurrender);
 }
+
+// sell setup ------------------
 
 msgSellSetup = {
      title: "It's a setup!",
@@ -1076,16 +1097,26 @@ msgSellSetup = {
 function sellSetupFlee() {
      msgSellSetupFlee = {
           title: "You make a break for it...",
-          body: "<p>Shots ring out as you crash through a second story window, onto a fire-escape...<br />- <span>N units</span> of <span>drug</span></p>",
+          _bodyTemplate:
+               "<p>Shots ring out as you crash through a second story window, onto a fire-escape...<br />- <span>{amount} {units}</span> of <span>{name}</span></p>",
           button1: "Continue",
           button2: "",
           art: "sellSetupFlee",
+
+          get body() {
+               const { amount, name, units } = robberyDrugs(); // Destructure the returned object
+
+               return this._bodyTemplate
+                    .replace("{amount}", amount)
+                    .replace("{units}", units)
+                    .replace("{name}", name);
+          },
      };
 
      var roll = Math.random();
      var fail = roll < sellSetupChance.dataset.fleedeath;
      if (fail) {
-          msgSellSetupFlee.callback1 = endDeath();
+          msgSellSetupFlee.callback1 = endDeath;
      }
 
      showMessageBundle(msgSellSetupFlee);
@@ -1094,19 +1125,33 @@ function sellSetupFlee() {
 function sellSetupSurrender() {
      msgSellSetupSurrender = {
           title: "You're severely outgunned...",
-          body: "<p>You throw your hands up and say a quick prayer. Maybe the cops just want to rob you.<br />- <span>N cash</span><br />- <span>N units</span> of <span>drug</span></p>",
+          _bodyTemplate:
+               "<p>You throw your hands up and say a quick prayer. Maybe the cops just want to rob you.<br />- <span>{cash}</span><br />- <span>{amount} {units}</span> of <span>{name}</span></p>",
           button1: "Continue",
           button2: "",
           art: "sellSetupSurrender",
+
+          get body() {
+               const cash = robberyCash();
+               const { amount, name, units } = robberyDrugs(); // Destructure the returned object
+
+               return this._bodyTemplate
+                    .replace("{cash}", cash)
+                    .replace("{amount}", amount)
+                    .replace("{units}", units)
+                    .replace("{name}", name);
+          },
      };
 
      var roll = Math.random();
      var fail = roll < sellSetupChance.dataset.surrenderjail;
      if (fail) {
-          msgSellSetupSurrender.callback1 = endJail();
+          msgSellSetupSurrender.callback1 = endJail;
      }
      showMessageBundle(msgSellSetupSurrender);
 }
+
+// other ------------------
 
 msgLoanReminder = {
      title: "Big Rick wants his money...",
@@ -1243,46 +1288,47 @@ function showSellSetup() {
      showMessageBundle(msgSellSetup);
 }
 
+// END GAME -------------------------------------------------------------------------------------------------------
+
+function gameOver(tier, message) {
+     endCityDay.innerHTML = vDay;
+     endMessage.innerHTML = message;
+     endScreen.classList.add(tier);
+     totalEarnings.innerHTML = fmtMoney.format(
+          Number(wallet.dataset.cash) + Number(wallet.dataset.bank)
+     );
+     console.log("cash: " + wallet.dataset.cash + " bank: " + wallet.dataset.bank);
+     body.classList.add("gameOver");
+}
+
 function endDeath() {
-     // TODO Sam we ends will actually new slides instead of a pop-up
-     // TODO @sam WHY does the message not appear? It doesn't even seem to be called. Should we use showMessageBundle?
-     showMessage("End of the Line", "You died", "New Game", null, restart(), null, null);
+     var message =
+          "Unfortunately, you sustained multiple gunshots and quickly bled out. Hey, look on the bright side; at least you got to travel and sell drugs.";
+     gameOver("death", message);
 }
 
 function endJail() {
-     // TODO Sam we ends will actually new slides instead of a pop-up
-     showMessage("End of the Line", "You went to jail", "New Game", null, restart(), null, null);
+     var message =
+          "Some people win, other's lose; it's the politics of contraband. Cheer up, you'll be out in 3-5.";
+     gameOver("jail", message);
 }
 
 function endBroke() {
-     // TODO Sam we ends will actually new slides instead of a pop-up
-     showMessage("End of the Line", "You went broke", "New Game", null, restart(), null, null);
+     var message =
+          "This life isn’t for every one. You're young, maybe you can get a nice factory gig.";
+     gameOver("broke", message);
 }
 
 function endRich() {
-     // TODO Sam we ends will actually new slides instead of a pop-up
-     showMessage(
-          "End of the Line",
-          "You made that money!",
-          "New Game",
-          null,
-          restart(),
-          null,
-          null
-     );
+     var message =
+          "Luxury cars, penthouse apartments, the world is yours. Here's to the good life!";
+     gameOver("rich", message);
 }
 
 function endRecruit() {
-     // TODO Sam we ends will actually new slides instead of a pop-up
-     showMessage(
-          "End of the Line",
-          "You're pretty good at this",
-          "...",
-          null,
-          restart(),
-          null,
-          null
-     );
+     var message =
+          "<strong>Agent Fisher:</strong> You've got some moves kid; think you're ready for the big leagues? We've got enough evidence to bury you for 3-5 so you've really got no choice.";
+     gameOver("recruit", message);
 }
 
 function restart() {
