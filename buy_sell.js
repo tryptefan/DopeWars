@@ -135,13 +135,15 @@ function enterCity(cityId) {
      body.classList.add(vCity);
      refreshWallet();
 
-     wallet.dataset.debt = Number(wallet.dataset.debt) + Number(wallet.dataset.debt) * interest;
+     wallet.dataset.debt = Math.floor(
+          Number(wallet.dataset.debt) + Number(wallet.dataset.debt) * interest
+     );
      if (wallet.dataset.debt > 0) {
           loanAge++;
      }
 
      if (lastDayPassed()) {
-          // TODO end game
+          endGameAssessment();
      }
 }
 
@@ -150,6 +152,7 @@ function loanReminderCheck() {
           showMessageBundle(msgLoanReminder);
      } else if (loanAge == 10) {
           // DEADDDDDDD
+          showMessageBundle(msgLoanDeadline);
      } else {
           return true;
      }
@@ -857,16 +860,27 @@ refreshLoanValues();
 
 // Message helper functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+function getLoanInfo() {
+     var loanTimeLeft = loanAge;
+     var amountOwed = fmtMoney.format(wallet.dataset.debt);
+
+     return { timeLeft: loanTimeLeft, owed: amountOwed };
+}
+
 function robberyCash() {
      console.log(eventOccurring);
      if (eventOccurring) {
-          console.log("robbery actually hapepning");
+          //console.log("robbery actually hapepning");
           var cash = wallet.dataset.cash;
-          var randomPercentage = Math.random() * 100;
-          var amountToRemove = (randomPercentage / 100) * cash;
-          amountToRemove = Math.round(amountToRemove / 10) * 10;
-          wallet.dataset.cash = cash - amountToRemove;
-          refreshWallet();
+          if (cash > 0) {
+               var randomPercentage = Math.random() * 100;
+               var amountToRemove = (randomPercentage / 100) * cash;
+               amountToRemove = Math.round(amountToRemove / 10) * 10;
+               wallet.dataset.cash = cash - amountToRemove;
+               refreshWallet();
+          } else {
+               amountToRemove = 0;
+          }
           return fmtMoney.format(amountToRemove);
      }
 }
@@ -883,30 +897,34 @@ function robberyDrugs() {
                drugsHolding.push(drug);
           }
      }
+     if (drugsHolding.length > 0) {
+          // pick a random drug out of drugsHolding
+          var randomIndex = Math.floor(Math.random() * drugsHolding.length);
+          var drug = drugsHolding[randomIndex];
+          var drugHoldingAmount = drug.dataset.holding;
 
-     // pick a random drug out of drugsHolding
-     var randomIndex = Math.floor(Math.random() * drugsHolding.length);
-     var drug = drugsHolding[randomIndex];
-     var drugHoldingAmount = drug.dataset.holding;
+          // remove random percentage (int)
+          var randomPercentage = Math.floor(Math.random() * 100);
+          var amountToRemove = (randomPercentage / 100) * drugHoldingAmount;
+          amountToRemove = Math.round(amountToRemove / 10) * 10;
+          drug.dataset.holding -= amountToRemove;
 
-     // remove random percentage (int)
-     var randomPercentage = Math.floor(Math.random() * 100);
-     var amountToRemove = (randomPercentage / 100) * drugHoldingAmount;
-     amountToRemove = Math.round(amountToRemove / 10) * 10;
-     drug.dataset.holding -= amountToRemove;
+          // find drug unit name
+          var drugId = drug.id;
+          console.log("drugId = " + drugId);
+          var drugName = drugId.replace("my-", "");
 
-     // find drug unit name
-     var drugId = drug.id;
-     console.log("drugId = " + drugId);
-     var drugName = drugId.replace("my-", "");
+          var drugData = document.getElementById("ur-" + drugName);
+          var drugUnit = drugData.dataset.dose;
 
-     var drugData = document.getElementById("ur-" + drugName);
-     var drugUnit = drugData.dataset.dose;
+          console.log("amount to remove =" + amountToRemove);
 
-     console.log("amount to remove =" + amountToRemove);
-
-     refreshDrugs(1);
-
+          refreshDrugs(1);
+     } else {
+          amountToRemove = 0;
+          drugName = "nothing";
+          drugUnit = "grams";
+     }
      return { amount: amountToRemove, name: drugName, units: drugUnit };
 }
 
@@ -942,7 +960,7 @@ function findDrugs() {
 
 //function showMessage(msgTitle, msgBody, msgButton1, msgButton2, artSignifier) {
 msgWelcome = {
-     title: "It's late May 1, 1987",
+     title: "It's late May, 1987",
      body: `<p>You've flunked out of college, you're broke, and running out of options. Out of desperation, you decide to try your hand at the drug game.</p>
      <p>Against your girlfriend's advice, you hit up notorious loan shark “Big Rick”. He loan's you $5000, at 10% interest per day.</p>
      <p>The loan is due in 10 days.<br />Rent is due in 30 days.</p>`,
@@ -1155,10 +1173,16 @@ function sellSetupSurrender() {
 
 msgLoanReminder = {
      title: "Big Rick wants his money...",
-     body: "<p>This is a friendly reminder that you owe our associate <span>$N</span>.<br /><br />You got <span>N</span> days.</p>",
+     _bodyTemplate: `<p>This is a friendly reminder that you owe our associate <span>{owed}</span>.<br /><br />You got <span>{timeLeft}</span> days.</p>`,
      button1: "Understood",
      button2: "",
      art: "loanReminder",
+
+     get body() {
+          const { timeLeft, owed } = getLoanInfo(); // Destructure the returned object
+
+          return this._bodyTemplate.replace("{owed}", owed).replace("{timeLeft}", timeLeft);
+     },
 };
 
 msgLoanDeadline = {
@@ -1167,6 +1191,7 @@ msgLoanDeadline = {
      button1: "Damn",
      button2: "",
      art: "loanDeadline",
+     callback1: endDeath,
 };
 
 msgShamrock = {
@@ -1290,6 +1315,17 @@ function showSellSetup() {
 
 // END GAME -------------------------------------------------------------------------------------------------------
 
+function endGameAssessment() {
+     var totalEarnings = Number(wallet.dataset.cash) + Number(wallet.dataset.bank);
+     if (totalEarnings < 2000000) {
+          endBroke();
+     } else if (totalEarnings > 2000001) {
+          endRich();
+     } else if (totalEarnings > 400000000) {
+          endRecruit();
+     }
+}
+
 function gameOver(tier, message) {
      endCityDay.innerHTML = vDay;
      endMessage.innerHTML = message;
@@ -1297,7 +1333,7 @@ function gameOver(tier, message) {
      totalEarnings.innerHTML = fmtMoney.format(
           Number(wallet.dataset.cash) + Number(wallet.dataset.bank)
      );
-     console.log("cash: " + wallet.dataset.cash + " bank: " + wallet.dataset.bank);
+     //console.log("cash: " + wallet.dataset.cash + " bank: " + wallet.dataset.bank);
      body.classList.add("gameOver");
 }
 
@@ -1315,7 +1351,7 @@ function endJail() {
 
 function endBroke() {
      var message =
-          "This life isn’t for every one. You're young, maybe you can get a nice factory gig.";
+          "This life isn't for every one. You're young, maybe you can get a nice factory gig.";
      gameOver("broke", message);
 }
 
