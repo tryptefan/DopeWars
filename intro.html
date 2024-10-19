@@ -18,16 +18,18 @@
     <div class="container fs">
 
 
+        <a id="buttonSettings" href="#"></a>
 
 
         <div class="splash fsButton" id="fullscreenButton">
             Dope<br />
             <span class="wars">Wars</span>
             <div>198<span>7</span></div>
+
         </div>
 
 
-        <div id="intoBottom">
+        <div id="introBottom">
             <div id="highScore">High Score <span>$598,935,245</span></div>
 
             <div class="actions">
@@ -39,6 +41,35 @@
 
 
 
+
+        <div class="dark" id="darkness"></div>
+
+        <!-- Settings -->
+        <div class="overlay settings">
+            <div class="topBar">
+                <h1 class="title">Settings</h1>
+            </div><!-- topBar -->
+
+            <!-- form with one filedset that is just a toggle switch labeled "Travel Transitions"-->
+            <form>
+                <fieldset>
+                    <label for="travelTransitions">
+                        <label class="switch">Travel Transitions</label>
+                        <input class="checkbox" type="checkbox" id="travelTransitions" name="travelTransitions"
+                            value="travelTransitions">
+
+                    </label>
+                </fieldset>
+            </form>
+
+            <div class="meta">Tempest Press ©2024</div>
+
+            <div class="actions">
+                <a href="#" class="buttonSecondary button" id="travCancelButton">Cancel</a>
+                <a href="#" class="buttonPrimary button" id="travCancelButton">Save</a>
+            </div>
+
+        </div><!-- travel overlay -->
 
 
     </div><!-- container -->

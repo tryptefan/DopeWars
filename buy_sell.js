@@ -1,4 +1,5 @@
 const body = document.body;
+const settingsButton = document.getElementById("buttonSettings");
 const popup = document.getElementById("eventPopup");
 const dealOverlay = document.getElementById("dealOverlay");
 const locationTitle = document.getElementById("locationTitle");
@@ -88,9 +89,17 @@ var interest = 0.1;
 var loanAge = 0;
 var cloverChance = 200;
 var lucky = false;
+var luck = 0.2;
 var eventOccurring = false;
 
 var vCity = "";
+
+// if body contains class "intro"
+if (body.classList.contains("intro")) {
+     settingsButton.onclick = function () {
+          body.classList.add("showSettings");
+     };
+} // intro
 
 function lastDayPassed() {
      return vDay > 30;
@@ -1068,6 +1077,9 @@ function buySetupAttack() {
      };
 
      var roll = Math.random();
+     if (lucky) {
+          roll += luck;
+     }
      var fail = roll < buySetupChance.dataset.attackdeath;
      if (fail) {
           msgBuySetupAttack.callback1 = endDeath;
@@ -1132,6 +1144,9 @@ function sellSetupFlee() {
      };
 
      var roll = Math.random();
+     if (lucky) {
+          roll += luck;
+     }
      var fail = roll < sellSetupChance.dataset.fleedeath;
      if (fail) {
           msgSellSetupFlee.callback1 = endDeath;
@@ -1162,6 +1177,9 @@ function sellSetupSurrender() {
      };
 
      var roll = Math.random();
+     if (lucky) {
+          roll += luck;
+     }
      var fail = roll < sellSetupChance.dataset.surrenderjail;
      if (fail) {
           msgSellSetupSurrender.callback1 = endJail;

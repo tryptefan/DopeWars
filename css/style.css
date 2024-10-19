@@ -305,7 +305,7 @@ h5 {
   left: 0;
   height: 100%;
   opacity: 0;
-  position: absolute;
+  position: absolute !important;
   top: 0;
   transition: 0.2s opacity;
   width: 0;
@@ -315,7 +315,8 @@ h5 {
 .showTravel .dark,
 .showDeal .dark,
 .showLoanShark .dark,
-.showBank .dark {
+.showBank .dark,
+.showSettings .dark {
   background-color: rgba(0, 0, 0, 0.35);
   left: 0;
   height: 100%;
@@ -390,6 +391,13 @@ h5 {
 .showBank .bank .topBar {
   margin-bottom: 305px;
 }
+.showSettings .settings {
+  bottom: 0;
+  text-align: left;
+}
+.showSettings .settings .topBar {
+  margin-bottom: 26px;
+}
 .intro {
   text-align: center;
 }
@@ -417,6 +425,15 @@ h5 {
   opacity: 0.21;
   pointer-events: none;
 }
+.intro .container #buttonSettings {
+  background: url(../img/iconSettings.svg) center no-repeat;
+  height: 21px;
+  width: 21px;
+  display: block;
+  position: absolute;
+  top: 56px;
+  right: 26px;
+}
 .intro .container #highScore {
   color: var(--grey30);
   margin-bottom: 30px;
@@ -424,18 +441,14 @@ h5 {
 .intro .container #highScore span {
   font-weight: bold;
 }
-.intro .container .button {
+.intro .container #introBottom .button {
   background-color: var(--grey30);
   color: var(--brand);
 }
-.intro .container .buttonSecondary {
+.intro .container #introBottom .buttonSecondary {
   background-color: var(--brand);
   border: 3px solid var(--grey30);
   color: var(--grey30);
-}
-.intro .container > div {
-  position: relative;
-  z-index: 2;
 }
 .splash {
   color: var(--grey30);
@@ -1181,6 +1194,26 @@ h5 {
 }
 #endScreen #totalEarnings {
   margin-bottom: 26px;
+}
+#endScreen:after {
+  background: url("../img/grit.png");
+  mix-blend-mode: exclusion;
+  background-size: cover;
+  content: "";
+  display: block;
+  pointer-events: none;
+  position: absolute;
+  opacity: 0.2;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  #endScreen:after {
+    background-image: url('../img/grit@2x.png');
+  }
 }
 .gameOver #endScreen {
   opacity: 1;

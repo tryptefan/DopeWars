@@ -333,7 +333,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
     height: 100%;
     opacity: 0;
     //pointer-events: none;
-    position: absolute; 
+    position: absolute !important; 
     top: 0;
     transition: .2s opacity; 
     width: 0;
@@ -343,7 +343,8 @@ h1, h2, h3, h4, h5 { margin: 0; }
 .showTravel .dark,
 .showDeal .dark,
 .showLoanShark .dark,
-.showBank .dark { 
+.showBank .dark,
+.showSettings .dark { 
     background-color: rgba(0, 0, 0, .35);
     left: 0;
     height: 100%;
@@ -418,6 +419,14 @@ h1, h2, h3, h4, h5 { margin: 0; }
 } // duplicate this
 
 
+.showSettings .settings { 
+    bottom: 0; 
+    text-align: left;
+    
+    .topBar { margin-bottom: 26px; }
+} // duplicate this
+
+
 
 // PAGES +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -462,6 +471,18 @@ h1, h2, h3, h4, h5 { margin: 0; }
     //     width: 26px;
     // }
 
+    
+    #buttonSettings {
+        background: url(../img/iconSettings.svg) center no-repeat;
+        height: 21px;
+        width: 21px;
+        display: block;
+        position: absolute;
+        top: 56px;
+        right: 26px;
+
+    }
+
     #highScore {
         color: var(--grey30);
         margin-bottom: 30px;;
@@ -469,11 +490,13 @@ h1, h2, h3, h4, h5 { margin: 0; }
         span { font-weight: bold; }
     }
 
-    .button { background-color: var(--grey30); color: var(--brand); }
-    .buttonSecondary {background-color: var(--brand); border: 3px solid var(--grey30); color: var(--grey30); }
+    #introBottom {
+        .button { background-color: var(--grey30); color: var(--brand); }
+        .buttonSecondary {background-color: var(--brand); border: 3px solid var(--grey30); color: var(--grey30); }
+    }
 }
 
-.intro .container > div { position: relative; z-index: 2; }
+//.intro .container > div { position: relative; z-index: 2; }
 .splash {
     color: var(--grey30); 
     display: inline-block;
@@ -1129,7 +1152,27 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
     
     #totalEarnings { margin-bottom: 26px; }
-}
+
+    &:after {
+        background: url("../img/grit.png");
+        mix-blend-mode: exclusion;
+        background-size: cover;
+        content: "";
+        display: block;
+        pointer-events: none;
+        position: absolute;
+        opacity: .2;
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 0;
+    
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+                background-image: url('../img/grit@2x.png');
+        }
+    }
+}// #endScreen
 
 .gameOver #endScreen {
     opacity: 1;
