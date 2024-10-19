@@ -494,7 +494,55 @@ h1, h2, h3, h4, h5 { margin: 0; }
         .button { background-color: var(--grey30); color: var(--brand); }
         .buttonSecondary {background-color: var(--brand); border: 3px solid var(--grey30); color: var(--grey30); }
     }
-}
+
+
+    .settings {
+        display: flex;
+        flex-direction: column;
+
+        form { flex-grow: 1; }
+        fieldset { 
+            border: 0; 
+            position: relative;
+            text-align: right;
+
+            span { 
+                position: absolute;
+                left: 0;
+             }
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            background-color: var(--grey10);
+            border-radius: 20px;
+            transition: all 0.3s;
+          }
+          .switch::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius:50%;
+            background-color: var(--grey30);
+            top: 1px;
+            left: 1px;
+            transition: all 0.3s;
+          }
+          
+          .checkbox:checked + .switch::after {
+            left : 20px;
+          }
+          .checkbox:checked + .switch {
+            background-color: var(--brand);
+          }
+          .checkbox {
+            display : none;
+          }
+    }
+} // ntro
 
 //.intro .container > div { position: relative; z-index: 2; }
 .splash {

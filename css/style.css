@@ -450,6 +450,51 @@ h5 {
   border: 3px solid var(--grey30);
   color: var(--grey30);
 }
+.intro .container .settings {
+  display: flex;
+  flex-direction: column;
+}
+.intro .container .settings form {
+  flex-grow: 1;
+}
+.intro .container .settings fieldset {
+  border: 0;
+  position: relative;
+  text-align: right;
+}
+.intro .container .settings fieldset span {
+  position: absolute;
+  left: 0;
+}
+.intro .container .settings .switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: var(--grey10);
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+.intro .container .settings .switch::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--grey30);
+  top: 1px;
+  left: 1px;
+  transition: all 0.3s;
+}
+.intro .container .settings .checkbox:checked + .switch::after {
+  left: 20px;
+}
+.intro .container .settings .checkbox:checked + .switch {
+  background-color: var(--brand);
+}
+.intro .container .settings .checkbox {
+  display: none;
+}
 .splash {
   color: var(--grey30);
   display: inline-block;
