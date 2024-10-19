@@ -333,7 +333,7 @@ h5 {
   left: 0;
   height: 665px;
   overflow: hidden;
-  padding: 32px 24px 44px 24px;
+  padding: 32px 24px 21px 24px;
   position: absolute;
   transition: 0.2s bottom;
   width: 100%;
@@ -489,7 +489,7 @@ h5 {
 .intro .container .settings .checkbox:checked + .switch::after {
   left: 20px;
 }
-.intro .container .settings .checkbox:checked + .switch {
+.intro .container .settings .checkbox:checked + .switch:after {
   background-color: var(--brand);
 }
 .intro .container .settings .checkbox {

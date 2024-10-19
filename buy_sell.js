@@ -1,5 +1,7 @@
 const body = document.body;
 const settingsButton = document.getElementById("buttonSettings");
+const settingsCancel = document.getElementById("settingsCancel");
+const settingsSave = document.getElementById("settingsSave");
 const popup = document.getElementById("eventPopup");
 const dealOverlay = document.getElementById("dealOverlay");
 const locationTitle = document.getElementById("locationTitle");
@@ -98,6 +100,13 @@ var vCity = "";
 if (body.classList.contains("intro")) {
      settingsButton.onclick = function () {
           body.classList.add("showSettings");
+     };
+
+     settingsCancel.onclick = function () {
+          body.classList.remove("showSettings");
+     };
+     settingsSave.onclick = function () {
+          body.classList.remove("showSettings");
      };
 } // intro
 
