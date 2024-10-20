@@ -63,6 +63,8 @@ const endCityDay = document.getElementById("endCityDay");
 const endMessage = document.getElementById("endMessage");
 const totalEarnings = document.getElementById("totalEarnings");
 
+const scoreValue = document.getElementById("scoreValue");
+
 const fmtMoney = Intl.NumberFormat("en-US", {
      style: "currency",
      currency: "USD",
@@ -93,8 +95,11 @@ var cloverChance = 200;
 var lucky = false;
 var luck = 0.2;
 var eventOccurring = false;
+var fisherChance;
 
 var vCity = "";
+
+let highScore = localStorage.getItem("highScore");
 
 // Check if "travelTransitions" is stored in localStorage
 // get value as boolean
@@ -104,6 +109,8 @@ let transitAnimation = localStorage.getItem("travelTransitions");
 
 // if body contains class "intro"
 if (body.classList.contains("intro")) {
+     scoreValue.innerHTML = fmtMoney.format(highScore);
+
      settingsButton.onclick = function () {
           body.classList.add("showSettings");
      };
@@ -151,6 +158,10 @@ function cloverCheck() {
 }
 
 function enterCity(cityId) {
+     fisherChance = Math.floor(Math.random() * 200);
+     if (fisherChance === 0) {
+          body.addClass("fisherWatching");
+     }
      clearBodyClasses();
      if (vCity.length > 0) {
           body.classList.remove(vCity);
@@ -1382,10 +1393,15 @@ function gameOver(tier, message) {
      endCityDay.innerHTML = vDay;
      endMessage.innerHTML = message;
      endScreen.classList.add(tier);
+     var myTotalEarnings = Number(wallet.dataset.cash) + Number(wallet.dataset.bank);
      totalEarnings.innerHTML = fmtMoney.format(
           Number(wallet.dataset.cash) + Number(wallet.dataset.bank)
      );
-     //console.log("cash: " + wallet.dataset.cash + " bank: " + wallet.dataset.bank);
+     var highScore = localStorage.getItem("highScore");
+     // if totalEarnings is greater than highScore, replace localStorage value of highScore with totalEarnings
+     if (myTotalEarnings > highScore) {
+          localStorage.setItem("highScore", myTotalEarnings);
+     }
      body.classList.add("gameOver");
 }
 
