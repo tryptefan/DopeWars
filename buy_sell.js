@@ -96,6 +96,12 @@ var eventOccurring = false;
 
 var vCity = "";
 
+// Check if "travelTransitions" is stored in localStorage
+// get value as boolean
+let transitAnimation = localStorage.getItem("travelTransitions");
+// convert to type boolean
+//transitAnimation = transitAnimation == "true";
+
 // if body contains class "intro"
 if (body.classList.contains("intro")) {
      settingsButton.onclick = function () {
@@ -108,6 +114,25 @@ if (body.classList.contains("intro")) {
      settingsSave.onclick = function () {
           body.classList.remove("showSettings");
      };
+
+     const travelTransitionsCheckbox = document.getElementById("toggleTransit");
+
+     // If there's no stored value, set it to true (on by default)
+     if (transitAnimation === null) {
+          transitAnimation = true; // Default to "on"
+          localStorage.setItem("travelTransitions", transitAnimation); // Save the default value
+     } else {
+          transitAnimation = transitAnimation === "true"; // Convert string to boolean
+     }
+
+     // Set the checkbox state based on transitAnimation
+     travelTransitionsCheckbox.checked = transitAnimation;
+
+     // Add an event listener to handle changes
+     travelTransitionsCheckbox.addEventListener("change", function () {
+          const isChecked = travelTransitionsCheckbox.checked; // Get the current state
+          localStorage.setItem("travelTransitions", isChecked); // Save it to localStorage
+     });
 } // intro
 
 function lastDayPassed() {
@@ -1404,60 +1429,75 @@ function restart() {
 let transitState = 0;
 
 function transit(city) {
-     // if there is a body class of "fisherWatching", then bg speed is "1s" else "2s"
-     //const speed = body.classList.contains("fisherWatching") ? "1s" : "2s";
-     const incrementAmount = body.classList.contains("fisherWatching") ? -270 : -100;
+     console.log(transitAnimation);
+     // log type of transitAnimation
+     console.log(typeof transitAnimation);
+     if (transitAnimation == "true") {
+          console.log("transit is animated");
+          // if there is a body class of "fisherWatching", then bg speed is "1s" else "2s"
+          //const speed = body.classList.contains("fisherWatching") ? "1s" : "2s";
+          const incrementAmount = body.classList.contains("fisherWatching") ? -270 : -100;
 
-     const speed = "2s";
+          const speed = "2s";
 
-     const screen = document.getElementById("mainScreen");
-     const screen2 = document.getElementById("transit");
-     const screen3 = document.getElementById("landscape");
-     var currentPos = window.getComputedStyle(screen3).getPropertyValue("background-position-x");
-     var currentPosition = parseFloat(currentPos);
-     currentPosition += incrementAmount;
+          const screen = document.getElementById("mainScreen");
+          const screen2 = document.getElementById("transit");
+          const screen3 = document.getElementById("landscape");
+          var currentPos = window
+               .getComputedStyle(screen3)
+               .getPropertyValue("background-position-x");
+          var currentPosition = parseFloat(currentPos);
+          currentPosition += incrementAmount;
 
-     if (transitState === 0) {
-          screen.style.transform = "translateX(-100%)";
-          screen2.style.transition = "transform 1s linear";
-          screen2.style.transform = "translateX(0%)";
+          if (transitState === 0) {
+               screen.style.transform = "translateX(-100%)";
+               screen2.style.transition = "transform 1s linear";
+               screen2.style.transform = "translateX(0%)";
 
-          screen3.style.transition = "background-position-x 2s linear";
-          screen3.style.backgroundPositionX = currentPosition + "px";
+               screen3.style.transition = "background-position-x 2s linear";
+               screen3.style.backgroundPositionX = currentPosition + "px";
 
-          transitState = 1;
-          setTimeout(() => {
-               screen.style.transition = "none"; // Disable transition for immediate jump
-               screen.style.transform = "translateX(100%)"; // Move screen to the right side
+               transitState = 1;
+               setTimeout(() => {
+                    screen.style.transition = "none"; // Disable transition for immediate jump
+                    screen.style.transform = "translateX(100%)"; // Move screen to the right side
+
+                    setTimeout(() => {
+                         screen.style.transition = "transform 1s linear"; // Re-enable transition
+                         screen.style.transform = "translateX(0)"; // Slide screen back to the center
+                         screen2.style.transform = "translateX(-100%)"; // Slide screen back to the center
+                         transitState = 0;
+
+                         // Change city
+                         if (city.dataset.to != vCity) {
+                              enterCity(city.dataset.to);
+                              refreshDrugs();
+                         }
+                    }, 20);
+               }, 1000); // This timeout should match the CSS transition duration
+
+               body.classList.remove("showTravel");
 
                setTimeout(() => {
-                    screen.style.transition = "transform 1s linear"; // Re-enable transition
-                    screen.style.transform = "translateX(0)"; // Slide screen back to the center
-                    screen2.style.transform = "translateX(-100%)"; // Slide screen back to the center
-                    transitState = 0;
+                    screen2.style.transition = "none";
+                    screen2.style.transform = "translateX(100%)";
 
-                    // Change city
-                    if (city.dataset.to != vCity) {
-                         enterCity(city.dataset.to);
-                         refreshDrugs();
-                    }
-               }, 20);
-          }, 1000); // This timeout should match the CSS transition duration
+                    screen3.style.transition = "none";
+                    screen3.style.backgroundPositionX = 0;
 
-          body.classList.remove("showTravel");
-
-          setTimeout(() => {
-               screen2.style.transition = "none";
-               screen2.style.transform = "translateX(100%)";
-
-               screen3.style.transition = "none";
-               screen3.style.backgroundPositionX = 0;
-
-               // Show an event if there is one
-               attemptArriveEvent();
-          }, 2002);
+                    // Show an event if there is one
+                    attemptArriveEvent();
+               }, 2002);
+          }
+     } else {
+          // Change city
+          if (city.dataset.to != vCity) {
+               enterCity(city.dataset.to);
+               refreshDrugs();
+          }
+          attemptArriveEvent();
      }
-}
+} // transit code
 
 // Ben's graph code
 

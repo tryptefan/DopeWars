@@ -495,6 +495,9 @@ h5 {
 .intro .container .settings .checkbox {
   display: none;
 }
+.intro .container .settings .meta {
+  margin-bottom: 26px;
+}
 .splash {
   color: var(--grey30);
   display: inline-block;
