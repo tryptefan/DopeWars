@@ -1016,7 +1016,7 @@ function findDrugs() {
 msgWelcome = {
      title: "It's late May, 1987",
      body: `<p>You've flunked out of college, you're broke, and running out of options. Out of desperation, you decide to try your hand at the drug game.</p>
-     <p>Against your girlfriend's advice, you hit up notorious loan shark “Big Rick”. He loan's you $5000, at 10% interest per day.</p>
+     <p>Against your girlfriend's advice, you hit up notorious loan shark “Big Rick”. He loans you $5000, at 10% interest per day.</p>
      <p>The loan is due in 10 days.<br />Rent is due in 30 days.</p>`,
      button1: "Let's Go",
      button2: "",
@@ -1295,7 +1295,7 @@ msgHeroinUp = {
 
 msgPcpUp = {
      title: "<span class=arrow>↑</span> PCP Up",
-     body: "<p>A federal task seized 2.25 gallons of liquid PCP worth more than $12 million; prices are astronomical.</p>",
+     body: "<p>A federal task force seized 2.25 gallons of liquid PCP worth more than $12 million; prices are astronomical.</p>",
      button1: "Got it",
 };
 
