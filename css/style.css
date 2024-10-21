@@ -1277,6 +1277,7 @@ h5 {
 }
 .endScreen.jail #art {
   background-image: url(../img/endJail.png);
+  background-size: 100%;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .endScreen.jail #art {
