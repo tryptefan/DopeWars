@@ -1012,7 +1012,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.jumped #messageBody::before {
-    background-image: url("../img/eventJumped@2X.png");
+    background-image: url("../img/eventJumped@2x.png");
   }
 }
 .popup.art.shakedown #messageBody::before {
@@ -1023,7 +1023,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.shakedown #messageBody::before {
-    background-image: url("../img/eventFrisk@2X.png");
+    background-image: url("../img/eventFrisk@2x.png");
   }
 }
 .popup.art.package #messageBody::before {
@@ -1034,7 +1034,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.package #messageBody::before {
-    background-image: url("../img/eventPackage@2X.png");
+    background-image: url("../img/eventPackage@2x.png");
   }
 }
 .popup.art.stash #messageBody::before {
@@ -1045,7 +1045,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.stash #messageBody::before {
-    background-image: url("../img/eventStash@2X.png");
+    background-image: url("../img/eventStash@2x.png");
   }
 }
 .popup.art.buySetup #messageBody::before {
@@ -1056,7 +1056,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.buySetup #messageBody::before {
-    background-image: url("../img/eventBuySetup@2X.png");
+    background-image: url("../img/eventBuySetup@2x.png");
   }
 }
 .popup.art.buySetupAttack #messageBody::before {
@@ -1067,7 +1067,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.buySetupAttack #messageBody::before {
-    background-image: url("../img/eventBuySetupAttack@2X.png");
+    background-image: url("../img/eventBuySetupAttack@2x.png");
   }
 }
 .popup.art.buySetupSurrender #messageBody::before {
@@ -1078,7 +1078,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.buySetupSurrender #messageBody::before {
-    background-image: url("../img/eventBuySetupSurrender@2X.png");
+    background-image: url("../img/eventBuySetupSurrender@2x.png");
   }
 }
 .popup.art.sellSetup #messageBody::before {
@@ -1090,7 +1090,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.sellSetup #messageBody::before {
-    background-image: url("../img/eventSellSetup@2X.png");
+    background-image: url("../img/eventSellSetup@2x.png");
   }
 }
 .popup.art.sellSetupFlee #messageBody::before {
@@ -1102,7 +1102,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.sellSetupFlee #messageBody::before {
-    background-image: url("../img/eventSellSetupFlee@2X.png");
+    background-image: url("../img/eventSellSetupFlee@2x.png");
   }
 }
 .popup.art.sellSetupSurrender #messageBody::before {
@@ -1113,7 +1113,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.sellSetupSurrender #messageBody::before {
-    background-image: url("../img/eventBuySetupSurrender@2X.png");
+    background-image: url("../img/eventBuySetupSurrender@2x.png");
   }
 }
 .popup.art.loanReminder #messageBody::before {
@@ -1125,7 +1125,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.loanReminder #messageBody::before {
-    background-image: url("../img/eventLoanReminder@2X.png");
+    background-image: url("../img/eventLoanReminder@2x.png");
   }
 }
 .popup.art.loanDeadline #messageBody::before {
@@ -1136,7 +1136,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.loanDeadline #messageBody::before {
-    background-image: url("../img/eventLoanDeadline@2X.png");
+    background-image: url("../img/eventLoanDeadline@2x.png");
   }
 }
 .popup.art.shamrock #messageBody::before {
@@ -1147,7 +1147,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .popup.art.shamrock #messageBody::before {
-    background-image: url("../img/eventShamrock@2X.png");
+    background-image: url("../img/eventShamrock@2x.png");
   }
 }
 #landscape {
@@ -1272,7 +1272,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .endScreen.death #art {
-    background-image: url(../img/endDead@2X.png);
+    background-image: url(../img/endDead@2x.png);
   }
 }
 .endScreen.jail #art {
@@ -1280,7 +1280,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .endScreen.jail #art {
-    background-image: url(../img/endJail@2X.png);
+    background-image: url(../img/endJail@2x.png);
   }
 }
 .endScreen.broke #art {
@@ -1288,7 +1288,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .endScreen.broke #art {
-    background-image: url(../img/endBroke@2X.png);
+    background-image: url(../img/endBroke@2x.png);
   }
 }
 .endScreen.rich #art {
@@ -1296,7 +1296,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .endScreen.rich #art {
-    background-image: url(../img/endRich@2X.png);
+    background-image: url(../img/endRich@2x.png);
   }
 }
 .endScreen.recruit #art {
@@ -1304,7 +1304,7 @@ h5 {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .endScreen.recruit #art {
-    background-image: url(../img/endRecruit@2X.png);
+    background-image: url(../img/endRecruit@2x.png);
   }
 }
 /*# sourceMappingURL=./style.css.map */
