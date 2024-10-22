@@ -721,6 +721,10 @@ h5 {
   flex-grow: 1;
   text-align: right;
 }
+.drugTable .location.disabledCity,
+.locationTable .location.disabledCity {
+  background-image: url("../img/iconArrowDisabled.svg");
+}
 .drugTable .location.disabledCity .city,
 .locationTable .location.disabledCity .city {
   color: var(--grey);

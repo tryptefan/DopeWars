@@ -685,12 +685,15 @@ h1, h2, h3, h4, h5 { margin: 0; }
         .price { color: var(--text); flex-grow: 1; text-align: right; }
     }
 
-    .location.disabledCity .city { color: var(--grey); }
+    .location.disabledCity{ 
+        background-image: url("../img/iconArrowDisabled.svg"); 
+        .city { color: var(--grey);  }
+    }
     .drug.disabled { 
         background-image: url("../img/iconArrowDisabled.svg"); 
         * { color: var(--grey); }
 
-        .bar { background-color: var(--grey);; }
+        .bar { background-color: var(--grey); }
     }
     .drug:last-child, .location:last-child { 
         border-bottom: 0;
