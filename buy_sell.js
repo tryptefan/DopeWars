@@ -702,8 +702,6 @@ confirmDealButton.onclick = function () {
      } else {
           avg /= totalHolding;
      }
-     dealDrugData.dataset.holding = totalHolding;
-     dealDrugData.dataset.price = Math.trunc(avg);
 
      refreshWallet();
      //refreshDrugs(1); // we need this in ordert to see the new amount we're holding
@@ -722,6 +720,8 @@ confirmDealButton.onclick = function () {
      }
 
      if (!fakeDrugs) {
+          dealDrugData.dataset.holding = totalHolding;
+          dealDrugData.dataset.price = Math.trunc(avg);
           refreshHolding();
      }
      body.classList.remove("showDeal");
