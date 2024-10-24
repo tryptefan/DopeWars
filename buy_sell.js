@@ -442,7 +442,7 @@ function positionCounter(slider, sliderCounter) {
 }
 
 function refreshHolding() {
-     console.log("weee");
+     //console.log("weee");
      var wallet = document.getElementById("wallet");
      for (var i = 0; i < drugs.length; i++) {
           var drug = drugs[i];
@@ -1000,7 +1000,7 @@ function robberyDrugs() {
 
           console.log("amount to remove =" + amountToRemove);
 
-          refreshDrugs(1);
+          refreshHolding();
      } else {
           amountToRemove = 0;
           drugName = "nothing";
