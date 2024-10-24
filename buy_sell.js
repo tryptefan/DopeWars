@@ -198,7 +198,7 @@ function enterCity(cityId) {
 }
 
 function loanReminderCheck() {
-     if (loanAge == 6) {
+     if (loanAge == 6 && wallet.dataset.debt > 0) {
           showMessageBundle(msgLoanReminder);
      } else if (loanAge == 10) {
           // DEADDDDDDD
