@@ -158,10 +158,6 @@ function cloverCheck() {
 }
 
 function enterCity(cityId) {
-     fisherChance = Math.floor(Math.random() * 200);
-     if (fisherChance === 0) {
-          body.addClass("fisherWatching");
-     }
      clearBodyClasses();
      if (vCity.length > 0) {
           body.classList.remove(vCity);
@@ -283,6 +279,11 @@ function attemptArriveEvent() {
 }
 
 function clickCity() {
+     fisherChance = Math.floor(Math.random() * 200);
+     if (fisherChance === 0) {
+          body.classList.add("fisherWatching");
+     }
+
      var event = window.event;
      if (event == null || event.target == null) {
           return;
@@ -1530,6 +1531,8 @@ function transit(city) {
 
                     // Show an event if there is one
                     attemptArriveEvent();
+                    // remove class "fisherWatching" from body
+                    body.classList.remove("fisherWatching");
                }, 2002);
           }
      } else {
