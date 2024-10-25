@@ -1298,6 +1298,7 @@ h5 {
 }
 .endScreen.rent #art {
   background-image: url(../img/endRent.png);
+  background-size: 100%;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .endScreen.rent #art {

@@ -1456,7 +1456,7 @@ function endBroke() {
 
 function endRent() {
      var message =
-          "Rent is paid with money left over. Maybe you can get a new car.  Something affordable.";
+          "Rent is paid, with money left over. Maybe you can get a new car.  Something affordable.";
      gameOver("rent", message);
 }
 
