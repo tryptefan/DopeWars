@@ -91,7 +91,7 @@ var vAmount = 0;
 var vDay = 0;
 var interest = 0.1;
 var loanAge = 0;
-var cloverChance = 200;
+var cloverChance = 150;
 var lucky = false;
 var luck = 0.2;
 var eventOccurring = false;
@@ -1408,6 +1408,7 @@ function showSellSetup() {
 
 function endGameAssessment() {
      var totalEarnings = Number(wallet.dataset.cash) + Number(wallet.dataset.bank);
+     console.log(totalEarnings);
      if (totalEarnings < 50000) {
           endBroke();
      } else if (totalEarnings > 50001 && totalEarnings < 200000) {
@@ -1456,7 +1457,7 @@ function endBroke() {
 function endRent() {
      var message =
           "Rent is paid with money left over. Maybe you can get a new car.  Something affordable.";
-     gameOver("broke", message);
+     gameOver("rent", message);
 }
 
 function endRich() {
