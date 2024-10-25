@@ -1408,11 +1408,13 @@ function showSellSetup() {
 
 function endGameAssessment() {
      var totalEarnings = Number(wallet.dataset.cash) + Number(wallet.dataset.bank);
-     if (totalEarnings < 2000000) {
+     if (totalEarnings < 50000) {
           endBroke();
-     } else if (totalEarnings > 2000001) {
+     } else if (totalEarnings > 50001 && totalEarnings < 200000) {
+          endRent();
+     } else if (totalEarnings > 200000 && totalEarnings < 500000) {
           endRich();
-     } else if (totalEarnings > 400000000) {
+     } else if (totalEarnings > 500000) {
           endRecruit();
      }
 }
@@ -1451,6 +1453,12 @@ function endBroke() {
      gameOver("broke", message);
 }
 
+function endRent() {
+     var message =
+          "Rent is paid with money left over. Maybe you can get a new car.  Something affordable.";
+     gameOver("broke", message);
+}
+
 function endRich() {
      var message =
           "Luxury cars, penthouse apartments, the world is yours. Here's to the good life!";
@@ -1473,11 +1481,7 @@ function restart() {
 let transitState = 0;
 
 function transit(city) {
-     console.log(transitAnimation);
-     // log type of transitAnimation
-     console.log(typeof transitAnimation);
      if (transitAnimation == "true") {
-          console.log("transit is animated");
           // if there is a body class of "fisherWatching", then bg speed is "1s" else "2s"
           //const speed = body.classList.contains("fisherWatching") ? "1s" : "2s";
           const incrementAmount = body.classList.contains("fisherWatching") ? -270 : -100;

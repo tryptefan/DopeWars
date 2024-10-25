@@ -1296,6 +1296,14 @@ h5 {
     background-image: url(../img/endBroke@2x.png);
   }
 }
+.endScreen.rent #art {
+  background-image: url(../img/endRent.png);
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .endScreen.rent #art {
+    background-image: url(../img/endRent@2x.png);
+  }
+}
 .endScreen.rich #art {
   background-image: url(../img/endRich.png);
 }
