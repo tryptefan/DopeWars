@@ -648,7 +648,46 @@ h1, h2, h3, h4, h5 { margin: 0; }
         align-items: baseline;
         padding: 8px 43px 6px 15px;
 
-        .amount { color: var(--text); width: 27px; }
+        .amount { color: var(--text); position: relative; width: 27px; transition: all 0.3s ease; }
+        .amount span { position: relative; }
+        .amount.highlight span::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 30px;
+            width: 30px;
+            background-color: var(--brand);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0); /* Centered at zero size */
+            z-index: -1; /* Keeps the circle behind the text */
+            animation: growFadeCircle .4s ;
+        }
+        /* Highlight animation */
+        @keyframes highlightAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @keyframes growFadeCircle {
+            0% {
+                opacity: .5;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            70% {
+                opacity: 0.25;
+                transform: translate(-50%, -50%) scale(1.0);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.5);
+            }
+        }
+
+        .highlight {
+            animation: highlightAnimation 0.5s forwards;
+        }
+        
         .drugName { color: var(--brand); width: 150px; }
         .city { 
             pointer-events: none;

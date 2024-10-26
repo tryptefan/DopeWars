@@ -442,20 +442,33 @@ function positionCounter(slider, sliderCounter) {
      //console.log(sliderCounter);
 }
 
-function refreshHolding() {
-     //console.log("weee");
+function refreshHolding(currentDrug) {
      var wallet = document.getElementById("wallet");
      for (var i = 0; i < drugs.length; i++) {
           var drug = drugs[i];
           var drugData = document.getElementById("ur-" + drug.dataset.name);
           var cityDrugData = document.getElementById("hist-" + drug.dataset.name);
           var myDrugData = document.getElementById("my-" + drug.dataset.name);
+
+          //console.log(drug.dataset.name.toLowerCase() + " " + currentDrug.toLowerCase());
+          // if the drug name and currentDrug are the same...regardless of capitalization
+          if (currentDrug && drug.dataset.name.toLowerCase() == currentDrug.toLowerCase()) {
+               var child = drug.children[1];
+
+               // get the child of drug with classname .amount
+               const amount = drug.querySelector(".amount");
+
+               amount.classList.remove("highlight");
+               void amount.offsetWidth; // force reflow
+               amount.classList.add("highlight");
+          }
+
           if (drugData != null && myDrugData != null) {
                var children = Array.from(drug.children);
                for (var j = 0; j < children.length; j++) {
                     var child = children[j];
                     if (child.classList.contains("amount")) {
-                         child.innerHTML = myDrugData.dataset.holding;
+                         child.innerHTML = "<span>" + myDrugData.dataset.holding + "</span>";
                     }
                }
           }
@@ -605,13 +618,19 @@ function refreshLoanValues() {
 }
 
 function refreshWallet() {
-     cityCash.innerHTML = fmtMoney.format(wallet.dataset.cash);
-     cityBank.innerHTML = fmtMoney.format(wallet.dataset.bank);
-     cityDebt.innerHTML = fmtMoney.format(wallet.dataset.debt);
+     // check cityCash exists
+     if (cityCash) {
+          cityCash.innerHTML = fmtMoney.format(wallet.dataset.cash);
+          cityBank.innerHTML = fmtMoney.format(wallet.dataset.bank);
+          cityDebt.innerHTML = fmtMoney.format(wallet.dataset.debt);
+     }
 }
 
 function refreshDay() {
-     cityDay.innerHTML = vDay;
+     // check cityDay exists
+     if (cityDay) {
+          cityDay.innerHTML = vDay;
+     }
 }
 
 function showMessageBundle(message) {
@@ -690,43 +709,46 @@ function secondaryButton(buttonText) {
      return '<a href="#" class="buttonSecondary button">' + buttonText + "</a>";
 }
 
-confirmDealButton.onclick = function () {
-     var wallet = document.getElementById("wallet");
-     wallet.dataset.cash = Number(wallet.dataset.cash) + Number(vCashDelta);
+// check if confirmDealButton exists
+if (confirmDealButton) {
+     confirmDealButton.onclick = function () {
+          var wallet = document.getElementById("wallet");
+          wallet.dataset.cash = Number(wallet.dataset.cash) + Number(vCashDelta);
 
-     var totalHolding = Number(dealDrugData.dataset.holding);
-     var avg = totalHolding * vAverage;
-     avg += vCost * vHoldingDelta;
-     totalHolding += vHoldingDelta;
-     if (totalHolding <= 0) {
-          avg = 0;
-     } else {
-          avg /= totalHolding;
-     }
-
-     refreshWallet();
-     //refreshDrugs(1); // we need this in ordert to see the new amount we're holding
-
-     var fakeDrugs = false;
-
-     if (buying) {
-          if (Math.random() < buySetupChance.dataset.show) {
-               showBuySetup();
-               fakeDrugs = true;
+          var totalHolding = Number(dealDrugData.dataset.holding);
+          var avg = totalHolding * vAverage;
+          avg += vCost * vHoldingDelta;
+          totalHolding += vHoldingDelta;
+          if (totalHolding <= 0) {
+               avg = 0;
+          } else {
+               avg /= totalHolding;
           }
-     } else {
-          if (Math.random() < sellSetupChance.dataset.show) {
-               showSellSetup();
-          }
-     }
 
-     if (!fakeDrugs) {
-          dealDrugData.dataset.holding = totalHolding;
-          dealDrugData.dataset.price = Math.trunc(avg);
-          refreshHolding();
-     }
-     body.classList.remove("showDeal");
-};
+          refreshWallet();
+          //refreshDrugs(1); // we need this in ordert to see the new amount we're holding
+
+          var fakeDrugs = false;
+
+          if (buying) {
+               if (Math.random() < buySetupChance.dataset.show) {
+                    showBuySetup();
+                    fakeDrugs = true;
+               }
+          } else {
+               if (Math.random() < sellSetupChance.dataset.show) {
+                    showSellSetup();
+               }
+          }
+
+          if (!fakeDrugs) {
+               dealDrugData.dataset.holding = totalHolding;
+               dealDrugData.dataset.price = Math.trunc(avg);
+               refreshHolding(vDrugId);
+          }
+          body.classList.remove("showDeal");
+     };
+}
 
 function cancelTransaction() {
      if (body.classList.contains("showMessage")) {
@@ -1001,7 +1023,7 @@ function robberyDrugs() {
 
           console.log("amount to remove =" + amountToRemove);
 
-          refreshHolding();
+          refreshHolding(vDrugId);
      } else {
           amountToRemove = 0;
           drugName = "nothing";

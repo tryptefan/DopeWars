@@ -599,13 +599,71 @@ h5 {
   gap: 8px;
   align-items: baseline;
   padding: 8px 43px 6px 15px;
+  /* Highlight animation */
 }
 .drugTable .drug .amount,
 .locationTable .drug .amount,
 .drugTable .location .amount,
 .locationTable .location .amount {
   color: var(--text);
+  position: relative;
   width: 27px;
+  transition: all 0.3s ease;
+}
+.drugTable .drug .amount span,
+.locationTable .drug .amount span,
+.drugTable .location .amount span,
+.locationTable .location .amount span {
+  position: relative;
+}
+.drugTable .drug .amount.highlight span::before,
+.locationTable .drug .amount.highlight span::before,
+.drugTable .location .amount.highlight span::before,
+.locationTable .location .amount.highlight span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: var(--brand);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  /* Centered at zero size */
+  z-index: -1;
+  /* Keeps the circle behind the text */
+  animation: growFadeCircle 0.4s;
+}
+@keyframes highlightAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes growFadeCircle {
+  0% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  70% {
+    opacity: 0.25;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+.drugTable .drug .highlight,
+.locationTable .drug .highlight,
+.drugTable .location .highlight,
+.locationTable .location .highlight {
+  animation: highlightAnimation 0.5s forwards;
 }
 .drugTable .drug .drugName,
 .locationTable .drug .drugName,
