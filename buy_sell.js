@@ -450,13 +450,14 @@ function refreshHolding(currentDrug) {
           var cityDrugData = document.getElementById("hist-" + drug.dataset.name);
           var myDrugData = document.getElementById("my-" + drug.dataset.name);
 
-          //console.log(drug.dataset.name.toLowerCase() + " " + currentDrug.toLowerCase());
+          console.log(drug.dataset.name.toLowerCase() + " " + currentDrug.toLowerCase());
           // if the drug name and currentDrug are the same...regardless of capitalization
           if (currentDrug && drug.dataset.name.toLowerCase() == currentDrug.toLowerCase()) {
                var child = drug.children[1];
 
                // get the child of drug with classname .amount
-               const amount = drug.querySelector(".amount");
+               var amount = drug.querySelector(".amount");
+               console.log(amount);
 
                amount.classList.remove("highlight");
                void amount.offsetWidth; // force reflow
@@ -468,7 +469,8 @@ function refreshHolding(currentDrug) {
                for (var j = 0; j < children.length; j++) {
                     var child = children[j];
                     if (child.classList.contains("amount")) {
-                         child.innerHTML = "<span>" + myDrugData.dataset.holding + "</span>";
+                         let spanElement = child.querySelector("span");
+                         spanElement.innerHTML = myDrugData.dataset.holding;
                     }
                }
           }
@@ -495,7 +497,8 @@ function refreshDrugs(noGraph) {
                for (var j = 0; j < children.length; j++) {
                     var child = children[j];
                     if (child.classList.contains("amount")) {
-                         child.innerHTML = myDrugData.dataset.holding;
+                         let spanElement = child.querySelector("span");
+                         spanElement.innerHTML = myDrugData.dataset.holding;
                     } else if (child.classList.contains("drugName")) {
                          child.innerHTML = drugData.dataset.name;
                     } else if (child.classList.contains("price")) {
