@@ -190,6 +190,8 @@ function enterCity(cityId) {
      );
      if (wallet.dataset.debt > 0) {
           loanAge++;
+     } else {
+          loanAge = 0;
      }
 
      if (lastDayPassed()) {
@@ -450,14 +452,12 @@ function refreshHolding(currentDrug) {
           var cityDrugData = document.getElementById("hist-" + drug.dataset.name);
           var myDrugData = document.getElementById("my-" + drug.dataset.name);
 
-          console.log(drug.dataset.name.toLowerCase() + " " + currentDrug.toLowerCase());
           // if the drug name and currentDrug are the same...regardless of capitalization
           if (currentDrug && drug.dataset.name.toLowerCase() == currentDrug.toLowerCase()) {
                var child = drug.children[1];
 
                // get the child of drug with classname .amount
                var amount = drug.querySelector(".amount");
-               console.log(amount);
 
                amount.classList.remove("highlight");
                void amount.offsetWidth; // force reflow
@@ -765,30 +765,36 @@ function cancelTransaction() {
      }
 }
 
-cancelDealButton.onclick = cancelTransaction;
-cancelBankButton.onclick = cancelTransaction;
-cancelLoanButton.onclick = cancelTransaction;
-darkness.onclick = cancelTransaction;
+if (cancelDealButton) {
+     cancelDealButton.onclick = cancelTransaction;
+     cancelBankButton.onclick = cancelTransaction;
+     cancelLoanButton.onclick = cancelTransaction;
+     darkness.onclick = cancelTransaction;
+}
 
-buyButton.onclick = function () {
-     buying = true;
-     vAmount = 0;
-     vCashDelta = 0;
-     vHoldingDelta = 0;
-     dealSlider.max = vCapacity - vHolding;
-     dealSlider.value = 0;
-     refreshDealValues();
-};
+if (buyButton) {
+     buyButton.onclick = function () {
+          buying = true;
+          vAmount = 0;
+          vCashDelta = 0;
+          vHoldingDelta = 0;
+          dealSlider.max = vCapacity - vHolding;
+          dealSlider.value = 0;
+          refreshDealValues();
+     };
+}
 
-sellButton.onclick = function () {
-     buying = false;
-     vAmount = 0;
-     vCashDelta = 0;
-     vHoldingDelta = 0;
-     dealSlider.max = vHolding;
-     dealSlider.value = 0;
-     refreshDealValues();
-};
+if (sellButton) {
+     sellButton.onclick = function () {
+          buying = false;
+          vAmount = 0;
+          vCashDelta = 0;
+          vHoldingDelta = 0;
+          dealSlider.max = vHolding;
+          dealSlider.value = 0;
+          refreshDealValues();
+     };
+}
 
 dealSlider.oninput = function () {
      var totalHolding = vHolding + vHoldingDelta;
@@ -968,7 +974,7 @@ refreshLoanValues();
 // Message helper functions +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function getLoanInfo() {
-     var loanTimeLeft = loanAge;
+     var loanTimeLeft = 10 - loanAge;
      var amountOwed = fmtMoney.format(wallet.dataset.debt);
 
      return { timeLeft: loanTimeLeft, owed: amountOwed };
