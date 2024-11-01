@@ -733,8 +733,10 @@ if (confirmDealButton) {
 
           var fakeDrugs = false;
 
+          // if it's not the first day
+          var firstDay = vDay == 1;
           if (buying) {
-               if (Math.random() < buySetupChance.dataset.show) {
+               if (Math.random() < buySetupChance.dataset.show && !firstDay) {
                     showBuySetup();
                     fakeDrugs = true;
                }
@@ -1469,10 +1471,10 @@ function gameOver(tier, message) {
      var myTotalEarnings =
           Number(wallet.dataset.cash) + Number(wallet.dataset.bank) - Number(wallet.dataset.debt);
 
-     console.log("cash = " + wallet.dataset.cash);
-     console.log("bank = " + wallet.dataset.bank);
-     console.log("debt = " + wallet.dataset.debt);
-     console.log("total = " + myTotalEarnings);
+     // console.log("cash = " + wallet.dataset.cash);
+     // console.log("bank = " + wallet.dataset.bank);
+     // console.log("debt = " + wallet.dataset.debt);
+     // console.log("total = " + myTotalEarnings);
 
      if (myTotalEarnings < 0) {
           myTotalEarnings = 0;
