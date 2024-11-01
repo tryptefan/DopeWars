@@ -970,6 +970,7 @@ h5 {
 .overlay.deal.heroin:before {
   background-image: url('../img/bgHeroin.png');
   background-position: center bottom 69px;
+  background-size: 91%;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .overlay.deal.heroin:before {

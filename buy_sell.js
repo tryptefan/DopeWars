@@ -505,8 +505,8 @@ function refreshDrugs(noGraph) {
                          var basePrice = cityDrugData.dataset.price;
                          var dayPrice = basePrice;
                          // if (vDay > 1) {
-                         var minPrice = basePrice / 2;
-                         var maxPrice = basePrice * 2;
+                         var minPrice = basePrice / 3;
+                         var maxPrice = basePrice * 3;
                          var dayPrice = Math.random() * (maxPrice - minPrice) + minPrice;
                          dayPrice = Math.floor(dayPrice);
                          if (dayPrice < minPrice) {
@@ -520,8 +520,8 @@ function refreshDrugs(noGraph) {
                          // TODO figure out histogram
                          // BEN: I'll take a crack at it... ---------------------------------
                          if (!noGraph) {
-                              var minPrice = basePrice / 2;
-                              var maxPrice = basePrice * 2;
+                              var minPrice = basePrice / 3;
+                              var maxPrice = basePrice * 3;
 
                               // remap dayPrice to a whole number between 0 and 11 (inclusive). minPrice is 0, maxPrice is 10
                               // var graphLevel = Math.round(
@@ -796,105 +796,115 @@ if (sellButton) {
      };
 }
 
-dealSlider.oninput = function () {
-     var totalHolding = vHolding + vHoldingDelta;
-     var totalCash = vCash + vCashDelta;
-     var direction = dealDirection();
+if (dealSlider) {
+     dealSlider.oninput = function () {
+          var totalHolding = vHolding + vHoldingDelta;
+          var totalCash = vCash + vCashDelta;
+          var direction = dealDirection();
 
-     while (vAmount < Number(dealSlider.value)) {
-          var canInc = false;
-          if (buying && vCash + vCashDelta >= vCost && vHolding + vHoldingDelta <= vCapacity) {
-               canInc = true;
-          } else if (!buying && vHolding + vHoldingDelta > 0) {
-               canInc = true;
+          while (vAmount < Number(dealSlider.value)) {
+               var canInc = false;
+               if (buying && vCash + vCashDelta >= vCost && vHolding + vHoldingDelta <= vCapacity) {
+                    canInc = true;
+               } else if (!buying && vHolding + vHoldingDelta > 0) {
+                    canInc = true;
+               }
+
+               if (canInc) {
+                    vAmount += 1;
+                    vHoldingDelta += 1 * direction;
+                    vCashDelta -= vCost * direction;
+               } else {
+                    break;
+               }
           }
 
-          if (canInc) {
+          while (vAmount > Number(dealSlider.value)) {
+               vAmount -= 1;
+               vHoldingDelta -= 1 * direction;
+               vCashDelta += vCost * direction;
+          }
+
+          dealSlider.value = vAmount;
+          refreshDealValues();
+     };
+
+     specialButton.onclick = function () {
+          if (specialButton.dataset.host == "bank") {
+               clearBodyClasses();
+               body.classList.add("showBank");
+               vCash = Number(wallet.dataset.cash);
+               vBank = Number(wallet.dataset.bank);
+               depositButton.onclick();
+          } else if (specialButton.dataset.host == "loan") {
+               clearBodyClasses();
+               body.classList.add("showLoanShark");
+               vCash = Number(wallet.dataset.cash);
+               vDebt = Number(wallet.dataset.debt);
+               payButton.onclick();
+          }
+     };
+}
+
+if (depositButton) {
+     depositButton.onclick = function () {
+          depositing = true;
+          vAmount = 0;
+          vCashDelta = 0;
+          vBankDelta = 0;
+          bankSlider.max = vCash;
+          bankSlider.value = 0;
+          refreshBankValues();
+     };
+}
+
+if (withdrawButton) {
+     withdrawButton.onclick = function () {
+          depositing = false;
+          vAmount = 0;
+          vCashDelta = 0;
+          vBankDelta = 0;
+          bankSlider.max = vBank;
+          bankSlider.value = 0;
+          refreshBankValues();
+     };
+}
+
+if (bankSlider) {
+     bankSlider.oninput = function () {
+          var totalBank = vBank + vBankDelta;
+          var totalCash = vCash + vCashDelta;
+          var direction = bankDirection();
+
+          while (vAmount < Number(bankSlider.value)) {
                vAmount += 1;
-               vHoldingDelta += 1 * direction;
-               vCashDelta -= vCost * direction;
-          } else {
-               break;
+               vBankDelta += 1 * direction;
+               vCashDelta -= 1 * direction;
           }
-     }
 
-     while (vAmount > Number(dealSlider.value)) {
-          vAmount -= 1;
-          vHoldingDelta -= 1 * direction;
-          vCashDelta += vCost * direction;
-     }
+          while (vAmount > Number(bankSlider.value)) {
+               vAmount -= 1;
+               vBankDelta -= 1 * direction;
+               vCashDelta += 1 * direction;
+          }
 
-     dealSlider.value = vAmount;
-     refreshDealValues();
-};
+          bankSlider.value = vAmount;
+          refreshBankValues();
+     };
+}
 
-specialButton.onclick = function () {
-     if (specialButton.dataset.host == "bank") {
-          clearBodyClasses();
-          body.classList.add("showBank");
-          vCash = Number(wallet.dataset.cash);
-          vBank = Number(wallet.dataset.bank);
-          depositButton.onclick();
-     } else if (specialButton.dataset.host == "loan") {
-          clearBodyClasses();
-          body.classList.add("showLoanShark");
-          vCash = Number(wallet.dataset.cash);
-          vDebt = Number(wallet.dataset.debt);
-          payButton.onclick();
-     }
-};
+if (confirmBankButton) {
+     confirmBankButton.onclick = function () {
+          var wallet = document.getElementById("wallet");
+          wallet.dataset.cash = Number(wallet.dataset.cash) + Number(vCashDelta);
+          wallet.dataset.bank = Number(wallet.dataset.bank) + Number(vBankDelta);
+          vCashDelta = 0;
+          vBankDelta = 0;
 
-depositButton.onclick = function () {
-     depositing = true;
-     vAmount = 0;
-     vCashDelta = 0;
-     vBankDelta = 0;
-     bankSlider.max = vCash;
-     bankSlider.value = 0;
-     refreshBankValues();
-};
-
-withdrawButton.onclick = function () {
-     depositing = false;
-     vAmount = 0;
-     vCashDelta = 0;
-     vBankDelta = 0;
-     bankSlider.max = vBank;
-     bankSlider.value = 0;
-     refreshBankValues();
-};
-
-bankSlider.oninput = function () {
-     var totalBank = vBank + vBankDelta;
-     var totalCash = vCash + vCashDelta;
-     var direction = bankDirection();
-
-     while (vAmount < Number(bankSlider.value)) {
-          vAmount += 1;
-          vBankDelta += 1 * direction;
-          vCashDelta -= 1 * direction;
-     }
-
-     while (vAmount > Number(bankSlider.value)) {
-          vAmount -= 1;
-          vBankDelta -= 1 * direction;
-          vCashDelta += 1 * direction;
-     }
-
-     bankSlider.value = vAmount;
-     refreshBankValues();
-};
-
-confirmBankButton.onclick = function () {
-     var wallet = document.getElementById("wallet");
-     wallet.dataset.cash = Number(wallet.dataset.cash) + Number(vCashDelta);
-     wallet.dataset.bank = Number(wallet.dataset.bank) + Number(vBankDelta);
-     vCashDelta = 0;
-     vBankDelta = 0;
-
-     refreshWallet();
-     body.classList.remove("showBank");
-};
+          refreshWallet();
+          body.classList.remove("showBank");
+     };
+}
 
 payButton.onclick = function () {
      paying = true;
