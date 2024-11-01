@@ -1448,8 +1448,9 @@ function showSellSetup() {
 // END GAME -------------------------------------------------------------------------------------------------------
 
 function endGameAssessment() {
-     var totalEarnings = Number(wallet.dataset.cash) + Number(wallet.dataset.bank);
-     console.log(totalEarnings);
+     var totalEarnings =
+          Number(wallet.dataset.cash) + Number(wallet.dataset.bank) - Number(wallet.dataset.debt);
+
      if (totalEarnings < 50000) {
           endBroke();
      } else if (totalEarnings > 50001 && totalEarnings < 200000) {
@@ -1465,10 +1466,18 @@ function gameOver(tier, message) {
      endCityDay.innerHTML = vDay;
      endMessage.innerHTML = message;
      endScreen.classList.add(tier);
-     var myTotalEarnings = Number(wallet.dataset.cash) + Number(wallet.dataset.bank);
-     totalEarnings.innerHTML = fmtMoney.format(
-          Number(wallet.dataset.cash) + Number(wallet.dataset.bank)
-     );
+     var myTotalEarnings =
+          Number(wallet.dataset.cash) + Number(wallet.dataset.bank) - Number(wallet.dataset.debt);
+
+     console.log("cash = " + wallet.dataset.cash);
+     console.log("bank = " + wallet.dataset.bank);
+     console.log("debt = " + wallet.dataset.debt);
+     console.log("total = " + myTotalEarnings);
+
+     if (myTotalEarnings < 0) {
+          myTotalEarnings = 0;
+     }
+     totalEarnings.innerHTML = fmtMoney.format(myTotalEarnings);
      var highScore = localStorage.getItem("highScore");
      // if totalEarnings is greater than highScore, replace localStorage value of highScore with totalEarnings
      if (myTotalEarnings > highScore) {
