@@ -118,6 +118,9 @@ if (body.classList.contains("intro")) {
      settingsCancel.onclick = function () {
           body.classList.remove("showSettings");
      };
+     darkness.onclick = function () {
+          body.classList.remove("showSettings");
+     };
      settingsSave.onclick = function () {
           body.classList.remove("showSettings");
      };
