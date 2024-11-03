@@ -44,11 +44,15 @@
 
         <div class="dark" id="darkness"></div>
 
-        <!-- Settings -->
-        <div class="overlay settings">
+
+        <!-- MENU ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+        <div class="overlay settings" id="settingsOverlay">
             <div class="topBar">
-                <h1 class="title">Settings</h1>
+                <h1 class="title">Menu</h1>
             </div><!-- topBar -->
+
+            <p class="titleSettings listingBold">Settings</p>
 
             <!-- form with one filedset that is just a toggle switch labeled "Travel Transitions"-->
             <form>
@@ -59,14 +63,93 @@
                 </fieldset>
             </form>
 
+
+            <p class="titleHelp listingBold">Help</p>
+
+            <p class="listingBold" id="linkTutorial">Tutorial</p>
             <div class="meta">Tempest Press ©2024</div>
 
-            <div class="actions">
+            <!-- <div class="actions">
                 <a href="#" class="buttonSecondary button" id="settingsCancel">Cancel</a>
                 <a href="#" class="buttonPrimary button" id="settingsSave">Save</a>
+            </div> -->
+
+            <div id="tutorial">
+                <div class="topBar">
+                    <span class="listing" id="backLink">Back</span>
+                    <h1 class="title">Tutorial</h1>
+                </div><!-- topBar -->
+
+                <div class="helpText">
+                    <h1 class="title">What is this game?</h1>
+
+                    <strong>The Basics</strong>
+                    <p>In Dope Wars [1987] your objective is to make as much money selling drugs as possible in 30 days.
+                        In order to maximize profits, you will need to buy drugs when they are cheap, and sell them when
+                        they are expensive. In order to advance the date, (and reset drug prices) you will need to
+                        travel to
+                        different cities. Some cities have points of interest like the loan shark or the bank.
+                        Traveling and dealing drugs, you will face all sorts of dangers, from crooked cops, to
+                        fake&nbsp;drugs.</p>
+
+                    <strong>The Interface</strong>
+                    <p>The first page you'll see when you start a new game is the city page. Here you'll be able to see
+                        what city you're in; the date; a listing of available drugs; and buttons to travel or visit the
+                        unique
+                        point of interest in that city. There are a few things to be aware of in the drug listings that
+                        will help
+                        make decisions:</p>
+
+                    1. Quantity
+                    <img src="../img/help1.svg" />
+                    <p>The first number in a listing is the amount of that drug that you are holding. You can hold up to
+                        100 of each drug.</p>
+
+                    2. Price graph
+                    <img src="../img/help2.svg" />
+                    <p>After the drug name is the price graph. This shows the last 10 days of prices so you can quickly
+                        glance and see if a drug is selling high or low.</p>
+
+                    <strong>Dealing</strong>
+                    <p>Click anywhere on a drug listing to bring up the dealing interface. Here you can switch between
+                        buying and selling. When selling, you can see what you purchased the drug for in order to make
+                        sure you're
+                        going to make a profit. Note: the purchase price shows an average, so if you bought at multiple
+                        prices, you will still be able to compare with the current price.</p>
+
+                    <strong>Ending</strong>
+                    <p>There are several ways to end the game; some more glamorous than others. If you make it to day
+                        30,
+                        your cash and money in the bank will be combined, and any outstanding debt will be removed. You
+                        will then
+                        be given an ending based on this combined total.</p>
+
+                    <strong>Tips & Tricks</strong>
+                    <p>1. Pay off your debt early. At 10%/day interest, debt can quickly become difficult to deal with,
+                        and
+                        Big Rick isn't the most understanding person.</p>
+
+                    <p>2. Deposit excess cash in the bank. As you travel to different cities and deal drugs, you will
+                        run
+                        the risk of being assaulted and robbed. The less cash you have, the less an assailant can take.
+                    </p>
+
+                    <p>3. Carry an assortment of drugs. If you get robbed, the assailant will take a percentage of a
+                        random
+                        drug you're holding. If you are holding a valuable drug, it's a good idea to also carry some
+                        cheaper
+                        drugs to reduce the chances of losing the valuable drug.</p>
+
+                    <p>4. Keep your eyes open. Occasionally something unexpected may happen...</p>
+
+                    <p>Original game by John E. Dell 1984</p>
+                </div>
             </div>
 
-        </div><!-- travel overlay -->
+        </div><!-- MENU overlay -->
+
+
+
 
 
     </div><!-- container -->

@@ -109,23 +109,33 @@ let transitAnimation = localStorage.getItem("travelTransitions");
 
 // if body contains class "intro"
 if (body.classList.contains("intro")) {
+     const travelTransitionsCheckbox = document.getElementById("toggleTransit");
+     const tutorialLink = document.getElementById("linkTutorial");
+     const overlay = document.getElementById("settingsOverlay");
+     const backLink = document.getElementById("backLink");
+
      scoreValue.innerHTML = fmtMoney.format(highScore);
 
      settingsButton.onclick = function () {
           body.classList.add("showSettings");
      };
 
-     settingsCancel.onclick = function () {
-          body.classList.remove("showSettings");
-     };
+     // settingsCancel.onclick = function () {
+     //      body.classList.remove("showSettings");
+     // };
      darkness.onclick = function () {
           body.classList.remove("showSettings");
-     };
-     settingsSave.onclick = function () {
-          body.classList.remove("showSettings");
+          overlay.classList.remove("showTutorial");
      };
 
-     const travelTransitionsCheckbox = document.getElementById("toggleTransit");
+     backLink.onclick = function () {
+          overlay.classList.remove("showTutorial");
+     };
+
+     tutorialLink.onclick = function () {
+          console.log(overlay);
+          overlay.classList.add("showTutorial");
+     };
 
      // If there's no stored value, set it to true (on by default)
      if (transitAnimation === null) {
@@ -140,6 +150,7 @@ if (body.classList.contains("intro")) {
 
      // Add an event listener to handle changes
      travelTransitionsCheckbox.addEventListener("change", function () {
+          console.log("togled");
           const isChecked = travelTransitionsCheckbox.checked; // Get the current state
           localStorage.setItem("travelTransitions", isChecked); // Save it to localStorage
      });

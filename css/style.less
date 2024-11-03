@@ -473,9 +473,9 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
     
     #buttonSettings {
-        background: url(../img/iconSettings.svg) center no-repeat;
-        height: 21px;
-        width: 21px;
+        background: url(../img/iconBurger.svg) center no-repeat;
+        height: 14px;
+        width: 20px;
         display: block;
         position: absolute;
         top: 56px;
@@ -496,11 +496,59 @@ h1, h2, h3, h4, h5 { margin: 0; }
     }
 
 
+    // SETTINGS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     .settings {
         display: flex;
         flex-direction: column;
+        overflow: hidden;
 
-        form { flex-grow: 1; }
+        .topBar { display: block; z-index: 0; }
+
+        .title { text-align: center; }
+        .titleSettings,
+        .titleHelp { 
+            border-bottom: 1px solid var(--grey10);
+            color: var(--brand);
+            padding-bottom: 20px;;
+            position: relative;
+            text-align: left; 
+
+           &::before {
+                background: url(../img/iconSettings.svg) no-repeat;
+                content: "";
+                display: inline-block;
+                height: 22px;
+                width: 21px;
+                margin-right: 10px;
+                position: relative;
+                top: 3px;
+           }
+        }
+
+        .titleHelp::before {
+            background: url(../img/iconHelp.svg) no-repeat;
+            margin-top: 30px;
+        }
+
+        #linkTutorial {
+            flex-grow: 1;
+            position: relative;
+            &::after {
+                background: url(../img/iconNext.svg) no-repeat;
+                content: "";
+                display: inline-block;
+                height: 22px;
+                width: 12px;
+                position: absolute;
+                right: 0;
+                top: 5px;
+            }
+        }
+
+        form { 
+            //flex-grow: 1; 
+            }
         fieldset { 
             border: 0; 
             position: relative;
@@ -544,7 +592,59 @@ h1, h2, h3, h4, h5 { margin: 0; }
             display : none;
           }
 
-          .meta { margin-bottom: 26px; }
+          .meta { margin-bottom: 6px; }
+
+          #tutorial {
+            background-color: @grey30;
+            box-sizing: border-box;
+            height: 100%;
+            padding: 24px;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            transition: all .25s ease-in;
+            width: 100%;
+
+            .topBar {
+                #backLink {
+                    color: var(--brand);
+                    position: absolute;
+                    top: 3px;
+                    left: 3px;
+
+                    &::before {
+                        background: url(../img/iconPrevious.svg) no-repeat center;
+                        content: "";
+                        display: inline-block;
+                        height: 22px;
+                        width: 12px;
+                        margin-right: 12px;
+                        position: relative;
+                        top: 5px;
+                    }
+                }
+            }
+            .helpText {
+                box-sizing: border-box;
+                overflow-y: scroll;
+                height: 92%;
+
+                .title {
+                    color: var(--brand);
+                    margin-bottom: 20px;
+                    text-align: left;
+                }
+
+                img {
+                    display: block;
+                    margin: 15px 0 15px 0;
+                }
+            }
+          }
+    } // settings
+
+    .showTutorial #tutorial {
+        left: 0%;
     }
 } // ntro
 
@@ -1274,7 +1374,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
 }
 
 .endScreen.death #art {
-    background-image: url(../img/endDead.png);
+    background-image: url(../img/endDead.png); background-size: 100%;
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
         background-image: url(../img/endDead@2x.png);
     }
@@ -1300,13 +1400,13 @@ h1, h2, h3, h4, h5 { margin: 0; }
 }
 
 .endScreen.rich #art {
-    background-image: url(../img/endRich.png);
+    background-image: url(../img/endRich.png); background-size: 100%;
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
         background-image: url(../img/endRich@2x.png);
     }
 }
 
-.endScreen.recruit #art {
+.endScreen.recruit #art { 
     background-image: url(../img/endRecruit.png);
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
         background-image: url(../img/endRecruit@2x.png);
